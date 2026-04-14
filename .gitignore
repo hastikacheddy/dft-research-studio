@@ -29,3 +29,15 @@ debug_checkpoint*
 full_checkpoint*
 debug_reproducibility*
 full_reproducibility*
+.netrc
+.idea/
+.vscode/
+*.png
+*.pdf
+*.csv
+results/
+notebooks/
+nltk_data/
+README_HF.md
+app_hf.py
+hf_space/
