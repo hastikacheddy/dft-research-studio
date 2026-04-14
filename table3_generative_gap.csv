@@ -1,0 +1,26 @@
+Model,Distractor Ratio,Score (μ ± σ),Fidelity Gap,Gap Display,Interpretation
+Baseline,0.0,1.00 ± nan,0.0,0.00% (±0.00%),High Fidelity
+Graph-Deterministic,0.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Graph-Anchored,0.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Multi-Agent,0.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+StandardRAG,0.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Baseline,0.5,1.00 ± nan,0.0,0.00% (±0.00%),High Fidelity
+Graph-Deterministic,0.5,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Graph-Anchored,0.5,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Multi-Agent,0.5,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+StandardRAG,0.5,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Baseline,1.0,1.00 ± nan,0.0,0.00% (±0.00%),High Fidelity
+Graph-Deterministic,1.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Graph-Anchored,1.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Multi-Agent,1.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+StandardRAG,1.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Baseline,2.0,1.00 ± nan,0.0,0.00% (±0.00%),High Fidelity
+Graph-Deterministic,2.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Graph-Anchored,2.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Multi-Agent,2.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+StandardRAG,2.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Baseline,3.0,1.00 ± nan,0.0,0.00% (±0.00%),High Fidelity
+Graph-Deterministic,3.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Graph-Anchored,3.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+Multi-Agent,3.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
+StandardRAG,3.0,0.00 ± nan,1.0,100.00% (±0.00%),Critical Loss
