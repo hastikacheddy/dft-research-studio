@@ -1,82 +1,31 @@
-# ── Secrets (NEVER commit these) ─────────────────────────────────────
 .env
+*.env
 *.key
 *.pem
-secrets/
-
-# ── Python ────────────────────────────────────────────────────────────
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-.Python
-*.egg-info/
-dist/
-build/
-.eggs/
-
-# ── Virtual environments ──────────────────────────────────────────────
-.venv/
-venv/
-env/
-ENV/
-
-# ── Testing & coverage ────────────────────────────────────────────────
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-
-# ── Experiment outputs (large, generated) ─────────────────────────────
 logs/
+*.log
 *.jsonl
-*_results_raw.json
-*_experiment_metrics.csv
-*_reproducibility_log.json
-*_checkpoint.jsonl
-fidelity_gap_heatmap*.png
-fidelity_gap_heatmap*.svg
-heatmap_*.svg
-metrics_bar_grid.pdf
-metrics_line_grid.pdf
-radar_comparison.pdf
-noise_sensitivity.pdf
-failure_modes.pdf
-significance_matrix.pdf
-table3_generative_gap.csv
-final_results_with_ci.csv
-interactive_graph.html
-temp_*.svg
-
-# ── ChromaDB (can be GBs) ─────────────────────────────────────────────
-chroma_*/
-*.chroma/
+*.jsonl.bak
 VectorDBs/
-
-# ── Models & embeddings cache ─────────────────────────────────────────
-.cache/
+chroma_*/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+htmlcov/
+wandb/
 *.bin
 *.safetensors
-sentence_transformers/
-
-# ── Jupyter ───────────────────────────────────────────────────────────
-.ipynb_checkpoints/
-*.ipynb
-
-# ── Weights & Biases ──────────────────────────────────────────────────
-wandb/
-
-# ── OS ────────────────────────────────────────────────────────────────
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-
-# ── IDE ───────────────────────────────────────────────────────────────
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-
-# ── Docker ────────────────────────────────────────────────────────────
-.dockerignore
+models/
+dist/
+build/
+*.egg-info/
+.coverage
+debug_*.json
+full_*.json
+debug_*.csv
+full_*.csv
+debug_checkpoint*
+full_checkpoint*
+debug_reproducibility*
+full_reproducibility*
