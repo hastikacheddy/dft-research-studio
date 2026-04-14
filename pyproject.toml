@@ -1,0 +1,102 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dft-research-studio"
+version = "1.0.0"
+description = "Evaluating Topological vs. Dense Retrieval in Quantum Chemistry"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+
+# ── Exact pins for full reproducibility ──────────────────────────────
+# Generated with: pip freeze | grep -v "^-e" > requirements.lock
+# These are the minimum versions that passed the full experiment.
+# Pin to exact versions in production: change >= to ==
+dependencies = [
+    "pandas>=2.1.0",
+    "numpy>=1.26.0",
+    "networkx>=3.2.0",
+    "scipy>=1.11.0",
+    "spacy>=3.7.0",
+    "nltk>=3.8.0",
+    "thefuzz[speedup]>=0.22.0",
+    "pymupdf>=1.23.0",
+    "pypdf>=3.17.0",
+    "sentence-transformers>=2.7.0",
+    "rank-bm25>=0.2.2",
+    "chromadb>=0.5.0",
+    "langchain>=0.2.0",
+    "langchain-community>=0.2.0",
+    "langchain-openai>=0.1.0",
+    "langchain-text-splitters>=0.2.0",
+    "groq>=0.9.0",
+    "litserve>=0.2.0",
+    "requests>=2.31.0",
+    "matplotlib>=3.8.0",
+    "seaborn>=0.13.0",
+    "pyvis>=0.3.0",
+    "rouge-score>=0.1.2",
+    "scikit-learn>=1.4.0",
+    "psutil>=5.9.0",
+    "torch>=2.2.0",
+    "gradio>=4.36.0",
+    "python-dotenv>=1.0.0",
+    "tqdm>=4.66.0",
+]
+
+[project.optional-dependencies]
+tracking = ["wandb>=0.17.0"]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+dft-run    = "dft_research_studio.main:main"
+dft-serve  = "dft_research_studio.serving.litserve_api:main"
+
+# ── Ruff (linter + formatter) ─────────────────────────────────────────
+[tool.ruff]
+target-version = "py311"
+line-length = 99
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes (unused imports, undefined names)
+    "I",   # isort
+    "B",   # flake8-bugbear (common real bugs)
+    "UP",  # pyupgrade (modernise syntax)
+    "N",   # pep8-naming
+    "LOG", # flake8-logging (correct logging calls)
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # function calls in default arguments (common in FastAPI/LitServe)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["N802", "N803"]  # test function names don't need to follow naming conventions
+
+# ── pytest ────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v --tb=short --strict-markers"
+markers   = [
+    "integration: tests requiring mounted datasets and a live GROQ_API_KEY",
+    "slow: tests that perform real LLM inference calls",
+]
+
+# ── Coverage ──────────────────────────────────────────────────────────
+[tool.coverage.run]
+source = ["dft_research_studio"]
+omit   = ["tests/*", "*/migrations/*"]
+
+[tool.coverage.report]
+show_missing   = true
+skip_covered   = false
+fail_under     = 70

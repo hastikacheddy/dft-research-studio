@@ -1,0 +1,75 @@
+# docker-compose.yml
+# -------------------
+# Brings up both the LitServe inference backend and the Gradio frontend.
+#
+# Prerequisites
+# -------------
+# 1. Create a .env file (see .env.example):
+#       GROQ_API_KEY=sk-...
+#       DFT_BASE_DIR=/data/datasets
+#       DFT_CHROMA_DIR=/data/vectordbs
+#
+# 2. Adjust the volume paths below to point at your actual dataset locations.
+#
+# Usage
+# -----
+#   docker compose up --build          # build + start both services
+#   docker compose up -d               # detached mode
+#   docker compose logs -f dft-serve   # tail inference-server logs
+#   docker compose down                # stop + remove containers
+
+version: "3.9"
+
+services:
+
+  # ── Inference backend (LitServe) ─────────────────────────────────
+  dft-serve:
+    build:
+      context: .
+      dockerfile: Dockerfile.serve
+    image: dft-serve:latest
+    container_name: dft-serve
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      LITSERVE_PORT: "8000"
+      LITSERVE_WORKERS: "1"
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount your dataset folder read-only
+      - ${DFT_DATASETS_HOST_PATH:-./data/datasets}:/data/datasets:ro
+      # Mount the vector-DB folder read-write (ChromaDB persists here)
+      - ${DFT_VECTORDB_HOST_PATH:-./data/vectordbs}:/data/vectordbs
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      start_period: 120s   # engines take time to load on first start
+      retries: 5
+
+  # ── Gradio frontend ───────────────────────────────────────────────
+  dft-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    image: dft-app:latest
+    container_name: dft-app
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      LITSERVE_URL: "http://dft-serve:8000/predict"
+      GRADIO_PORT: "7860"
+    ports:
+      - "7860:7860"
+    depends_on:
+      dft-serve:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:7860')"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3

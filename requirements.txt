@@ -1,0 +1,60 @@
+# ── Core scientific stack ─────────────────────────────────────────────
+pandas>=2.1.0
+numpy>=1.26.0
+networkx>=3.2.0
+scipy>=1.11.0
+
+# ── NLP ───────────────────────────────────────────────────────────────
+spacy>=3.7.0
+nltk>=3.8.0
+thefuzz[speedup]>=0.22.0
+
+# ── PDF parsing ───────────────────────────────────────────────────────
+pymupdf>=1.23.0
+pypdf>=3.17.0
+
+# ── Embeddings & retrieval ────────────────────────────────────────────
+sentence-transformers>=2.7.0
+rank-bm25>=0.2.2
+
+# ── Vector store & LangChain ──────────────────────────────────────────
+chromadb>=0.5.0
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-openai>=0.1.0
+langchain-text-splitters>=0.2.0
+
+# ── LLM inference ─────────────────────────────────────────────────────
+groq>=0.9.0
+
+# ── Serving ───────────────────────────────────────────────────────────
+litserve>=0.2.0
+requests>=2.31.0
+
+# ── Visualisation ─────────────────────────────────────────────────────
+matplotlib>=3.8.0
+seaborn>=0.13.0
+pyvis>=0.3.0
+
+# ── Evaluation ────────────────────────────────────────────────────────
+rouge-score>=0.1.2
+scikit-learn>=1.4.0
+
+# ── Experiment tracking ───────────────────────────────────────────────
+psutil>=5.9.0
+torch>=2.2.0
+
+# ── Dashboard ─────────────────────────────────────────────────────────
+gradio>=4.36.0
+
+# ── Production utilities ──────────────────────────────────────────────
+python-dotenv>=1.0.0      # auto-loads .env
+tqdm>=4.66.0              # progress bars in main.py
+
+# ── Optional: experiment tracking ─────────────────────────────────────
+# wandb>=0.17.0           # uncomment to enable W&B (free tier)
+
+# ── Development & testing ─────────────────────────────────────────────
+pytest>=7.4.0
+pytest-cov>=4.1.0
+ruff>=0.4.0

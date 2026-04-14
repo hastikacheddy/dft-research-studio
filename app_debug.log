@@ -1,0 +1,109 @@
+2026-04-14 06:15:30 | INFO     | dft_research_studio.utils.logging_config | Logging initialised — level=INFO
+2026-04-14 06:15:30 | INFO     | __main__ | Loading engines...
+2026-04-14 06:15:37 | INFO     | dft_research_studio.utils.experiment_orchestrator | Initialising engines for 5 ratios ...
+2026-04-14 06:15:37 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=0.00 ...
+[DataManager] Processing 25 PDFs (25 relevant, 0 distractors) …
+/teamspace/studios/this_studio/dft_research_studio/retrievers/standard_rag.py:34: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+  self.embeddings = HuggingFaceEmbeddings(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-14 06:15:42 | WARNING  | huggingface_hub.utils._http | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 5000.62it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_0_0' …
+/teamspace/studios/this_studio/dft_research_studio/retrievers/standard_rag.py:40: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  self.vector_store = Chroma(
+[StandardRAG] Vector store has 2330 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s]Loading weights: 100%|██████████| 105/105 [00:00<00:00, 4214.25it/s]
+[1mBertForSequenceClassification LOAD REPORT[0m from: cross-encoder/ms-marco-MiniLM-L-6-v2
+Key                          | Status     |  | 
+-----------------------------+------------+--+-
+bert.embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[Reranker] Initialised with 'cross-encoder/ms-marco-MiniLM-L-6-v2'.
+[BM25] Initialised with 121 documents.
+[BM25Reranker] Adapter ready for 121 documents.
+2026-04-14 06:15:56 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=0.50 ...
+[DataManager] Processing 37 PDFs (25 relevant, 12 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4378.32it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_0_5' …
+[StandardRAG] Vector store has 3097 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+[BM25] Initialised with 193 documents.
+[BM25Reranker] Adapter ready for 193 documents.
+2026-04-14 06:16:17 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=1.00 ...
+[DataManager] Processing 50 PDFs (25 relevant, 25 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3873.76it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_1_0' …
+[StandardRAG] Vector store has 4025 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+[BM25] Initialised with 269 documents.
+[BM25Reranker] Adapter ready for 269 documents.
+2026-04-14 06:16:40 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=2.00 ...
+[DataManager] Processing 75 PDFs (25 relevant, 50 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4692.89it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_2_0' …
+[StandardRAG] Vector store has 5679 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+[BM25] Initialised with 407 documents.
+[BM25Reranker] Adapter ready for 407 documents.
+2026-04-14 06:17:13 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=3.00 ...
+[DataManager] Processing 100 PDFs (25 relevant, 75 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4276.09it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_3_0' …
+[StandardRAG] Vector store has 7828 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+[BM25] Initialised with 563 documents.
+[BM25Reranker] Adapter ready for 563 documents.
+2026-04-14 06:17:53 | INFO     | dft_research_studio.utils.experiment_orchestrator | All engines ready. 0 results in checkpoint.
+2026-04-14 06:17:53 | INFO     | __main__ | All engines ready.
+/teamspace/studios/this_studio/app.py:139: UserWarning: The parameters have been moved from the Blocks constructor to the launch() method in Gradio 6.0: css. Please pass these parameters to launch() instead.
+  with gr.Blocks(title="DFT Research Studio", css=CSS) as demo:
+* Running on local URL:  http://0.0.0.0:7860
+* To create a public link, set `share=True` in `launch()`.

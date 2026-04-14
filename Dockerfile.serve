@@ -1,0 +1,66 @@
+# Dockerfile.serve
+# -----------------
+# Production image for the LitServe inference backend.
+#
+# Build:
+#   docker build -f Dockerfile.serve -t dft-serve .
+#
+# Run (pass secrets via .env):
+#   docker run --env-file .env -p 8000:8000 \
+#     -v /path/to/your/datasets:/data/datasets:ro \
+#     -v /path/to/your/vectordbs:/data/vectordbs \
+#     dft-serve
+
+# ── Base ─────────────────────────────────────────────────────────────
+FROM python:3.11-slim AS base
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /app
+
+# System deps: libGL for PyMuPDF, git for pip editable installs
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libgl1 \
+        libglib2.0-0 \
+        build-essential \
+        git \
+    && rm -rf /var/lib/apt/lists/*
+
+# ── Python deps ──────────────────────────────────────────────────────
+FROM base AS deps
+
+COPY requirements.txt .
+# Install everything including litserve
+RUN pip install -r requirements.txt && \
+    pip install litserve>=0.2.0
+
+# Download SpaCy model and NLTK data at build time so the container
+# starts without needing internet access at runtime.
+RUN python -m spacy download en_core_web_sm && \
+    python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab')"
+
+# ── Application ───────────────────────────────────────────────────────
+FROM deps AS app
+
+COPY dft_research_studio/ /app/dft_research_studio/
+COPY serving/              /app/serving/
+
+# Data and vector-DB directories — mounted at runtime via -v
+RUN mkdir -p /data/datasets /data/vectordbs
+
+# Default env-vars (override with --env-file or -e flags)
+ENV DFT_BASE_DIR=/data/datasets \
+    DFT_CHROMA_DIR=/data/vectordbs \
+    LITSERVE_PORT=8000 \
+    LITSERVE_WORKERS=1
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=90s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" \
+    || exit 1
+
+CMD ["python", "serving/litserve_api.py"]
