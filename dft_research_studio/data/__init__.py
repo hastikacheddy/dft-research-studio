@@ -3,3 +3,5 @@ from .pdf_processor import ScientificPDFProcessor
 from .data_manager import DFTDataManager
 
 __all__ = ["ScientificPDFProcessor", "DFTDataManager"]
+
+from .arxiv_ingester import ArXivIngester

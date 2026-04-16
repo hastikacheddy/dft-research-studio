@@ -185,7 +185,7 @@ class ExperimentOrchestrator:
         ratio = distractor_ratio
         if "Standard RAG" in experiment_type:
             docs = self.engines.rag(ratio).retriever.invoke(question)
-            context = "\n".join(d.page_content for d in docs)
+            context = "\n".join(d.page_content for d in docs)[:2000]
             ans, *_ = self.engines.default_llm.generate(f"Context: {context}\nQ: {question}")
             return ans, f"Retrieved {len(docs)} chunks", context
         if experiment_type == "GraphRAG":
@@ -198,6 +198,16 @@ class ExperimentOrchestrator:
             prompt = self.engines.topo(ratio).generate_deterministic_prompt(question, ctx)
             ans, *_ = self.engines.default_llm.generate(prompt)
             return ans, "Deterministic Graph Active", ctx
+        if "BM25" in experiment_type or "Reranker" in experiment_type:
+            try:
+                bm25 = self.engines.bm25_reranker(ratio)
+                docs = bm25.invoke(question)
+                context = "\n".join(d.page_content for d in docs)[:2000]
+                ans, *_ = self.engines.default_llm.generate(
+                    f"Context: {context}\nQ: {question}")
+                return ans, f"BM25+Reranker: {len(docs)} docs", context
+            except Exception as exc:
+                return f"BM25 error: {exc}", "", ""
         if "Multi-Agent" in experiment_type:
             ans, log, chunks, pids, it, ot, cost, calls = self.engines.mas(ratio).run_workflow(question)
             return ans, f"Cost: ${cost:.4f}", "\n".join(log["steps"])

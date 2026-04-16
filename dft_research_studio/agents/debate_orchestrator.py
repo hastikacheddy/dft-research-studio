@@ -220,6 +220,16 @@ class DebateOrchestrator:
             self.kg = None
             import logging
             logging.getLogger(__name__).warning("KGQueryEngine not loaded: %s", exc)
+        # Meta-engineering reasoning engine (qwen/qwen3-32b)
+        try:
+            from .meta_reasoning_engine import MetaReasoningEngine
+            self.meta_engine = MetaReasoningEngine(llm=llm, kg=self.kg)
+            import logging
+            logging.getLogger(__name__).info("MetaReasoningEngine ready with qwen/qwen3-32b.")
+        except Exception as exc:
+            self.meta_engine = None
+            import logging
+            logging.getLogger(__name__).warning("MetaReasoningEngine not loaded: %s", exc)
 
     def _advisor_propose(self, task, molecule, prior_critique="", round_num=0):
         try:
@@ -336,13 +346,48 @@ EVIDENCE: <one sentence citing specific KG node/paper>"""
             lines.append("│  🔴 SAFETY OFFICER  querying knowledge graph...")
             yield "\n".join(lines), "", "", "", "", ""
 
-            verdict, critique, evidence, papers = self._safety_check(func, basis, disp, task, molecule)
+            # Try meta-engineering reasoning engine first
+            reasoning_chain = None
+            try:
+                if hasattr(self, "meta_engine") and self.meta_engine:
+                    verdict, critique, reasoning_chain = self.meta_engine.reason_about_proposal(
+                        functional=func, basis=basis, dispersion=disp,
+                        task=task, molecule=molecule, round_num=rnd+1,
+                        advisor_rationale=rationale,
+                        rag_context=rag_ctx if "rag_ctx" in dir() else "",
+                    )
+                    evidence = reasoning_chain.steps[-1].evidence if reasoning_chain.steps else ""
+                    papers = []
+                    if self.kg:
+                        mae_data = self.kg.get_mae_for_functional(func, task, max_results=3)
+                        papers = list({m["paper"] for m in mae_data if m.get("paper")})
+                else:
+                    verdict, critique, evidence, papers = self._safety_check(func, basis, disp, task, molecule)
+            except Exception as exc:
+                logger.warning("Meta-engine failed, falling back: %s", exc)
+                verdict, critique, evidence, papers = self._safety_check(func, basis, disp, task, molecule)
+
             all_papers.extend(papers)
             icon = "✅" if verdict == "ACCEPTED" else "❌"
             lines.append(f"│  🔴 SAFETY OFFICER  {icon} {verdict}")
-            if critique: lines.append(f"│             {critique}")
-            if evidence: lines.append(f"│             Evidence: {evidence}")
-            if papers:   lines.append(f"│             KG: {', '.join(papers[:3])}")
+
+            # Show reasoning chain steps in transcript
+            if reasoning_chain:
+                for step in reasoning_chain.steps:
+                    agent_icon = "🔵" if step.agent=="ADVISOR" else "🟡" if step.agent=="META_REASONER" else "🔴"
+                    lines.append(f"│  {agent_icon} Step {step.step_num} [{step.action}]")
+                    lines.append(f"│     {step.content[:80]}")
+                    if step.evidence:   lines.append(f"│     Evidence: {step.evidence[:70]}")
+                    if step.conclusion: lines.append(f"│     → {step.conclusion[:70]}")
+            all_papers.extend(papers)
+            icon = "✅" if verdict == "ACCEPTED" else "❌"
+            lines.append(f"│  🔴 SAFETY OFFICER  {icon} {verdict}")
+            if not reasoning_chain:
+                if critique: lines.append(f"│             {critique}")
+                if evidence: lines.append(f"│             Evidence: {evidence}")
+                if papers:   lines.append(f"│             KG: {', '.join(papers[:3])}")
+            else:
+                if papers:   lines.append(f"│             KG: {', '.join(papers[:3])}")
             lines.append("└"+"─"*54)
 
             rounds.append(DebateRound(rnd+1, proposal, rationale, verdict, critique, papers))

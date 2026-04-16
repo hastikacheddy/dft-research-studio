@@ -1,0 +1,176 @@
+{
+  "best functional for tmc32?": {
+    "GraphRAG": {
+      "answer": "The best functional for TMC32 is PBE0, as it is associated with the highest validation result (1 pm) among the provided options. This suggests that PBE0 is a suitable choice for modeling TMC32.",
+      "rouge": 0.216,
+      "latency": 0.9,
+      "nodes_hit": 0,
+      "metrics": "Graph Trace Active",
+      "from_cache": false
+    },
+    "Standard RAG": {
+      "answer": "Unfortunately, the text does not mention the best functional for the TMC32 database. However, it does mention that PBE, TPSSh, and BLYP perform best for the MLBL13 database, which is a database of 13 bond lengths of 13 transition metal\u2013ligand compounds. Since TMC32 is likely a similar type of database, we can infer that PBE, TPSSh, and BLYP might be good choices for TMC32 as well.",
+      "rouge": 0.113,
+      "latency": 0.9,
+      "nodes_hit": 0,
+      "metrics": "Retrieved 5 chunks",
+      "from_cache": false
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "Mode not implemented",
+      "rouge": 0.0,
+      "latency": 0.0,
+      "nodes_hit": 0,
+      "metrics": "",
+      "from_cache": false
+    },
+    "Graph Deterministic": {
+      "answer": "",
+      "rouge": 0,
+      "latency": 7.8,
+      "nodes_hit": 0,
+      "metrics": "Deterministic Graph Active",
+      "from_cache": false
+    },
+    "Multi-Agent System with BM25+Reranker Fallback": {
+      "answer": "The best functional for TMC32 is not explicitly stated in the provided graph evidence. However, it is mentioned that the M06-2X, M05-2X, M06-HF, and M06 functionals have the smallest BMUEs for the NCIE53 database, which is related to TMC32.",
+      "rouge": 0.294,
+      "latency": 26.6,
+      "nodes_hit": 0,
+      "metrics": "Cost: $0.0004",
+      "from_cache": false
+    },
+    "Multi-Agent System (Standard RAG Fallback)": {
+      "answer": "Unfortunately, the text does not mention the best functional for the TMC32 database. However, it does mention that PBE, TPSSh, and BLYP perform best for the MLBL13 database, which is a database of 13 bond lengths of 13 transition metal\u2013ligand compounds. Since TMC32 is likely a similar type of database, we can infer that PBE, TPSSh, and BLYP might be good choices for TMC32 as well.",
+      "rouge": 0.113,
+      "latency": 0.7,
+      "nodes_hit": 0,
+      "metrics": "Retrieved 5 chunks",
+      "from_cache": false
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "Based on the information provided, the M06 functional is recommended for applications involving organometallic chemistry and inorganometallic chemistry, which includes transition metal chemistry (TMC). Therefore, the best functional for TMC32 would be the M06 functional.",
+      "rouge": 0.194,
+      "latency": 3.5,
+      "nodes_hit": 0,
+      "metrics": "BM25+Reranker: 5 docs",
+      "from_cache": false
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "The best functional for TMC32 is not explicitly stated in the provided graph evidence. However, the M06-2X functional is mentioned as one of the best functionals for the study of noncovalent interactions, which may be relevant to TMC32.",
+      "rouge": 0.447,
+      "latency": 22.7,
+      "nodes_hit": 0,
+      "metrics": "Cost: $0.0004",
+      "from_cache": false
+    }
+  },
+  "mae of pbe0 on s66?": {
+    "Standard RAG": {
+      "answer": "The MAE (Mean Absolute Error) of PBE0 on S66 is not directly provided in the given text. However, the MAE of PBE0 on the S22 set is given as 4.25 kcal/mol.",
+      "rouge": 0.263,
+      "latency": 0.9,
+      "nodes_hit": 0,
+      "metrics": "Retrieved 5 chunks",
+      "from_cache": false
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "Mode not implemented",
+      "rouge": 0.0,
+      "latency": 0.0,
+      "nodes_hit": 0,
+      "metrics": "",
+      "from_cache": false
+    },
+    "Graph Deterministic": {
+      "answer": "To answer the user query, we need to find the candidate most relevant to the query \"MAE of PBE0 on S66\". \n\nFrom the graph evidence, we can see that PBE0 is connected to S66x8_Dataset, which is a benchmark dataset. However, we need to find a specific connection between PBE0 and S66x8_Dataset that involves the calculation of Mean Absolute Error (MAE).\n\nUpon closer inspection, we can see that PBE0 is connected to DFT-D3, which is a functional that is often used in conjunction with PBE0. However, there is no direct connection between PBE0 and S66x8_Dataset that involves the calculation of MAE.\n\nHowever, we can see that S66x8_Dataset is connected to Sys_S66x8_Dataset_001, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset_001 that involves the calculation of MAE.\n\nHowever, we can see that S66x8_Dataset is connected to Ref_Sys_S66x8_Dataset_009, which is a reference system. But there is no connection between PBE0 and Ref_Sys_S66x8_Dataset_009 that involves the calculation of MAE.\n\nHowever, we can see that S66x8_Dataset is connected to Sys_S66x8_Dataset_009, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset_009 that involves the calculation of MAE.\n\nHowever, we can see that Sys_S66x8_Dataset_009 is connected to Sys_S66x8_Dataset_009, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset_009 that involves the calculation of MAE.\n\nHowever, we can see that Sys_S66x8_Dataset_009 is connected to Sys_S66x8_Dataset_010, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset_010 that involves the calculation of MAE.\n\nHowever, we can see that Sys_S66x8_Dataset_010 is connected to Sys_S66x8_Dataset_011, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset",
+      "rouge": 0.11,
+      "latency": 21.6,
+      "nodes_hit": 0,
+      "metrics": "Deterministic Graph Active",
+      "from_cache": false
+    },
+    "Multi-Agent System (Standard RAG Fallback)": {
+      "answer": "",
+      "rouge": 0,
+      "latency": 49.2,
+      "nodes_hit": 0,
+      "metrics": "Retrieved 5 chunks",
+      "from_cache": false
+    },
+    "Multi-Agent System with BM25+Reranker Fallback": {
+      "answer": "The Mean Absolute Error (MAE) of PBE0 on the S66 dataset is not explicitly stated in the provided graph evidence. However, it is mentioned in the text that the results for PBE0 on the S66 dataset are not highly accurate, but the exact MAE value is not given.",
+      "rouge": 0.442,
+      "latency": 34.8,
+      "nodes_hit": 0,
+      "metrics": "Cost: $0.0004",
+      "from_cache": false
+    },
+    "GraphRAG": {
+      "answer": "The MAE of PBE0 on S66 is not directly available in the provided graph evidence. However, Candidate 9 [ID: VR_TPSShD3BJ_AE_MSE] contains information about the MAE of TPSSh, and Candidate 5 [ID: CCSD] contains information about the \u0394CCSD(T) (kcal mol\u207b\u00b9) on S66, but the specific MAE of PBE0 on S66 is not present.",
+      "rouge": 0.034,
+      "latency": 6.8,
+      "nodes_hit": 1,
+      "metrics": "Graph Trace Active",
+      "from_cache": false
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "",
+      "rouge": 0,
+      "latency": 2.5,
+      "nodes_hit": 0,
+      "metrics": "BM25+Reranker: 5 docs",
+      "from_cache": false
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "The Mean Absolute Error (MAE) of PBE0 on the S66 dataset is not explicitly stated in the provided graph evidence. However, it can be inferred that the MAE of PBE0 on S66 is not available in the given data.",
+      "rouge": 0.486,
+      "latency": 17.3,
+      "nodes_hit": 0,
+      "metrics": "Cost: $0.0004",
+      "from_cache": false
+    }
+  },
+  "why does b3lyp fail for barrier heights?": {
+    "Standard RAG": {
+      "answer": "B3LYP fails for barrier heights because it suffers from the Self-Interaction Error (SIE) to a significant extent. This error leads to an underestimation of many reaction barriers. When a dispersion correction is added to B3LYP, it further stabilizes the transition state, resulting in an even larger underestimation of the barrier height.",
+      "rouge": 0.169,
+      "latency": 4.8,
+      "nodes_hit": 0,
+      "metrics": "Retrieved 5 chunks",
+      "from_cache": false
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "Based on the provided data, B3LYP fails for barrier heights, specifically for the NHTBH38/04 set (MAE = 4.69) and the HTBH38/04 set (MAE = 4.69). This suggests that the B3LYP functional is not well-suited for describing barrier heights.\n\nThere are several reasons why B3LYP might fail for barrier heights:\n\n1. **Inadequate description of dispersion interactions**: B3LYP is a hybrid functional that includes a mixture of Hartree-Fock and density functional theory (DFT) exchange-correlation terms. However, it does not include explicit dispersion terms, which are important for describing long-range interactions and barrier heights.\n2. **Insufficient flexibility in the functional form**: B3LYP is a relatively simple functional that uses a fixed functional form to describe the exchange-correlation energy. This can lead to limitations in its ability to capture complex electronic structures and barrier heights.\n3. **Overemphasis on local exchange-correlation effects**: B3LYP places a significant emphasis on local exchange-correlation effects, which can lead to an overestimation of barrier heights.\n\nIn contrast, the other functionals listed (B97X, B97, B97*, HCTH*, B97-1) perform better for barrier heights, suggesting that they are more suitable for describing these types of systems.",
+      "rouge": 0.19,
+      "latency": 10.1,
+      "nodes_hit": 0,
+      "metrics": "BM25+Reranker: 5 docs",
+      "from_cache": false
+    },
+    "Graph Deterministic": {
+      "answer": "",
+      "rouge": 0,
+      "latency": 28.8,
+      "nodes_hit": 0,
+      "metrics": "Deterministic Graph Active",
+      "from_cache": false
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "",
+      "rouge": 0,
+      "latency": 12.1,
+      "nodes_hit": 0,
+      "metrics": "BM25+Reranker: 5 docs",
+      "from_cache": false
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "B3LYP fails for barrier heights because it underestimates reaction barriers due to the Self-Interaction Error (SIE). This error is exacerbated by the addition of dispersion corrections, which further stabilizes the transition state, leading to even lower barrier heights. As a result, B3LYP is not reliable enough to accurately treat barrier height calculations.",
+      "rouge": 0.348,
+      "latency": 25.7,
+      "nodes_hit": 0,
+      "metrics": "Cost: $0.0004",
+      "from_cache": false
+    }
+  }
+}

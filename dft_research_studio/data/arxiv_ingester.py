@@ -197,9 +197,15 @@ class ArXivIngester:
         return len(new_nodes), len(new_rels)
 
     def _save_kg(self):
-        self.nodes_df.to_csv(self.nodes_path, index=False)
-        self.rels_df.to_csv(self.rels_path, index=False)
-        logger.info("KG saved: %d nodes, %d rels", len(self.nodes_df), len(self.rels_df))
+        # NEVER overwrite original CSVs — save augmented versions separately
+        base = os.path.dirname(self.nodes_path)
+        aug_nodes = os.path.join(base, "dft_kg_nodes_augmented.csv")
+        aug_rels  = os.path.join(base, "dft_kg_relationships_augmented.csv")
+        self.nodes_df.to_csv(aug_nodes, index=False)
+        self.rels_df.to_csv(aug_rels, index=False)
+        logger.info("Augmented KG saved: %d nodes, %d rels → %s", 
+                    len(self.nodes_df), len(self.rels_df), aug_nodes)
+        logger.info("Original CSVs preserved at: %s", self.nodes_path)
 
     def run(self, keywords=None, save_kg=True):
         keywords = keywords or ARXIV_KEYWORDS
