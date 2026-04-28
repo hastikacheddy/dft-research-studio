@@ -41,3 +41,17 @@ nltk_data/
 README_HF.md
 app_hf.py
 hf_space/
+# Large files not needed for HF Spaces demo
+dft_research_studio/data/raw/
+VectorDBs/
+nltk_data/
+Downloads/
+*.pdf
+*.tar.gz
+checkpoint_results.jsonl
+debug_*
+results/
+__pycache__/
+*.pyc
+.env
+.netrc
