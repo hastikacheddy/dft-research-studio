@@ -1,175 +1,1111 @@
 {
-  "best functional for tmc32?": {
-    "GraphRAG": {
-      "answer": "The best functional for TMC32 is PBE0, as it is associated with the highest validation result (1 pm) among the provided options. This suggests that PBE0 is a suitable choice for modeling TMC32.",
-      "rouge": 0.216,
-      "latency": 0.9,
+  "what is the mae of pbe0 on s66?": {
+    "Zero-Shot Prompting": {
+      "answer": "I'm unable to verify the MAE of PBE0 on S66.",
       "nodes_hit": 0,
-      "metrics": "Graph Trace Active",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 10,
+      "latency": 0.2,
+      "error_type": "Type I",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": true
     },
-    "Standard RAG": {
-      "answer": "Unfortunately, the text does not mention the best functional for the TMC32 database. However, it does mention that PBE, TPSSh, and BLYP perform best for the MLBL13 database, which is a database of 13 bond lengths of 13 transition metal\u2013ligand compounds. Since TMC32 is likely a similar type of database, we can infer that PBE, TPSSh, and BLYP might be good choices for TMC32 as well.",
-      "rouge": 0.113,
-      "latency": 0.9,
+    "Template Prompting": {
+      "answer": "The S66 dataset is a widely used benchmark for testing the performance of density functional theory (DFT) methods in calculating non-covalent interactions.\n\nAccording to the original paper by M. M. Szalay et al. (J. Chem. Theory Comput. 2010, 6, 526-537), the mean absolute error (MAE) of PBE0 on the S66 dataset is 1.35 kcal/mol.\n\nHowever, more recent studies have reported slightly different results. For example, a study by J. Rezac et al. (J. Chem. Theory Comput. 2011, 7, 2427-2438) reported an MAE of 1.24 kcal/mol for PBE0 on the S66 dataset.\n\nAnother study by J. \u0158ez\u00e1\u010d et al. (J. Chem. Theory Comput. 2012, 8, 1425-1436) reported an MAE of 1.21 kcal/mol for PBE0 on the S66 dataset.\n\nA more recent study by J. \u0158ez\u00e1\u010d et al. (J. Chem. Theory Comput. 2013, 9, 2153-2165) reported an MAE of 1.18 kcal/mol for PBE0 on the S66 dataset.\n\nBased on these results, the MAE of PBE0 on the S66 dataset is approximately 1.2 kcal/mol.\n\nReferences:\n- M. M. Szalay, et al. (2010) \"S66: A Benchmark for Noncovalent Interactions and a New Test Set for the Development of Exchange-Correlation Functionals.\" J. Chem. Theory Comput. 6, 526-537.\n- J. Rezac, et al. (2011) \"Generalized Gradient Approximation and Hybrid Functionals for Noncovalent Interactions.\" J. Chem. Theory Comput. 7, 2427-2438.\n- J. \u0158ez\u00e1\u010d, et al. (2012) \"Benchmarking the Performance of Density Functionals for Noncovalent Interactions.\" J. Chem. Theory Comput. 8, 1425-1436.\n- J. \u0158ez\u00e1\u010d, et al. (2013) \"Benchmarking the Performance of Density Functionals for Noncovalent Interactions: A Study of the S66 Dataset.\" J. Chem. Theory Comput. 9",
       "nodes_hit": 0,
-      "metrics": "Retrieved 5 chunks",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 260,
+      "latency": 1.2,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": true
     },
-    "BM25 + Reranker RAG": {
-      "answer": "Mode not implemented",
-      "rouge": 0.0,
-      "latency": 0.0,
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To calculate the Mean Absolute Error (MAE) of the PBE0 functional on the S66 dataset, we need to follow these steps:\n\n1. **Understanding the S66 dataset**: The S66 dataset is a collection of 66 non-covalent interactions, including hydrogen bonds, \u03c0-\u03c0 interactions, and van der Waals interactions. It's widely used to benchmark the performance of density functional theory (DFT) methods.\n\n2. **PBE0 functional**: PBE0 is a hybrid functional that combines the Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional with 25% exact exchange. It's known for its good performance in describing non-covalent interactions.\n\n3. **Calculating MAE**: To calculate the MAE, we need to compare the predicted binding energies of the PBE0 functional with the experimental or reference binding energies. The MAE is then calculated as the average absolute difference between the predicted and reference values.\n\n4. **Step-by-step calculation**:\n   - First, we need to perform DFT calculations using the PBE0 functional on the S66 dataset.\n   - Next, we need to obtain the reference binding energies for the S66 dataset. These can be obtained from experimental measurements or high-level ab initio calculations.\n   - Then, we calculate the absolute difference between the predicted and reference binding energies for each interaction in the S66 dataset.\n   - Finally, we calculate the average of these absolute differences to obtain the MAE.\n\n5. **Literature values**: The MAE of PBE0 on the S66 dataset has been reported in various studies. According to a study published in the Journal of Chemical Physics, the MAE of PBE0 on the S66 dataset is around 2.5 kcal/mol.\n\nPlease note that the MAE value may vary depending on the specific implementation of the PBE0 functional and the computational details used in the calculations.",
       "nodes_hit": 0,
-      "metrics": "",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 275,
+      "latency": 0.8,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
+      "from_cache": true
     },
-    "Graph Deterministic": {
-      "answer": "",
-      "rouge": 0,
-      "latency": 7.8,
+    "BM25 Retriever": {
+      "answer": "The MAE (Mean Absolute Error) of PBE0 on S66 is not directly available in the given table. However, we can calculate the MAE for PBE0 on S66 by looking at the values for PBE0 in the table.\n\nThe values for PBE0 on S66 are: \n- 3.63 for Xa\n- 0.74 for Valence\n- 1.94 for Rydberg\n- 2.11 for All states\n\nTo calculate the MAE, we need to find the average of the absolute errors. However, the absolute errors are not directly available. We can assume that the MAE is the average of the absolute values of the errors.\n\nSince the MAE values are not directly available, we can calculate the MAE for PBE0 on S66 as follows:\n\nMAE = (|3.63 - 0.57| + |0.74 - 0.36| + |1.94 - 0.32| + |2.11 - 0.42|) / 4\nMAE = (3.06 + 0.38 + 1.62 + 1.69) / 4\nMAE = 6.75 / 4\nMAE = 1.69\n\nHowever, this is not the MAE of PBE0 on S66. This is the MAE of PBE on S66. To find the MAE of PBE0 on S66, we need to look at the values for PBE0 in the table. Unfortunately, PBE0 is not in the table.",
       "nodes_hit": 0,
-      "metrics": "Deterministic Graph Active",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 201,
+      "latency": 2.2,
+      "error_type": "none",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": true
     },
-    "Multi-Agent System with BM25+Reranker Fallback": {
-      "answer": "The best functional for TMC32 is not explicitly stated in the provided graph evidence. However, it is mentioned that the M06-2X, M05-2X, M06-HF, and M06 functionals have the smallest BMUEs for the NCIE53 database, which is related to TMC32.",
-      "rouge": 0.294,
-      "latency": 26.6,
+    "Cross-Encoder Reranker": {
+      "answer": "The MAE (Mean Absolute Error) of PBE0 on S66 is not directly available in the given data. However, we can calculate the MAE for PBE0 on S66 by using the given data for PBE0 on S66x8 and S66.\n\nThe MAE for PBE0 on S66x8 is 1.51.\n\nThe MAE for PBE0 on S66 is not directly available, but we can assume it is close to the MAE for PBE0 on S66x8 since S66x8 is a subset of S66. However, to get the exact MAE for PBE0 on S66, we would need the actual data for PBE0 on S66.\n\nIf we assume the MAE for PBE0 on S66 is close to the MAE for PBE0 on S66x8, we can use the MAE for PBE0 on S66x8 as an estimate.",
       "nodes_hit": 0,
-      "metrics": "Cost: $0.0004",
-      "from_cache": false
-    },
-    "Multi-Agent System (Standard RAG Fallback)": {
-      "answer": "Unfortunately, the text does not mention the best functional for the TMC32 database. However, it does mention that PBE, TPSSh, and BLYP perform best for the MLBL13 database, which is a database of 13 bond lengths of 13 transition metal\u2013ligand compounds. Since TMC32 is likely a similar type of database, we can infer that PBE, TPSSh, and BLYP might be good choices for TMC32 as well.",
-      "rouge": 0.113,
-      "latency": 0.7,
-      "nodes_hit": 0,
-      "metrics": "Retrieved 5 chunks",
-      "from_cache": false
-    },
-    "Multi-Agent System (BM25+Reranker Fallback)": {
-      "answer": "Based on the information provided, the M06 functional is recommended for applications involving organometallic chemistry and inorganometallic chemistry, which includes transition metal chemistry (TMC). Therefore, the best functional for TMC32 would be the M06 functional.",
-      "rouge": 0.194,
-      "latency": 3.5,
-      "nodes_hit": 0,
-      "metrics": "BM25+Reranker: 5 docs",
-      "from_cache": false
-    },
-    "Multi-Agent System (GraphRAG Fallback)": {
-      "answer": "The best functional for TMC32 is not explicitly stated in the provided graph evidence. However, the M06-2X functional is mentioned as one of the best functionals for the study of noncovalent interactions, which may be relevant to TMC32.",
-      "rouge": 0.447,
-      "latency": 22.7,
-      "nodes_hit": 0,
-      "metrics": "Cost: $0.0004",
-      "from_cache": false
-    }
-  },
-  "mae of pbe0 on s66?": {
-    "Standard RAG": {
-      "answer": "The MAE (Mean Absolute Error) of PBE0 on S66 is not directly provided in the given text. However, the MAE of PBE0 on the S22 set is given as 4.25 kcal/mol.",
-      "rouge": 0.263,
-      "latency": 0.9,
-      "nodes_hit": 0,
-      "metrics": "Retrieved 5 chunks",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 127,
+      "latency": 1.9,
+      "error_type": "none",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": true
     },
     "BM25 + Reranker RAG": {
-      "answer": "Mode not implemented",
-      "rouge": 0.0,
-      "latency": 0.0,
+      "answer": "The MAE (Mean Absolute Error) of PBE0 on S66 is not directly available in the given table. However, we can calculate the MAE for PBE0 on S66 by looking at the values for PBE0 in the table.\n\nThe values for PBE0 on S66 are: \n- 3.63 for Xa\n- 0.74 for Valence\n- 1.94 for Rydberg\n- 2.11 for All states\n\nTo calculate the MAE, we need to know the MAE for the other methods on S66. However, since the MAE for the other methods is not directly available, we can calculate the MAE for PBE0 on S66 by taking the average of the absolute values of the errors.\n\nThe average of the absolute values of the errors for PBE0 on S66 is: \n- |3.63 - 0.57| = 3.06\n- |0.74 - 0.36| = 0.38\n- |1.94 - 0.32| = 1.62\n- |2.11 - 0.42| = 1.69\n\nThe average of these values is: \n(3.06 + 0.38 + 1.62 + 1.69) / 4 = 1.575\n\nHowever, this is not the MAE. The MAE is the average of the absolute values of the errors, but it is not the average of the absolute values of the differences between the predicted and actual values. \n\nTo calculate the MAE, we need to know the actual values for S66. However, the actual values for S66 are not provided in the table. \n\nTherefore, we cannot calculate the MAE for PBE0 on S66.",
       "nodes_hit": 0,
-      "metrics": "",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 236,
+      "latency": 2.1,
+      "error_type": "Type I",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": true
     },
-    "Graph Deterministic": {
-      "answer": "To answer the user query, we need to find the candidate most relevant to the query \"MAE of PBE0 on S66\". \n\nFrom the graph evidence, we can see that PBE0 is connected to S66x8_Dataset, which is a benchmark dataset. However, we need to find a specific connection between PBE0 and S66x8_Dataset that involves the calculation of Mean Absolute Error (MAE).\n\nUpon closer inspection, we can see that PBE0 is connected to DFT-D3, which is a functional that is often used in conjunction with PBE0. However, there is no direct connection between PBE0 and S66x8_Dataset that involves the calculation of MAE.\n\nHowever, we can see that S66x8_Dataset is connected to Sys_S66x8_Dataset_001, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset_001 that involves the calculation of MAE.\n\nHowever, we can see that S66x8_Dataset is connected to Ref_Sys_S66x8_Dataset_009, which is a reference system. But there is no connection between PBE0 and Ref_Sys_S66x8_Dataset_009 that involves the calculation of MAE.\n\nHowever, we can see that S66x8_Dataset is connected to Sys_S66x8_Dataset_009, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset_009 that involves the calculation of MAE.\n\nHowever, we can see that Sys_S66x8_Dataset_009 is connected to Sys_S66x8_Dataset_009, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset_009 that involves the calculation of MAE.\n\nHowever, we can see that Sys_S66x8_Dataset_009 is connected to Sys_S66x8_Dataset_010, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset_010 that involves the calculation of MAE.\n\nHowever, we can see that Sys_S66x8_Dataset_010 is connected to Sys_S66x8_Dataset_011, which is a chemical system. But there is no connection between PBE0 and Sys_S66x8_Dataset",
-      "rouge": 0.11,
-      "latency": 21.6,
+    "Standard RAG": {
+      "answer": "Unfortunately, the provided data does not contain the MAE of PBE0 on S66. However, it does contain the MAE of PBE0 on MGAE109, which is 0.39.",
       "nodes_hit": 0,
-      "metrics": "Deterministic Graph Active",
-      "from_cache": false
-    },
-    "Multi-Agent System (Standard RAG Fallback)": {
-      "answer": "",
-      "rouge": 0,
-      "latency": 49.2,
-      "nodes_hit": 0,
-      "metrics": "Retrieved 5 chunks",
-      "from_cache": false
-    },
-    "Multi-Agent System with BM25+Reranker Fallback": {
-      "answer": "The Mean Absolute Error (MAE) of PBE0 on the S66 dataset is not explicitly stated in the provided graph evidence. However, it is mentioned in the text that the results for PBE0 on the S66 dataset are not highly accurate, but the exact MAE value is not given.",
-      "rouge": 0.442,
-      "latency": 34.8,
-      "nodes_hit": 0,
-      "metrics": "Cost: $0.0004",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 26,
+      "latency": 14.5,
+      "error_type": "none",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": true
     },
     "GraphRAG": {
-      "answer": "The MAE of PBE0 on S66 is not directly available in the provided graph evidence. However, Candidate 9 [ID: VR_TPSShD3BJ_AE_MSE] contains information about the MAE of TPSSh, and Candidate 5 [ID: CCSD] contains information about the \u0394CCSD(T) (kcal mol\u207b\u00b9) on S66, but the specific MAE of PBE0 on S66 is not present.",
-      "rouge": 0.034,
-      "latency": 6.8,
+      "answer": "The MAE of PBE0 on S66 is not directly available in the provided graph evidence. However, Candidate 13 [ID: VR_TMC32_PBE0_D4-ATM] provides a MAD (mean absolute deviation) value of 1.1 pm for PBE0 on TMC32, but this is not directly applicable to S66.",
       "nodes_hit": 1,
-      "metrics": "Graph Trace Active",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 42,
+      "latency": 11.1,
+      "error_type": "none",
+      "metrics": "GraphRAG | Star-topology traversal",
+      "from_cache": true
     },
-    "Multi-Agent System (BM25+Reranker Fallback)": {
-      "answer": "",
-      "rouge": 0,
-      "latency": 2.5,
+    "Graph Deterministic": {
+      "answer": "To answer the user query, we need to find the candidate most relevant to the query \"MAE of PBE0 on S66\".\n\nFrom the graph evidence, we can see that:\n\n- Candidate 6 [ID: MAE] is a Metric that connects to various systems, but it does not directly connect to PBE0 or S66.\n- Candidate 4 [ID: Relative MAD (%)] connects to various systems, but it does not directly connect to PBE0 or S66.\n- Candidate 11 [ID: MAD (pm)] connects to various systems, but it does not directly connect to PBE0 or S66.\n- Candidate 5 [ID: D3(BJ)-ATM] connects to PBE0, but it is a DispersionCorrection and does not directly provide the MAE.\n- Candidate 3 [ID: S66] is a BenchmarkSet that connects to various systems, but it does not directly provide the MAE of PBE0.\n- Candidate 1 [ID: PBE0] is a Functional that connects to various systems, but it does not directly provide the MAE.\n\nHowever, we can see that Candidate 1 [ID: PBE0] connects to Candidate 5 [ID: D3(BJ)-ATM], which in turn connects to Candidate 4 [ID: Relative MAD (%)]. Candidate 4 connects to various systems, including those that might be related to S66.\n\nUnfortunately, we cannot directly find the MAE of PBE0 on S66 from the given graph evidence. However, we can see that Candidate 1 [ID: PBE0] connects to Candidate 5 [ID: D3(BJ)-ATM], which connects to Candidate 4 [ID: Relative MAD (%)]. This suggests that the MAE of PBE0 on S66 might be related to the Relative MAD (%) of PBE0 on S66.\n\nHowever, since we cannot directly find the MAE of PBE0 on S66 from the given graph evidence, we cannot provide a final answer.\n\nThe requested information cannot be found in the provided knowledge graph evidence.",
       "nodes_hit": 0,
-      "metrics": "BM25+Reranker: 5 docs",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 293,
+      "latency": 14.6,
+      "error_type": "Type II",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": true
     },
     "Multi-Agent System (GraphRAG Fallback)": {
-      "answer": "The Mean Absolute Error (MAE) of PBE0 on the S66 dataset is not explicitly stated in the provided graph evidence. However, it can be inferred that the MAE of PBE0 on S66 is not available in the given data.",
-      "rouge": 0.486,
-      "latency": 17.3,
+      "answer": "The MAE of PBE0 on S66 is not directly available in the provided graph evidence. However, the MAE of PBE0 is mentioned in the fallback vector, but it is not explicitly stated for the S66 dataset.",
       "nodes_hit": 0,
-      "metrics": "Cost: $0.0004",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 36,
+      "latency": 34.9,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0005",
+      "from_cache": true
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "The MAE of PBE0 on S66 is not directly available in the provided graph evidence. However, the MAE of PBE0 is mentioned in the fallback vector, but it is not explicitly stated for the S66 dataset.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 36,
+      "latency": 29.8,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0005",
+      "from_cache": true
     }
   },
   "why does b3lyp fail for barrier heights?": {
-    "Standard RAG": {
-      "answer": "B3LYP fails for barrier heights because it suffers from the Self-Interaction Error (SIE) to a significant extent. This error leads to an underestimation of many reaction barriers. When a dispersion correction is added to B3LYP, it further stabilizes the transition state, resulting in an even larger underestimation of the barrier height.",
-      "rouge": 0.169,
-      "latency": 4.8,
+    "Zero-Shot Prompting": {
+      "answer": "B3LYP (Becke's three-parameter hybrid functional with the Lee-Yang-Parr correlation functional) is a widely used density functional theory (DFT) method for calculating molecular properties. However, it has been known to fail for calculating barrier heights, particularly for reactions involving hydrogen transfer or proton transfer.\n\nThere are several reasons why B3LYP may fail for barrier heights:\n\n1. **Overestimation of the exchange functional**: B3LYP uses the Becke's exchange functional, which is known to overestimate the exchange energy. This can lead to an overestimation of the barrier height, as the exchange energy is a significant contributor to the barrier height.\n2. **Underestimation of the correlation functional**: B3LYP uses the Lee-Yang-Parr correlation functional, which is known to underestimate the correlation energy. This can lead to an underestimation of the barrier height, as the correlation energy is also a significant contributor to the barrier height.\n3. **Incorrect treatment of dispersion interactions**: B3LYP does not include dispersion interactions, which are important for many reactions, particularly those involving hydrogen transfer or proton transfer. Dispersion interactions can significantly affect the barrier height, and their absence can lead to inaccurate results.\n4. **Incorrect treatment of electron correlation**: B3LYP uses a local density approximation (LDA) for electron correlation, which is known to be inadequate for many systems. This can lead to an incorrect treatment of electron correlation, which can affect the barrier height.\n5. **Incorrect treatment of the reaction coordinate**: B3LYP assumes a linear reaction coordinate, which may not be accurate for many reactions. This can lead to an incorrect treatment of the reaction coordinate, which can affect the barrier height.\n\nTo overcome these limitations, researchers have developed new functionals, such as:\n\n1. **M06**: A new functional that includes a more accurate treatment of exchange and correlation energies.\n2. **M06-2X**: A new functional that includes a more accurate treatment of dispersion interactions.\n3. **\u03c9B97X-D**: A new functional that includes a more accurate treatment of dispersion interactions and electron correlation.\n4. **B2PLYP**: A new functional that includes a more accurate treatment of electron correlation.\n\nThese new functionals have been shown to provide more accurate results for barrier heights than B3LYP. However, the choice of functional depends on the specific system and reaction being studied.",
       "nodes_hit": 0,
-      "metrics": "Retrieved 5 chunks",
-      "from_cache": false
+      "has_citation": true,
+      "ans_len": 362,
+      "latency": 2.2,
+      "error_type": "none",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": true
+    },
+    "Template Prompting": {
+      "answer": "B3LYP, a popular hybrid functional, has been widely used in computational chemistry. However, it has been shown to fail for barrier heights, particularly for reactions involving hydrogen transfer and other types of reactions where the barrier height is sensitive to the exchange-correlation functional.\n\nOne of the main reasons for this failure is the overestimation of the barrier height due to the overestimation of the exchange energy. The B3LYP functional uses the Becke's three-parameter exchange functional (B3), which is known to overestimate the exchange energy, especially for systems with a high degree of electron correlation.\n\nStudies have shown that the B3LYP functional overestimates the barrier height by around 2-5 kcal/mol compared to experimentally measured values (1). This is because the B3LYP functional does not accurately describe the long-range exchange interactions, which are important for barrier heights.\n\nFor example, a study on the hydrogen transfer reaction in the formic acid dimer found that B3LYP overestimates the barrier height by 3.4 kcal/mol compared to the experimentally measured value (2).\n\nAnother study on the barrier heights of various reactions found that B3LYP overestimates the barrier height by around 2-3 kcal/mol compared to the experimentally measured values (3).\n\nTo improve the accuracy of barrier heights, other functionals such as M06-2X, \u03c9B97X-D, and B2PLYP have been developed, which are designed to better describe the exchange-correlation interactions and provide more accurate results for barrier heights.\n\nReferences:\n\n(1) Truhlar, D. G. et al. (2004). Density functional theory for transition states. The Journal of Physical Chemistry A, 108(12), 2584-2592.\n\n(2) Zhang, Y. et al. (2004). Density functional theory study of the formic acid dimer. The Journal of Physical Chemistry A, 108(12), 2593-2599.\n\n(3) Goerigk, L. et al. (2011). A look at the density functional theory zoo with the advanced GMTKN30 benchmark set. Physical Chemistry Chemical Physics, 13(14), 6670-6688.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 299,
+      "latency": 1.0,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": true
+    },
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To understand why B3LYP fails for barrier heights, let's break down the steps involved in calculating barrier heights and the characteristics of the B3LYP functional.\n\n1. **Barrier Height Calculation**: Barrier heights are calculated as the difference between the energy of the transition state (TS) and the energy of the reactants. The TS is a critical point on the potential energy surface where the reaction occurs.\n\n2. **B3LYP Functional**: B3LYP is a hybrid density functional theory (DFT) method that combines the Hartree-Fock (HF) exchange with the local spin density approximation (LSDA) exchange-correlation functional. The B3LYP functional is a popular choice for many applications due to its balance between accuracy and computational efficiency.\n\n3. **Limitations of B3LYP**: While B3LYP is generally reliable for many types of calculations, it has been shown to be less accurate for barrier heights. This is because B3LYP tends to overestimate the barrier heights, which can lead to incorrect predictions of reaction rates and mechanisms.\n\n4. **Reasons for B3LYP's Failure**: Several reasons contribute to B3LYP's failure for barrier heights:\n    - **Overestimation of Exchange**: B3LYP overestimates the exchange energy, which leads to an overestimation of the barrier height. This is because the B3LYP functional uses a fixed 20% HF exchange, which can be too high for certain systems.\n    - **Incorrect Description of Electron Correlation**: B3LYP uses a local correlation functional, which can lead to an incorrect description of electron correlation in the TS region. This can result in an overestimation of the barrier height.\n    - **Lack of Dispersion**: B3LYP does not include dispersion corrections, which are important for describing the long-range interactions between molecules. This can lead to an overestimation of the barrier height, especially for reactions involving large molecules.\n\n5. **Alternative Methods**: To improve the accuracy of barrier height calculations, alternative methods such as G4, CBS-QB3, and CCSD(T) can be used. These methods are more computationally expensive but provide more accurate results.\n\nIn summary, B3LYP fails for barrier heights due to its overestimation of exchange energy, incorrect description of electron correlation, and lack of dispersion corrections. Alternative methods that include more accurate treatments of exchange, correlation, and",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 349,
+      "latency": 2.9,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
+      "from_cache": true
+    },
+    "BM25 Retriever": {
+      "answer": "Based on the provided data, B3LYP fails for barrier heights, specifically for the NHTBH38/04 set (MAE = 4.69) and the HTBH38/04 set (MAE = 4.69). This suggests that the B3LYP functional is not well-suited for describing barrier heights.\n\nThere are several reasons why B3LYP might fail for barrier heights:\n\n1. **Inadequate description of dispersion interactions**: B3LYP is a hybrid functional that includes a mixture of Hartree-Fock and density functional theory (DFT) exchange-correlation terms. However, it does not include explicit dispersion terms, which are important for describing long-range interactions and barrier heights.\n2. **Insufficient flexibility in the functional form**: B3LYP is a relatively simple functional that uses a fixed functional form to describe the exchange-correlation energy. This can lead to limitations in its ability to capture complex electronic structures and barrier heights.\n3. **Overemphasis on local exchange-correlation effects**: B3LYP places a significant emphasis on local exchange-correlation effects, which can lead to an overestimation of barrier heights.\n\nIn contrast, the other functionals listed (B97X, B97, B97*, HCTH*, B97-1) perform better for barrier heights, suggesting that they are more suitable for describing these types of systems.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 183,
+      "latency": 13.3,
+      "error_type": "Type II",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": true
+    },
+    "Cross-Encoder Reranker": {
+      "answer": "Based on the provided data, B3LYP fails for barrier heights, specifically for the hydrogen transfer barrier heights of the HTBH38/04 set (MAE = 4.69, MSE = -4.48) and the nonhydrogen transfer barrier heights of the NHTBH38/04 set (MAE = 4.69, MSE = -4.48). \n\nHowever, the exact reason for B3LYP's failure in these cases is not explicitly stated in the provided data. It could be due to several factors such as:\n\n1. **Inadequate description of the potential energy surface**: B3LYP might not accurately capture the shape of the potential energy surface, leading to errors in barrier height predictions.\n2. **Insufficient basis set**: The 6-31G(2df,p) basis set used in the calculations might not be sufficient to accurately describe the electronic structure of the systems, particularly for barrier height predictions.\n3. **Inadequate treatment of electron correlation**: B3LYP is a hybrid functional that includes a mixture of Hartree-Fock and density functional theory (DFT) exchange-correlation terms. However, it might not adequately treat electron correlation effects, which are crucial for accurate barrier height predictions.\n4. **System-specific issues**: B3LYP might have specific issues with certain types of systems or reactions, leading to poor performance in barrier height predictions.\n\nTo improve the accuracy of barrier height predictions, it is essential to consider alternative methods, such as:\n\n1. **Using more advanced functionals**: Functionals like B97* and HCTH* show better performance for barrier height predictions, suggesting that more advanced functionals might be necessary for accurate results.\n2. **Increasing the basis set size**: Using a larger basis set, such as 6-311++G(3df,3pd), might improve the accuracy of barrier height predictions.\n3. **Including more advanced electron correlation methods**: Methods like coupled-cluster theory or complete basis set (CBS) extrapolation might be necessary to accurately describe electron correlation effects.\n4. **Using more sophisticated methods**: Methods like quantum Monte Carlo (QMC) or density functional theory with a more advanced exchange-correlation functional might be necessary to accurately predict barrier heights.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 313,
+      "latency": 11.1,
+      "error_type": "Type I",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": true
     },
     "BM25 + Reranker RAG": {
       "answer": "Based on the provided data, B3LYP fails for barrier heights, specifically for the NHTBH38/04 set (MAE = 4.69) and the HTBH38/04 set (MAE = 4.69). This suggests that the B3LYP functional is not well-suited for describing barrier heights.\n\nThere are several reasons why B3LYP might fail for barrier heights:\n\n1. **Inadequate description of dispersion interactions**: B3LYP is a hybrid functional that includes a mixture of Hartree-Fock and density functional theory (DFT) exchange-correlation terms. However, it does not include explicit dispersion terms, which are important for describing long-range interactions and barrier heights.\n2. **Insufficient flexibility in the functional form**: B3LYP is a relatively simple functional that uses a fixed functional form to describe the exchange-correlation energy. This can lead to limitations in its ability to capture complex electronic structures and barrier heights.\n3. **Overemphasis on local exchange-correlation effects**: B3LYP places a significant emphasis on local exchange-correlation effects, which can lead to an overestimation of barrier heights.\n\nIn contrast, the other functionals listed (B97X, B97, B97*, HCTH*, B97-1) perform better for barrier heights, suggesting that they are more suitable for describing these types of systems.",
-      "rouge": 0.19,
-      "latency": 10.1,
       "nodes_hit": 0,
-      "metrics": "BM25+Reranker: 5 docs",
+      "has_citation": true,
+      "ans_len": 183,
+      "latency": 11.9,
+      "error_type": "Type II",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": true
+    },
+    "Standard RAG": {
+      "answer": "B3LYP fails for barrier heights because it suffers from the Self-Interaction Error (SIE) to a significant extent. This error leads to an underestimation of many reaction barriers. When a dispersion correction is added to B3LYP, it further stabilizes the transition state, making the underestimation even worse. The SIE is a fundamental issue with Generalized Gradient Approximations (GGAs) and Non-Local Generalized Gradient Approximations (NGAs), which B3LYP belongs to. This makes B3LYP unreliable for treating problems involving barrier heights.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 77,
+      "latency": 5.7,
+      "error_type": "none",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": true
+    },
+    "GraphRAG": {
+      "answer": "B3LYP fails for barrier heights due to its inability to accurately describe dispersion interactions, which are crucial for predicting barrier heights. This limitation is a result of the B3LYP functional's lack of explicit dispersion correction, leading to underestimation of barrier heights.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 41,
+      "latency": 10.8,
+      "error_type": "none",
+      "metrics": "GraphRAG | Star-topology traversal",
+      "from_cache": true
+    },
+    "Graph Deterministic": {
+      "answer": "To answer the user query, I will analyze the connections of the candidate hubs related to B3LYP.\n\nCANDIDATE 1 [ID: B3LYP]\n  - TYPE: Functional\n  - CONNECTS TO: D3(BJ), D3(BJ)-ATM, D4-ATM, D4(TB)-ATM, D4-MBD, D4(TB)-MBD, B3PW91, D\n\nSince the query is about B3LYP failing for barrier heights, I will look for connections related to barrier heights. However, there are no direct connections between B3LYP and barrier heights in the provided graph evidence.\n\nThe requested information cannot be found in the provided knowledge graph evidence.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 82,
+      "latency": 14.6,
+      "error_type": "none",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": true
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "B3LYP fails for barrier heights due to its inability to accurately describe dispersion interactions, which are crucial for predicting barrier heights. This limitation is a result of the B3LYP functional's lack of explicit dispersion correction, leading to underestimation of barrier heights.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 41,
+      "latency": 20.3,
+      "error_type": "none",
+      "metrics": "Multi-Agent | Cost: $0.0003",
+      "from_cache": true
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "B3LYP fails for barrier heights due to its inability to accurately describe dispersion interactions, which are crucial for predicting barrier heights. This limitation is a result of the B3LYP functional's lack of explicit dispersion correction, leading to underestimation of barrier heights.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 41,
+      "latency": 19.1,
+      "error_type": "none",
+      "metrics": "Multi-Agent | Cost: $0.0003",
+      "from_cache": true
+    }
+  },
+  "which functional performs best on tmc32?": {
+    "Zero-Shot Prompting": {
+      "answer": "I'm not aware of any information about a \"TMC32.\" It's possible that it's a specific microcontroller or a custom device, but I couldn't find any information about it.\n\nIf you could provide more context or details about the TMC32, I may be able to help you better. Alternatively, if you're looking for information about a specific microcontroller or device, I'd be happy to try and help you with that.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 69,
+      "latency": 4.4,
+      "error_type": "none",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": true
+    },
+    "Template Prompting": {
+      "answer": "TMC-32 is a challenging molecule for density functional theory (DFT) calculations. \n\nTo answer your question, I'll refer to a benchmark study published in the Journal of Chemical Physics in 2011, titled \"Benchmarking the performance of density functional theory for the calculation of the atomization energy of small molecules\" by M. P. Waller, M. P. McGrath, R. J. Meier, and D. J. T. Hill.\n\nIn this study, the authors compared the performance of several DFT functionals, including B3LYP, PBE, PBE0, and B2PLYP, on a set of small molecules, including TMC-32.\n\nAccording to the study, the B2PLYP functional performs best on TMC-32, with an average absolute error of 1.35 kcal/mol. This is significantly better than the other functionals tested, including B3LYP (average absolute error of 2.45 kcal/mol), PBE (average absolute error of 3.15 kcal/mol), and PBE0 (average absolute error of 2.65 kcal/mol).\n\nIt's worth noting that the B2PLYP functional is a hybrid functional that combines the strengths of local and non-local exchange-correlation functionals, which may contribute to its improved performance on TMC-32.\n\nHere is a summary of the results:\n\n| Functional | Average Absolute Error (kcal/mol) |\n| --- | --- |\n| B2PLYP | 1.35 |\n| B3LYP | 2.45 |\n| PBE | 3.15 |\n| PBE0 | 2.65 |\n\nThese results suggest that B2PLYP is the best functional for calculating the atomization energy of TMC-32.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 226,
+      "latency": 1.2,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": true
+    },
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To determine which functional performs best on TMC32, we need to consider the properties of the molecule and the characteristics of different functional types.\n\n1. **Understanding TMC32**: TMC32 is a transition metal complex, which typically involves a metal center bonded to ligands. The performance of a functional on TMC32 would depend on its ability to accurately describe the metal-ligand interactions and the electronic structure of the complex.\n\n2. **Functional types**: There are several types of functionals, including:\n   - **Local Correlation Functionals** (LCFs): These functionals are designed to improve the description of local electron correlation, which is particularly important for transition metal complexes.\n   - **Range-Separated Hybrid Functionals** (RSHs): These functionals combine a short-range Hartree-Fock exchange with a long-range exchange-correlation functional, which can improve the description of charge transfer and dispersion interactions.\n   - **Double-Hybrid Functionals** (DHF): These functionals combine a Hartree-Fock exchange functional with a post-Hartree-Fock correlation functional, which can improve the description of electron correlation.\n\n3. **Performance on TMC32**: Considering the properties of TMC32, a functional that can accurately describe the metal-ligand interactions and the electronic structure of the complex would be the best choice.\n\n4. **Recommended functional**: Based on the characteristics of TMC32 and the properties of different functional types, I would recommend the **B2PLYP** functional. B2PLYP is a double-hybrid functional that combines a Hartree-Fock exchange functional with a post-Hartree-Fock correlation functional, which can improve the description of electron correlation. Additionally, B2PLYP has been shown to perform well on transition metal complexes, making it a good choice for TMC32.\n\n5. **Alternative options**: Other functionals that may perform well on TMC32 include:\n   - **B3LYP**: A hybrid functional that combines a Hartree-Fock exchange functional with a post-Hartree-Fock correlation functional.\n   - **PBE0**: A hybrid functional that combines a Hartree-Fock exchange functional with a post-Hartree-Fock correlation functional.\n   - **LC-BOP**: A local correlation functional that is designed to improve the description of local electron correlation.\n\n6. **Benchmarking**: To determine the best functional for TMC32, it is recommended to perform a benchmark",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 326,
+      "latency": 4.8,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
+      "from_cache": true
+    },
+    "BM25 Retriever": {
+      "answer": "Unfortunately, the information provided does not include results for the TMC32 database. The results are presented for the PS47 and its subdatabases, but TMC32 is not mentioned.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 27,
+      "latency": 12.7,
+      "error_type": "none",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": true
+    },
+    "Cross-Encoder Reranker": {
+      "answer": "The information provided does not include results for TMC32. The results are presented for the primary physics structure databases in PS47 and its subdatabases, which include MGLC4, ILC5, TLC4, SLC34, and PS47.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 32,
+      "latency": 9.1,
+      "error_type": "none",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": true
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "Unfortunately, the information provided does not include results for the TMC32 database. The results are presented for the PS47 and its subdatabases, but TMC32 is not mentioned.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 27,
+      "latency": 8.7,
+      "error_type": "none",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": true
+    },
+    "Standard RAG": {
+      "answer": "Unfortunately, the text does not mention the TMC32 database. It mentions the TME53 and NCIE53 databases, but not TMC32.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 19,
+      "latency": 3.3,
+      "error_type": "none",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": true
+    },
+    "GraphRAG": {
+      "answer": "The PBE functional performs best on TMC32, as indicated by the ValidationResult candidates VR_TMC32_PBE_D4-ATM and VR_TMC32_PBE_D3(BJ)-ATM, both of which have a VALUE of 1.1 pm and 1 pm, respectively. This suggests that PBE is a suitable choice for TMC32.",
+      "nodes_hit": 2,
+      "has_citation": true,
+      "ans_len": 39,
+      "latency": 11.7,
+      "error_type": "none",
+      "metrics": "GraphRAG | Star-topology traversal",
+      "from_cache": true
+    },
+    "Graph Deterministic": {
+      "answer": "The requested information cannot be found in the provided knowledge graph evidence.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 12,
+      "latency": 9.5,
+      "error_type": "none",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": true
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "The M06-L functional is recommended for transition metal energetics and performs well on the TMC32 database. However, the graph evidence does not provide a direct comparison of functionals on TMC32.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 30,
+      "latency": 22.4,
+      "error_type": "none",
+      "metrics": "Multi-Agent | Cost: $0.0004",
+      "from_cache": true
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "The M06-L functional is recommended for transition metal energetics and performs well on the TMC32 database. However, the graph evidence does not provide a direct comparison of functionals on TMC32.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 30,
+      "latency": 25.6,
+      "error_type": "none",
+      "metrics": "Multi-Agent | Cost: $0.0004",
+      "from_cache": true
+    }
+  },
+  "what is the best functional for non-covalent interactions?": {
+    "Zero-Shot Prompting": {
+      "answer": "Non-covalent interactions are crucial in understanding the behavior of molecules, especially in biological systems. While there isn't a single \"best\" functional for non-covalent interactions, some popular functionals that are known to perform well in this regard are:\n\n1. **B3LYP-D3**: This is a hybrid functional that combines the B3LYP exchange-correlation functional with the D3 dispersion correction. It's widely used for non-covalent interactions and has been shown to perform well in various benchmarking studies.\n2. **M06-2X**: This is a meta-hybrid functional that's designed to improve the description of non-covalent interactions. It's known for its good performance in predicting binding energies and geometries.\n3. **\u03c9B97X-D**: This is a meta-hybrid functional that's similar to B3LYP-D3 but uses a different exchange-correlation functional. It's known for its good performance in predicting non-covalent interactions, especially in systems with multiple non-covalent interactions.\n4. **PBE-D3**: This is a density functional that's designed to improve the description of non-covalent interactions. It's known for its good performance in predicting binding energies and geometries.\n\nIt's worth noting that the performance of these functionals can depend on the specific system being studied and the level of theory being used. In general, it's a good idea to use a combination of functionals and basis sets to ensure that you're getting a reliable description of non-covalent interactions.\n\nIn addition to using a good functional, it's also important to consider the following:\n\n* **Basis set**: A good basis set is essential for accurate calculations of non-covalent interactions. Some popular basis sets for non-covalent interactions include 6-311++G(d,p) and aug-cc-pVTZ.\n* **Dispersion correction**: Dispersion corrections are essential for accurate calculations of non-covalent interactions. Some popular dispersion corrections include D3 and D4.\n* **Counterpoise correction**: Counterpoise corrections are used to correct for basis set superposition error (BSSE) in calculations of non-covalent interactions.\n\nBy using a good functional, basis set, and dispersion correction, you can get a reliable description of non-covalent interactions in your calculations.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 315,
+      "latency": 1.3,
+      "error_type": "none",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": true
+    },
+    "Template Prompting": {
+      "answer": "Non-covalent interactions, such as van der Waals (vdW) and \u03c0-\u03c0 stacking, are crucial in understanding the behavior of molecules in various fields, including biology, materials science, and pharmaceuticals. Among the density functional theory (DFT) functionals, some have been specifically designed to improve the description of non-covalent interactions.\n\nBenchmark studies have shown that the following functionals are among the best for describing non-covalent interactions:\n\n1. **B97-D3**: This functional, developed by Zhao and Truhlar, combines the B97 exchange-correlation functional with the D3 dispersion correction. B97-D3 has been shown to provide accurate results for a wide range of non-covalent interactions, including vdW and \u03c0-\u03c0 stacking (Zhao and Truhlar, 2008) [1].\n2. **M06-2X**: This functional, developed by Zhao and Truhlar, is a meta-GGA functional that includes a long-range dispersion correction. M06-2X has been shown to provide accurate results for non-covalent interactions, including vdW and \u03c0-\u03c0 stacking, and is particularly effective for systems with multiple non-covalent interactions (Zhao and Truhlar, 2006) [2].\n3. **PBE-D3**: This functional, developed by Grimme, combines the PBE exchange-correlation functional with the D3 dispersion correction. PBE-D3 has been shown to provide accurate results for non-covalent interactions, including vdW and \u03c0-\u03c0 stacking, and is particularly effective for systems with multiple non-covalent interactions (Grimme, 2011) [3].\n\nBenchmark evidence from the S66 dataset, a widely used benchmark set for non-covalent interactions, shows that B97-D3 and M06-2X perform similarly well, with average absolute errors (AAEs) of 0.35 kcal/mol and 0.38 kcal/mol, respectively. PBE-D3 has a slightly higher AAE of 0.45 kcal/mol (Rezac et al., 2015) [4].\n\nIn conclusion, based on benchmark evidence, B97-D3 and M06-2X are among the best functionals for describing non-covalent interactions, followed closely by PBE-D3.\n\nReferences:\n\n[1] Zhao, Y.; Truhlar, D. G. Theor. Chem. Acc.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 283,
+      "latency": 1.9,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": true
+    },
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To determine the best functional for non-covalent interactions, we need to consider the following steps:\n\n1. **Understanding Non-Covalent Interactions**: Non-covalent interactions, such as hydrogen bonding, \u03c0-\u03c0 stacking, and van der Waals forces, play a crucial role in the stability and structure of biomolecules, crystals, and other systems. Accurate modeling of these interactions is essential for understanding their behavior and properties.\n\n2. **Density Functional Theory (DFT)**: DFT is a widely used computational method for studying electronic structure and properties of molecules. However, traditional DFT functionals often struggle to accurately describe non-covalent interactions due to their limitations in capturing long-range electron correlation and dispersion effects.\n\n3. **Dispersion-Corrected Functionals**: To address the limitations of traditional DFT functionals, dispersion-corrected functionals have been developed. These functionals, such as B97-D, \u03c9B97X-D, and M06-2X, include empirical dispersion corrections to improve the description of non-covalent interactions.\n\n4. **Range-Separated Hybrid Functionals**: Range-separated hybrid functionals, such as CAM-B3LYP and LC-\u03c9PBE, separate the exchange and correlation energies into short-range and long-range components. This allows for improved description of non-covalent interactions, particularly in systems with large intermolecular distances.\n\n5. **Double-Hybrid Functionals**: Double-hybrid functionals, such as B2PLYP and B2GP-PLYP, combine the advantages of DFT and post-Hartree-Fock methods. They include a perturbative correction to the Hartree-Fock exchange energy, which improves the description of non-covalent interactions.\n\n6. **Benchmarking and Comparison**: To determine the best functional for non-covalent interactions, we need to benchmark and compare the performance of different functionals using a set of well-characterized systems, such as the S22 and S66 datasets.\n\n7. **Consideration of System-Specific Requirements**: The choice of functional may depend on the specific requirements of the system being studied. For example, if the system involves a large number of atoms, a more efficient functional like B97-D may be preferred. If the system requires high accuracy, a more computationally expensive functional like B2PLYP may be necessary.\n\nBased on these considerations, some of the best functionals for non-covalent interactions are:\n\n-",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 317,
+      "latency": 1.0,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
+      "from_cache": true
+    },
+    "BM25 Retriever": {
+      "answer": "According to the text, the M06 functional is recommended for noncovalent interactions.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 12,
+      "latency": 8.6,
+      "error_type": "none",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": true
+    },
+    "Cross-Encoder Reranker": {
+      "answer": "According to the text, the M06 functional is recommended for noncovalent interactions.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 12,
+      "latency": 2.7,
+      "error_type": "none",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": true
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "According to the text, the M06 functional is recommended for noncovalent interactions.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 12,
+      "latency": 3.5,
+      "error_type": "none",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": true
+    },
+    "Standard RAG": {
+      "answer": "Unfortunately, the text does not provide a clear answer to what the best functional for non-covalent interactions is. However, it does mention that the dataset S66x8 is an effective data-set for acquiring a general idea about the performance of density functionals for non-covalent interactions. This suggests that the S66x8 dataset can be used to compare the performance of different density functionals for non-covalent interactions.\n\nTo determine the best functional for non-covalent interactions, you would need to consult the results of studies that have used the S66x8 dataset to compare the performance of different density functionals. Some popular density functionals that are often used for non-covalent interactions include:\n\n* B97-D\n* B3LYP-D\n* M06-2X\n* \u03c9B97X-D\n* PBE-D3\n\nThese functionals have been shown to perform well for non-covalent interactions in various studies, but the best functional for a particular system or application will depend on the specific details of the system and the requirements of the calculation.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 156,
+      "latency": 3.0,
+      "error_type": "none",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": true
+    },
+    "GraphRAG": {
+      "answer": "The M06-L functional is suitable for non-covalent interactions, as it is connected to several related concepts, including Metal-Ligand_Bonds_(MLBE21) and Grid_Sensitivity_M06-L. However, the exact best functional for non-covalent interactions is not explicitly stated in the evidence.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 35,
+      "latency": 9.7,
+      "error_type": "Type I",
+      "metrics": "GraphRAG | Star-topology traversal",
+      "from_cache": true
+    },
+    "Graph Deterministic": {
+      "answer": "Based on the provided graph evidence, the most relevant candidate to the user query is:\n\nCANDIDATE 1 [ID: Sys_Noncovalent Interactions_001]\n  - TYPE: Chemical_System\n  - CONNECTS TO: Ref_Sys_Noncovalent Interactions_001, Sys_Noncovalent Interactions_002, Sys_Noncovalent Interactions_003, Sys_Noncovalent Interactions_004, Sys_Noncovalent Interactions_005, Sys_Noncovalent Interactions_006, Sys_Noncovalent Interactions_007, Sys_Noncovalent Interactions_008\n\nHowever, this candidate does not directly provide information about the best functional for non-covalent interactions. \n\nA more relevant candidate is:\n\nCANDIDATE 2 [ID: PW]\n  - TYPE: Functional\n  - CONNECTS TO: LGC, SE Functional, PW6B95-D3(BJ), mPW2PLYP-D, PWPB95-D3, PW6B95-D3, B3PW91-D3(BJ), MPW1PW91-D3(BJ)\n\nAlthough this candidate is a functional, it does not specifically mention non-covalent interactions.\n\nHowever, another candidate is:\n\nCANDIDATE 9 [ID: M06-L]\n  - TYPE: Functional\n  - CONNECTS TO: D3, M05, VSXC, BLYP, BP86, BB95, G96LYP, PBE\n\nThis candidate is a functional that is connected to D3, which is a dispersion correction method often used for non-covalent interactions.\n\nBased on the connections, the best functional for non-covalent interactions is likely to be related to dispersion corrections. However, the exact best functional is not explicitly stated in the provided graph evidence.\n\nTherefore, the most accurate answer is:\n\nThe requested information cannot be found in the provided knowledge graph evidence.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 187,
+      "latency": 11.9,
+      "error_type": "Type I",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": true
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "The PBE functional is a popular choice for non-covalent interactions, but it may not be the best option. The HSE06-D3(BJ) method, which combines the Heyd-Scuseria-Ernzerhof (HSE) functional with the D3 dispersion correction, is often used for accurate treatment of non-covalent interactions. However, the exact best functional for non-covalent interactions is not explicitly stated in the provided evidence.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 57,
+      "latency": 25.7,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0004",
+      "from_cache": true
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "The PBE functional is a popular choice for non-covalent interactions, but it may not be the best option. The HSE06-D3(BJ) method, which combines the Heyd-Scuseria-Ernzerhof (HSE) functional with the D3 dispersion correction, is often used for accurate treatment of non-covalent interactions. However, the exact best functional for non-covalent interactions is not explicitly stated in the provided evidence.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 57,
+      "latency": 22.7,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0004",
+      "from_cache": true
+    }
+  },
+  "how does m06-2x compare to pbe0 for kinetics?": {
+    "Zero-Shot Prompting": {
+      "answer": "M06-2X and PBE0 are both hybrid density functional theory (DFT) methods used for calculating the properties of molecules. While both methods are popular and widely used, they have different strengths and weaknesses, particularly when it comes to kinetics.\n\nM06-2X is a meta-hybrid functional, which means it includes a fraction of exact exchange (about 54%) and a fraction of Hartree-Fock exchange (about 27%) in addition to the local and non-local correlation terms. This combination of exact and Hartree-Fock exchange makes M06-2X particularly well-suited for kinetics, as it can accurately describe the transition states and reaction barriers.\n\nPBE0, on the other hand, is a hybrid functional that includes 25% exact exchange and 75% Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional. While PBE0 is a good functional for many properties, it has been shown to be less accurate than M06-2X for kinetics.\n\nIn terms of kinetics, M06-2X has been shown to be more accurate than PBE0 for several reasons:\n\n1. **Transition state energies**: M06-2X has been shown to provide more accurate transition state energies than PBE0, which is critical for understanding reaction kinetics.\n2. **Reaction barriers**: M06-2X has been shown to provide more accurate reaction barriers than PBE0, which is essential for understanding the rate of chemical reactions.\n3. **Thermodynamics**: M06-2X has been shown to provide more accurate thermodynamic properties, such as enthalpies and free energies, than PBE0, which is important for understanding the kinetics of chemical reactions.\n\nOverall, while both M06-2X and PBE0 are useful functionals, M06-2X is generally considered to be more accurate for kinetics due to its ability to accurately describe transition states and reaction barriers.\n\nHere are some references that support these claims:\n\n* Zhao, Y.; Truhlar, D. G. The M06 suite of density functionals for main group thermochemistry, thermochemical kinetics, noncovalent interactions, excited states, and transition states. J. Chem. Theory Comput. 2008, 4 (2), 184-191.\n* Adamo, C.; Barone, V. Toward reliable density functional calculations of reaction energies. J. Chem. Phys. ",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 320,
+      "latency": 0.9,
+      "error_type": "none",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": true
+    },
+    "Template Prompting": {
+      "answer": "M06-2X and PBE0 are both hybrid density functional theory (DFT) methods, but they have different underlying exchange-correlation functionals.\n\nM06-2X is a meta-hybrid functional, which means it includes a fraction of exact exchange (\u03b1 = 0.546) and a combination of local and non-local correlation functionals. It was developed by Truhlar and coworkers and is known for its good performance in kinetics, thermodynamics, and non-covalent interactions.\n\nPBE0, on the other hand, is a hybrid functional that includes 25% exact exchange and the Perdew-Burke-Ernzerhof (PBE) correlation functional. It was developed by Adamo and Barone and is known for its good performance in kinetics and thermodynamics.\n\nComparing the performance of M06-2X and PBE0 for kinetics, we can look at the results of a benchmark study by Goerigk and Grimme (2011) [1]. They compared the performance of various DFT methods, including M06-2X and PBE0, on a set of 100 organic reactions.\n\nThe results showed that M06-2X performed better than PBE0 for kinetics, with a mean absolute error (MAE) of 1.4 kcal/mol compared to 2.1 kcal/mol for PBE0. M06-2X also showed better performance for reactions with high barriers, where PBE0 tended to overestimate the barrier heights.\n\nAnother benchmark study by Chai and Head-Gordon (2008) [2] compared the performance of M06-2X and PBE0 on a set of 30 reactions. The results showed that M06-2X performed better than PBE0 for kinetics, with a MAE of 1.1 kcal/mol compared to 2.3 kcal/mol for PBE0.\n\nIn summary, the benchmark evidence suggests that M06-2X performs better than PBE0 for kinetics, particularly for reactions with high barriers.\n\nReferences:\n\n[1] Goerigk, L.; Grimme, S. \"A Combined Experimental and Theoretical Study of the Kinetics of Organic Reactions\" Journal of Chemical Theory and Computation 2011, 7 (11), 3944-3957.\n\n[2] Chai, J.-D.; Head-Gordon, M. \"Systematic Optimization of Long-Range Correct",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 293,
+      "latency": 3.6,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": true
+    },
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To compare M06-2X and PBE0 for kinetics, we need to consider the underlying principles and characteristics of these two density functional theory (DFT) functionals.\n\n**Step 1: Understanding the Functionals**\n\n- **M06-2X**: This is a meta-hybrid functional developed by Truhlar and coworkers. It's designed to be a robust and accurate functional for a wide range of chemical systems, including kinetics. M06-2X combines the strengths of local and non-local exchange-correlation functionals, making it suitable for both ground-state and excited-state properties.\n- **PBE0**: This is a hybrid functional developed by Perdew, Burke, and Ernzerhof. It's a popular choice for kinetics due to its ability to accurately describe the exchange-correlation energy. PBE0 combines the local exchange-correlation functional of Perdew, Burke, and Ernzerhof (PBE) with the non-local Hartree-Fock exchange.\n\n**Step 2: Kinetic Properties**\n\nFor kinetics, we're interested in the ability of a functional to accurately describe the potential energy surface (PES) of a system. This includes the reaction barrier, transition state, and reaction path.\n\n- **M06-2X**: M06-2X has been shown to be effective in describing kinetics, particularly for reactions involving transition metals and organic reactions. Its hybrid nature allows it to capture both local and non-local effects, making it suitable for a wide range of systems.\n- **PBE0**: PBE0 has also been used to study kinetics, and it's known for its ability to accurately describe the exchange-correlation energy. However, it may not perform as well as M06-2X for certain types of reactions, particularly those involving transition metals.\n\n**Step 3: Comparison**\n\nIn general, M06-2X and PBE0 have different strengths and weaknesses when it comes to kinetics. M06-2X is a more robust and accurate functional, particularly for reactions involving transition metals and organic reactions. PBE0, on the other hand, is a more established functional with a proven track record for kinetics, but it may not perform as well as M06-2X for certain types of reactions.\n\n**Step 4: Conclusion**\n\nBased on the characteristics and performance of M06-2X and PBE0, we can conclude that:\n\n- M06-2X is a more robust",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 331,
+      "latency": 3.3,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
+      "from_cache": true
+    },
+    "BM25 Retriever": {
+      "answer": "Unfortunately, the provided text does not contain a direct comparison between M06-2X and PBE0 for kinetics. However, it does mention that the M06-2X functional is a high-nonlocality functional with double the amount of nonlocal exchange, and it is parametrized only for nonmetals.\n\nPBE0 is a hybrid functional that combines the Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional with 25% exact exchange. It is known for its good performance in kinetics and thermochemistry.\n\nGiven the information provided, it is not possible to make a direct comparison between M06-2X and PBE0 for kinetics. However, it can be inferred that M06-2X might be a good choice for kinetics, especially for nonmetal-containing systems, due to its high-nonlocality nature and parametrization for nonmetals.\n\nTo get a more accurate comparison, you would need to consult the original research paper or a more detailed review article that compares the performance of M06-2X and PBE0 for kinetics.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 146,
+      "latency": 7.0,
+      "error_type": "Type II",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": true
+    },
+    "Cross-Encoder Reranker": {
+      "answer": "Unfortunately, the provided text does not contain a direct comparison between M06-2X and PBE0 for kinetics. However, it does mention that the M06-2X functional is a high-nonlocality functional with double the amount of nonlocal exchange, and it is parametrized only for nonmetals.\n\nPBE0 is a hybrid functional that combines the Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional with 25% exact exchange. It is known for its good performance in kinetics and thermochemistry.\n\nGiven the information provided, it is not possible to make a direct comparison between M06-2X and PBE0 for kinetics. However, the authors do recommend the M06-2X functional for applications involving kinetics, suggesting that it may perform well in this area.\n\nTo determine the relative performance of M06-2X and PBE0 for kinetics, you would need to consult additional sources or the original research article.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 132,
+      "latency": 4.9,
+      "error_type": "none",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": true
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "Unfortunately, the provided text does not contain a direct comparison between M06-2X and PBE0 for kinetics. However, it does mention that the M06-2X functional is a high-nonlocality functional with double the amount of nonlocal exchange, and it is parametrized only for nonmetals.\n\nPBE0 is a hybrid functional that combines the Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional with 25% exact exchange. It is known for its good performance in kinetics and thermochemistry.\n\nGiven the information provided, it is not possible to make a direct comparison between M06-2X and PBE0 for kinetics. However, it can be inferred that M06-2X might be a good choice for kinetics, especially for nonmetal-containing systems, due to its high-nonlocality nature and parametrization for nonmetals.\n\nTo get a more accurate comparison, you would need to consult the original research paper or a more detailed review article that compares the performance of M06-2X and PBE0 for kinetics.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 146,
+      "latency": 5.1,
+      "error_type": "Type II",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": true
+    },
+    "Standard RAG": {
+      "answer": "Unfortunately, the provided text does not mention a comparison between M06-2X and PBE0 for kinetics. It does mention that PBE0-D3 slightly ameliorates the overbinding of PBE-D3, but it does not provide a direct comparison between M06-2X and PBE0 for kinetics.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 40,
+      "latency": 6.3,
+      "error_type": "none",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": true
+    },
+    "GraphRAG": {
+      "answer": "Unfortunately, the provided graph evidence does not contain information about M06-2X or its comparison to PBE0 for kinetics.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 18,
+      "latency": 9.8,
+      "error_type": "none",
+      "metrics": "GraphRAG | Star-topology traversal",
+      "from_cache": true
+    },
+    "Graph Deterministic": {
+      "answer": "The requested information cannot be found in the provided knowledge graph evidence.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 12,
+      "latency": 12.5,
+      "error_type": "none",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": true
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "The comparison between M06-2X and PBE0 for kinetics is not explicitly stated in the provided graph evidence.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 17,
+      "latency": 24.0,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0004",
+      "from_cache": true
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "The comparison between M06-2X and PBE0 for kinetics is not explicitly stated in the provided graph evidence.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 17,
+      "latency": 25.3,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0004",
+      "from_cache": true
+    }
+  },
+  "what dispersion correction should i use with pbe0?": {
+    "Zero-Shot Prompting": {
+      "answer": "PBE0 is a hybrid functional that combines the Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional with 25% exact exchange. When it comes to dispersion corrections, there are a few options that can be used in conjunction with PBE0.\n\nOne common choice is the D2 or D3 dispersion correction, which is a semi-empirical correction that accounts for van der Waals interactions. The D3 version is an improvement over D2, as it includes more terms and is more accurate.\n\nHowever, a more accurate and robust dispersion correction is the vdW-DF (van der Waals Density Functional) family of functionals, which includes vdW-DF1, vdW-DF2, and vdW-DF-C09. These functionals are based on a more rigorous theoretical framework and are designed to capture the long-range van der Waals interactions.\n\nIn particular, the vdW-DF2 functional is often used in conjunction with PBE0, as it provides a good balance between accuracy and computational efficiency.\n\nAnother option is the PBE0-D3(BJ) functional, which combines PBE0 with the D3(BJ) dispersion correction. This functional is a good choice when you need to account for dispersion interactions in a system, but you also want to maintain the accuracy of the PBE0 exchange-correlation functional.\n\nUltimately, the choice of dispersion correction will depend on the specific system you are studying and the level of accuracy you require. It's always a good idea to consult the literature and perform a convergence study to determine the best approach for your particular problem.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 232,
+      "latency": 0.6,
+      "error_type": "none",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": true
+    },
+    "Template Prompting": {
+      "answer": "When combining the PBE0 hybrid functional with dispersion corrections, the choice of dispersion correction method can significantly impact the accuracy of your results.\n\nOne of the most widely used dispersion correction methods is the D3 (Gr\u00fcneis et al., 2011) and its variants, such as D3(BJ) (Grimme et al., 2010). However, the D3 method has been shown to overcorrect the PBE0 functional, leading to an overestimation of binding energies (Grimme et al., 2011).\n\nA more suitable choice for dispersion correction with PBE0 is the D2 method (Grimme et al., 2006), which has been shown to provide a more balanced description of dispersion interactions. However, the D2 method can still lead to some overcorrection.\n\nA more recent and accurate dispersion correction method is the D4 method (Grimme et al., 2012), which has been shown to provide a more accurate description of dispersion interactions than the D3 method. The D4 method has been successfully applied with PBE0 to study a variety of systems, including molecular crystals and solids (Grimme et al., 2012).\n\nIn terms of benchmark evidence, a study by Tkatchenko et al. (2012) compared the performance of different dispersion correction methods, including D2 and D3, with PBE0. The results showed that the D4 method provided the most accurate description of dispersion interactions, with a mean absolute error (MAE) of 0.5 kcal/mol, compared to 1.2 kcal/mol for D2 and 1.5 kcal/mol for D3.\n\nIn conclusion, based on benchmark evidence, I would recommend using the D4 dispersion correction method with PBE0 for accurate calculations of dispersion interactions.\n\nReferences:\n\nGrimme, S. (2006). Semiempirical GGA-type density functional constructed with a long-range dispersion correction. Journal of Computational Chemistry, 27(15), 1787-1799.\n\nGrimme, S., Antony, J., Ehrlich, S., & Krieg, H. (2010). A consistent and accurate ab initio parametrization of density functional dispersion correction (DFT-D) for the 94 elements H-Pu. Journal of Chemical Physics, 132(15), 154104.\n\nGrimme, S., Ehrlich, S., & Goerig",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 313,
+      "latency": 0.9,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": true
+    },
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To determine the dispersion correction to use with PBE0, we need to consider the following steps:\n\n1. **PBE0 functional**: PBE0 is a hybrid functional that combines the Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional with 25% exact exchange. It's known for providing a good balance between accuracy and computational efficiency.\n\n2. **Dispersion corrections**: Dispersion corrections are used to account for the long-range van der Waals (vdW) interactions, which are often neglected in traditional DFT calculations. There are several dispersion correction schemes available, including:\n\t* Grimme's D2 (also known as DFT-D2)\n\t* Grimme's D3 (also known as DFT-D3)\n\t* Tkatchenko-Scheffler (TS) dispersion correction\n\t* M\u00f8ller-Plesset (MP2) based dispersion corrections\n\n3. **Compatibility with PBE0**: When choosing a dispersion correction, we need to consider its compatibility with the PBE0 functional. Some dispersion corrections are specifically designed to work with PBE0, while others may require additional adjustments or modifications.\n\n4. **Dispersion correction options for PBE0**:\n\t* Grimme's D3 is a popular choice for PBE0, as it is specifically designed to work with hybrid functionals like PBE0. It provides a good balance between accuracy and computational efficiency.\n\t* Tkatchenko-Scheffler (TS) dispersion correction is another option, but it may require additional adjustments or modifications to work with PBE0.\n\nConsidering these steps, I would recommend using Grimme's D3 dispersion correction with PBE0. It is a well-established and widely used method that provides a good balance between accuracy and computational efficiency. However, if you have specific requirements or preferences, you may want to explore other options, such as the TS dispersion correction.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 251,
+      "latency": 2.8,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
+      "from_cache": true
+    },
+    "BM25 Retriever": {
+      "answer": "Unfortunately, the text does not provide information about dispersion corrections. However, I can suggest some common dispersion corrections that are often used with hybrid functionals like PBE0.\n\nSome popular dispersion corrections include:\n\n1. D2 (also known as Grimme's D2): This is a simple and widely used dispersion correction that is often paired with hybrid functionals like PBE0.\n2. D3 (also known as Grimme's D3): This is an improved version of the D2 dispersion correction that includes more terms and is often used for more accurate calculations.\n3. vdW-DF (also known as van der Waals density functional): This is a more sophisticated dispersion correction that is based on a density functional theory (DFT) approach.\n\nIt's worth noting that the choice of dispersion correction will depend on the specific system you are studying and the level of accuracy you need. You may want to consult the literature or perform some test calculations to determine the best dispersion correction for your specific case.\n\nIn terms of pairing a dispersion correction with PBE0, some common combinations include:\n\n1. PBE0-D2: This is a simple and widely used combination that pairs the PBE0 hybrid functional with the D2 dispersion correction.\n2. PBE0-D3: This is an improved version of the PBE0-D2 combination that includes the more accurate D3 dispersion correction.\n3. PBE0-vdW-DF: This is a more sophisticated combination that pairs the PBE0 hybrid functional with the vdW-DF dispersion correction.\n\nUltimately, the choice of dispersion correction will depend on your specific needs and the level of accuracy you require.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 251,
+      "latency": 12.9,
+      "error_type": "none",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": true
+    },
+    "Cross-Encoder Reranker": {
+      "answer": "Unfortunately, the provided text does not mention dispersion corrections. However, I can provide some general guidance on dispersion corrections for the PBE0 functional.\n\nPBE0 is a global hybrid functional, which means it includes a mix of Hartree-Fock (HF) exchange and density functional theory (DFT) exchange-correlation. For solid-state physics calculations, it's common to use dispersion corrections to account for van der Waals interactions.\n\nSome popular dispersion corrections that can be used with PBE0 include:\n\n1. D2 (Becke-Johnson damping): This is a simple and widely used dispersion correction that can be added to PBE0.\n2. D3 (Grimme's dispersion correction): This is a more sophisticated dispersion correction that includes a more accurate treatment of van der Waals interactions.\n3. vdW-DF (van der Waals density functional): This is a more advanced dispersion correction that includes a self-consistent treatment of van der Waals interactions.\n\nIn general, the choice of dispersion correction will depend on the specific system and the level of accuracy desired. If you're unsure, you may want to consult the literature or consult with a colleague who has experience with dispersion corrections.\n\nIt's worth noting that the text you provided mentions that global hybrid and long-range-corrected hybrid functionals are not included in the evaluation for the PE39 database. However, this does not necessarily mean that PBE0 is not suitable for your system. You may still be able to use PBE0 with a dispersion correction, but you should carefully evaluate the results and consider the limitations of the functional.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 245,
+      "latency": 11.0,
+      "error_type": "none",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": true
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "Unfortunately, the text does not provide information about dispersion corrections. However, I can suggest some common dispersion corrections that are often used with hybrid functionals like PBE0.\n\nSome popular dispersion corrections include:\n\n1. D2 (also known as Grimme's D2): This is a simple and widely used dispersion correction that is often paired with hybrid functionals like PBE0.\n2. D3 (also known as Grimme's D3): This is an improved version of the D2 dispersion correction that includes more terms and is often used for more accurate calculations.\n3. vdW-DF (also known as van der Waals density functional): This is a more sophisticated dispersion correction that is based on a density functional theory (DFT) approach.\n\nIt's worth noting that the choice of dispersion correction will depend on the specific system you are studying and the level of accuracy you need. You may want to consult the literature or perform some test calculations to determine the best dispersion correction for your specific case.\n\nIn terms of pairing a dispersion correction with PBE0, some common combinations include:\n\n1. PBE0-D2: This is a simple and widely used combination that pairs the PBE0 hybrid functional with the D2 dispersion correction.\n2. PBE0-D3: This is an improved version of the PBE0-D2 combination that includes the more accurate D3 dispersion correction.\n3. PBE0-vdW-DF: This is a more sophisticated combination that pairs the PBE0 hybrid functional with the vdW-DF dispersion correction.\n\nUltimately, the choice of dispersion correction will depend on your specific needs and the level of accuracy you require.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 251,
+      "latency": 12.0,
+      "error_type": "none",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": true
+    },
+    "Standard RAG": {
+      "answer": "Based on the information provided, it is recommended to use the D3(BJ) dispersion correction with the PBE0 functional. However, it is noted that the addition of the D3 dispersion tail leads to overbinding (-3.86 kcal/mol) for the water clusters.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 39,
+      "latency": 8.6,
+      "error_type": "none",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": true
+    },
+    "GraphRAG": {
+      "answer": "You should use the D3 dispersion correction with PBE0. The D3 dispersion correction is a widely used and well-established method for correcting dispersion interactions in density functional theory calculations. It is compatible with the PBE0 functional.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 36,
+      "latency": 9.7,
+      "error_type": "none",
+      "metrics": "GraphRAG | Star-topology traversal",
+      "from_cache": true
+    },
+    "Graph Deterministic": {
+      "answer": "Based on the provided graph evidence, the most relevant candidate to the user query is CANDIDATE 6 [ID: D3(BJ)-ATM] and CANDIDATE 2 [ID: PBE0].\n\nCANDIDATE 6 [ID: D3(BJ)-ATM] is connected to PBE0, indicating that D3(BJ)-ATM is a dispersion correction that can be used with PBE0.\n\nCANDIDATE 2 [ID: PBE0] is a functional that is connected to D3(BJ)-ATM, further confirming that D3(BJ)-ATM is a suitable dispersion correction for PBE0.\n\nTherefore, the final answer is:\n\nYou should use D3(BJ)-ATM as the dispersion correction with PBE0.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 83,
+      "latency": 19.5,
+      "error_type": "none",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": true
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "You should use the D3 dispersion correction with PBE0. This is based on the evidence that PBE0 with D3 dispersion correction leads to overbinding, but it drastically improves upon PBE for the 12 dispersion-bound systems.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 35,
+      "latency": 28.8,
+      "error_type": "none",
+      "metrics": "Multi-Agent | Cost: $0.0004",
+      "from_cache": true
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "You should use the D3 dispersion correction with PBE0. This is based on the evidence that PBE0 with D3 dispersion correction leads to overbinding, but it drastically improves upon PBE for the 12 dispersion-bound systems.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 35,
+      "latency": 26.7,
+      "error_type": "none",
+      "metrics": "Multi-Agent | Cost: $0.0004",
+      "from_cache": true
+    }
+  },
+  "which functional has the lowest wtmad on gmtkn55?": {
+    "Zero-Shot Prompting": {
+      "answer": "I'm not aware of the current information on GMTKN55. However, I can tell you that GMTKN55 is a benchmark for evaluating the performance of density functional theory (DFT) functionals in predicting non-covalent interactions.\n\nTo find the functional with the lowest WTMAD (Weighted Mean Absolute Deviation) on GMTKN55, I would recommend checking the latest research articles or databases that specialize in DFT functionals and non-covalent interactions.\n\nSome popular databases and resources for DFT functionals include:\n\n1. The GMTKN55 website: This website provides a comprehensive overview of the benchmark, including the results of various DFT functionals.\n2. The Materials Project: This database provides a wide range of DFT calculations, including non-covalent interactions.\n3. The DFTB+ website: This website provides a database of DFT calculations, including non-covalent interactions.\n\nYou can also search for research articles on academic databases such as Google Scholar, PubMed, or arXiv. Some popular journals that publish research on DFT functionals and non-covalent interactions include:\n\n1. Journal of Chemical Physics\n2. Physical Review B\n3. Journal of Computational Chemistry\n4. Chemical Physics Letters\n\nPlease note that the results of DFT functionals can depend on the specific system being studied, so it's always a good idea to consult multiple sources and evaluate the results critically.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 204,
+      "latency": 0.5,
+      "error_type": "none",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": true
+    },
+    "Template Prompting": {
+      "answer": "GMTKN55 is a benchmark set for evaluating the performance of density functional theory (DFT) methods. WTMAD stands for Weighted Mean Absolute Deviation, which is a measure of the average absolute error in a set of calculations.\n\nAccording to the GMTKN55 benchmark results, the functional with the lowest WTMAD is B97M-V. \n\nB97M-V is a meta-GGA functional that has been shown to perform well on GMTKN55, with a WTMAD of 1.43 kcal/mol. This is lower than many other popular functionals, including B3LYP (2.15 kcal/mol), PBE (2.35 kcal/mol), and M06-2X (2.45 kcal/mol).\n\nHere is a summary of the WTMAD values for some popular functionals on GMTKN55:\n\n- B97M-V: 1.43 kcal/mol\n- B3LYP: 2.15 kcal/mol\n- PBE: 2.35 kcal/mol\n- M06-2X: 2.45 kcal/mol\n- PBE0: 2.23 kcal/mol\n- B2PLYP: 2.15 kcal/mol\n\nPlease note that the performance of functionals can depend on the specific system being studied and the level of theory used. These results are based on the GMTKN55 benchmark set, which is a widely used and well-established benchmark for evaluating the performance of DFT methods.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 172,
+      "latency": 0.5,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": true
+    },
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To answer this question, we need to break it down into smaller steps.\n\n**Step 1: Understanding WTMAD and GMTKN55**\n\n- WTMAD stands for Weighted Total Mean Absolute Deviation. It's a metric used to evaluate the performance of a functional in predicting various molecular properties.\n- GMTKN55 is a benchmark dataset that contains 55 different molecular properties, including interaction energies, reaction energies, and other thermodynamic properties.\n\n**Step 2: Identifying the goal**\n\nOur goal is to find the functional with the lowest WTMAD on GMTKN55. This means we need to compare the performance of different functionals on this dataset.\n\n**Step 3: Considering the options**\n\nThere are many functionals available in computational chemistry, each with its strengths and weaknesses. Some popular functionals include:\n\n- B3LYP (Becke, 3-parameter, Lee-Yang-Parr)\n- PBE (Perdew-Burke-Ernzerhof)\n- M06 (Minnesota 6)\n- B2PLYP (Becke 2-parameter, Lee-Yang-Parr)\n- and many others.\n\n**Step 4: Evaluating the functionals**\n\nTo determine which functional has the lowest WTMAD on GMTKN55, we would typically perform a series of calculations using each functional on the GMTKN55 dataset. We would then calculate the WTMAD for each functional and compare the results.\n\n**Step 5: Analyzing the results**\n\nAfter calculating the WTMAD for each functional, we would analyze the results to determine which functional has the lowest WTMAD on GMTKN55. This would involve comparing the WTMAD values for each functional and identifying the one with the lowest value.\n\n**Step 6: Drawing a conclusion**\n\nBased on the analysis of the results, we can draw a conclusion about which functional has the lowest WTMAD on GMTKN55.\n\nPlease note that this is a hypothetical scenario, and actual results may vary depending on the specific implementation, computational resources, and other factors.\n\nTo provide a more accurate answer, I would need to know which specific functionals were considered in the analysis. However, based on general knowledge, some functionals like M06 and B2PLYP are known to perform well on GMTKN55.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 315,
+      "latency": 2.3,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
+      "from_cache": true
+    },
+    "BM25 Retriever": {
+      "answer": "The information provided does not mention GMTKN55, but rather GMTKN30. However, based on the information given for GMTKN30, the oTPSS-D3 functional is mentioned as the most robust meta-GGA and yields the lowest WTMADs for all three sub-sections and the complete GMTKN30.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 41,
+      "latency": 7.6,
+      "error_type": "none",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": true
+    },
+    "Cross-Encoder Reranker": {
+      "answer": "The text does not mention GMTKN55. It mentions GMTKN30 and GMTKN24. However, it does mention that for GMTKN30, oTPSS-D3 yields the lowest WTMADs for all three sub-sections and the complete GMTKN30.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 31,
+      "latency": 3.6,
+      "error_type": "none",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": true
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "The information provided does not mention GMTKN55, but rather GMTKN30. However, based on the information given for GMTKN30, the oTPSS-D3 functional is mentioned as the most robust meta-GGA and yields the lowest WTMADs for all three sub-sections and the complete GMTKN30.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 41,
+      "latency": 4.8,
+      "error_type": "none",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": true
+    },
+    "Standard RAG": {
+      "answer": "According to the text, the functional with the lowest WTMAD on GMTKN55 is PW6B95-D3.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 14,
+      "latency": 4.4,
+      "error_type": "none",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": true
+    },
+    "GraphRAG": {
+      "answer": "The functional with the lowest WTMAD on GMTKN55 is not explicitly stated in the provided evidence. However, the M06-L functional is mentioned in the context of GMTKN55 sensitivity, as it connects to Grid_Sensitivity_M06-L.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 33,
+      "latency": 3.6,
+      "error_type": "Type I",
+      "metrics": "GraphRAG | Star-topology traversal",
+      "from_cache": true
+    },
+    "Graph Deterministic": {
+      "answer": "To answer the user query, we need to find the functional that is connected to the WTMAD-1_Score node and also connected to the GMTKN55 benchmark set.\n\nFrom the graph evidence, we can see that the WTMAD-1_Score node is connected to the Functional_Benchmarking node, which is also connected to the GMTKN55 benchmark set.\n\nHowever, we need to find the functional that is connected to the WTMAD-1_Score node. The WTMAD-1_Score node is connected to the Atomization_Energies node, which is not directly connected to any functional. But the Atomization_Energies node is connected to the Functional_Benchmarking node, which is connected to the DFT-D3(BJ) node.\n\nThe DFT-D3(BJ) node is connected to the M06-L functional. Therefore, the M06-L functional is the functional that is connected to the WTMAD-1_Score node and also connected to the GMTKN55 benchmark set.\n\nHowever, we need to check if there are any other functionals that are connected to the WTMAD-1_Score node. The WTMAD-1_Score node is also connected to the Atomization_Energies node, which is connected to the Functional_Benchmarking node, which is connected to the DFT-D3(BJ) node, and also connected to the PW functional.\n\nTherefore, the PW functional is also a candidate for the functional with the lowest WTMAD on GMTKN55.\n\nHowever, we need to check if there are any other functionals that are connected to the WTMAD-1_Score node. The WTMAD-1_Score node is also connected to the Atomization_Energies node, which is connected to the Functional_Benchmarking node, which is connected to the DFT-D3(BJ) node, and also connected to the M06-L functional.\n\nTherefore, the M06-L functional is the functional that is connected to the WTMAD-1_Score node and also connected to the GMTKN55 benchmark set.\n\nHowever, we need to check if there are any other functionals that are connected to the WTMAD-1_Score node. The WTMAD-1_Score node is also connected to the Atomization_Energies node, which is connected to the Functional_Benchmarking node, which is connected to the DFT-D3",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 309,
+      "latency": 6.9,
+      "error_type": "none",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": true
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "The functional with the lowest WTMAD on GMTKN55 is not explicitly stated in the provided graph evidence. However, it is mentioned that VR_revPBE_D3_Noncov_WTMAD connects to revPBE, which is a functional, suggesting that revPBE may be related to the WTMAD value.",
+      "nodes_hit": 1,
+      "has_citation": true,
+      "ans_len": 40,
+      "latency": 25.4,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0003",
+      "from_cache": true
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "The functional with the lowest WTMAD on GMTKN55 is not explicitly stated in the provided graph evidence. However, it is mentioned that VR_revPBE_D3_Noncov_WTMAD connects to revPBE, which is a functional, suggesting that revPBE may be related to the WTMAD value.",
+      "nodes_hit": 1,
+      "has_citation": true,
+      "ans_len": 40,
+      "latency": 20.5,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0003",
+      "from_cache": true
+    }
+  },
+  "what is the mae of b3lyp on s22?": {
+    "Zero-Shot Prompting": {
+      "answer": "I'm unable to verify the MAE of B3LYP on S22.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 10,
+      "latency": 0.1,
+      "error_type": "Type I",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": true
+    },
+    "Template Prompting": {
+      "answer": "The S22 dataset is a well-known benchmark set for testing the performance of density functional theory (DFT) methods in calculating non-covalent interactions.\n\nAccording to a study published in the Journal of Chemical Physics in 2005, titled \"A benchmark for non-covalent interactions in density functional theory\" by J. M. Goerigk and S. Grimme, the mean absolute error (MAE) of the B3LYP functional on the S22 dataset is 1.35 kcal/mol.\n\nThis study is a widely cited and authoritative source for benchmarking the performance of DFT methods on non-covalent interactions, and the results have been consistently reproduced in subsequent studies.\n\nSource:\nGoerigk, L., & Grimme, S. (2005). A benchmark for non-covalent interactions in density functional theory. Journal of Chemical Physics, 123(11), 064103.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 119,
+      "latency": 0.4,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": true
+    },
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To determine the Mean Absolute Error (MAE) of the B3LYP functional on the S22 dataset, we need to follow these steps:\n\n1. **Understanding the B3LYP functional**: B3LYP is a hybrid density functional theory (DFT) method that combines the Hartree-Fock exchange with the local spin density approximation (LSDA) exchange-correlation functional. It's a widely used functional for calculating molecular properties, including energies and geometries.\n\n2. **Understanding the S22 dataset**: The S22 dataset is a collection of 22 non-covalent interactions, including hydrogen bonds, \u03c0-\u03c0 interactions, and van der Waals interactions. It's a benchmark set used to evaluate the performance of density functional theory (DFT) methods and other quantum mechanical methods.\n\n3. **Calculating the MAE**: To calculate the MAE, we need to compare the predicted energies of the B3LYP functional with the reference energies (usually obtained from high-level ab initio methods like CCSD(T)) for each molecule in the S22 dataset. The MAE is then calculated as the average of the absolute differences between the predicted and reference energies.\n\n4. **Literature search**: To find the MAE of B3LYP on the S22 dataset, we can search the literature for studies that have evaluated the performance of B3LYP on this dataset. We can also search for studies that have compared the performance of B3LYP with other DFT methods or quantum mechanical methods.\n\nAfter searching the literature, I found that the MAE of B3LYP on the S22 dataset is around 2.5-3.5 kcal/mol. However, please note that this value can vary depending on the specific implementation of the B3LYP functional and the basis set used.\n\nHere's a reference to a study that reported the MAE of B3LYP on the S22 dataset:\n\n* \"Benchmarking DFT and Semiempirical Methods for Noncovalent Interactions\" by J. M. Goerigk and S. Grimme (2011) - This study reported an MAE of 3.1 kcal/mol for B3LYP on the S22 dataset.\n\nPlease note that this is just one example, and there may be other studies that have reported different values for the MAE of B3LYP on the S22 dataset.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 332,
+      "latency": 1.1,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
+      "from_cache": true
+    },
+    "BM25 Retriever": {
+      "answer": "The MAE (Mean Absolute Error) of B3LYP on S22 is not directly given in the table. However, the table does provide the MAE of BLYP on S22, which is 9.77.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 30,
+      "latency": 9.7,
+      "error_type": "none",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": true
+    },
+    "Cross-Encoder Reranker": {
+      "answer": "The MAE (Mean Absolute Error) of B3LYP on S22 is not directly given in the table. However, the table does provide the MAE of BLYP on S22, which is 9.77.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 30,
+      "latency": 7.7,
+      "error_type": "none",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": true
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "The MAE (Mean Absolute Error) of B3LYP on S22 is not directly given in the table. However, the table does provide the MAE of BLYP on S22, which is 9.77.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 30,
+      "latency": 8.8,
+      "error_type": "none",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": true
+    },
+    "Standard RAG": {
+      "answer": "The MAE of B3LYP on S22 is 4.85.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 8,
+      "latency": 9.3,
+      "error_type": "none",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": true
+    },
+    "GraphRAG": {
+      "answer": "The MAE of B3LYP on S22 is not explicitly stated in the provided evidence. However, Candidate 12 [ID: VR_S22H_B97_MAE] mentions MAE in the context of the S22 H-bonded system, but it is associated with the \u03b2B97 method, not B3LYP.",
+      "nodes_hit": 1,
+      "has_citation": true,
+      "ans_len": 39,
+      "latency": 10.8,
+      "error_type": "Type I",
+      "metrics": "GraphRAG | Star-topology traversal",
+      "from_cache": true
+    },
+    "Graph Deterministic": {
+      "answer": "To answer the user query, we need to find the connection between B3LYP and the MAE on S22.\n\nFrom the graph evidence, we can see that B3LYP is connected to D3(BJ), D3(BJ)-ATM, D4-ATM, D4(TB)-ATM, D4-MBD, D4(TB)-MBD, B3PW91, and D.\n\nHowever, we are looking for the connection between B3LYP and the MAE on S22. We can see that MAE is connected to VR_AE_B3LYP_MAE, which is connected to VR_AE_B3LYP, and B3LYP is connected to D3(BJ), D3(BJ)-ATM, D4-ATM, D4(TB)-ATM, D4-MBD, D4(TB)-MBD, B3PW91, and D.\n\nBut there is no direct connection between B3LYP and the MAE on S22. However, we can see that MAE is connected to VR_AE_B3LYP_MAE, which is connected to VR_AE_B3LYP, and B3LYP is connected to D3(BJ), D3(BJ)-ATM, D4-ATM, D4(TB)-ATM, D4-MBD, D4(TB)-MBD, B3PW91, and D.\n\nHowever, we can see that MAE is connected to VR_AE_B3LYP_MAE, which is connected to VR_AE_B3LYP, and B3LYP is connected to D3(BJ), D3(BJ)-ATM, D4-ATM, D4(TB)-ATM, D4-MBD, D4(TB)-MBD, B3PW91, and D.\n\nHowever, we can see that MAE is connected to VR_AE_B3LYP_MAE, which is connected to VR_AE_B3LYP, and B3LYP is connected to D3(BJ), D3(BJ)-ATM, D4-ATM, D4(TB)-ATM, D4-MBD, D4(TB)-MBD, B3PW91, and D.\n\nHowever, we can see that MAE is connected to VR_AE_B3LY",
+      "nodes_hit": 3,
+      "has_citation": true,
+      "ans_len": 191,
+      "latency": 17.3,
+      "error_type": "none",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": true
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "The Mean Absolute Error (MAE) of B3LYP on the S22 dataset is 5.46 kcal/mol. This value is based on the system error provided in the evidence.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 26,
+      "latency": 36.1,
+      "error_type": "none",
+      "metrics": "Multi-Agent | Cost: $0.0005",
+      "from_cache": true
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "The Mean Absolute Error (MAE) of B3LYP on the S22 dataset is 5.46 kcal/mol. This value is based on the system error provided in the evidence.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 26,
+      "latency": 28.1,
+      "error_type": "none",
+      "metrics": "Multi-Agent | Cost: $0.0005",
+      "from_cache": true
+    }
+  },
+  "mae of pbe0 on s66?": {
+    "Template Prompting": {
+      "answer": "The S66 dataset is a widely used benchmark for testing the performance of density functional theory (DFT) methods in calculating non-covalent interactions.\n\nAccording to the original paper by M. M. M. S. Trepte et al. (2012), the Mean Absolute Error (MAE) of PBE0 on the S66 dataset is 1.35 kcal/mol.\n\nHowever, a more recent study by J. Rezac et al. (2015) reported a MAE of 1.24 kcal/mol for PBE0 on the S66x8 subset of the S66 dataset, which includes 8 additional complexes.\n\nIt's worth noting that the performance of PBE0 can vary depending on the specific implementation and basis set used. However, based on these benchmark results, PBE0 appears to be a reliable method for calculating non-covalent interactions, with a MAE of around 1.25-1.35 kcal/mol on the S66 dataset.\n\nReferences:\n\n* M. M. M. S. Trepte, et al. (2012). \"Benchmarking density functional theory for noncovalent interactions.\" Journal of Chemical Physics, 136(2), 024102.\n* J. Rezac, et al. (2015). \"Benchmarking density functional theory for noncovalent interactions: A comparison of the S66 and S66x8 datasets.\" Journal of Chemical Physics, 142(18), 184102.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 179,
+      "latency": 0.6,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": false
+    },
+    "Zero-Shot Prompting": {
+      "answer": "I'm not aware of the specific MAE (Mean Absolute Error) of the PBE0 functional on the S66 dataset. However, I can provide some general information about the PBE0 functional and the S66 dataset.\n\nThe PBE0 functional is a hybrid functional that combines the Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional with a 25% Hartree-Fock exchange. It is known for its good performance in describing the electronic structure of molecules, particularly for systems with a high degree of electron correlation.\n\nThe S66 dataset is a set of 66 non-covalent interactions that are commonly used to test the performance of density functional theory (DFT) methods. It includes a wide range of interactions, from weak van der Waals forces to strong hydrogen bonds.\n\nIf you are looking for the specific MAE of the PBE0 functional on the S66 dataset, I would recommend searching for peer-reviewed articles or research papers that have published results on this topic. Some possible sources include the Journal of Chemical Physics, the Journal of Physical Chemistry, or the Journal of Computational Chemistry.\n\nAlternatively, you can also try searching online databases such as Google Scholar or ResearchGate, which may have information on the MAE of the PBE0 functional on the S66 dataset.\n\nHere are a few references that might be helpful:\n\n* \"S66: A Benchmark for Noncovalent Interactions and a New Test Set for the Development of Exchange-Correlation Functionals\" by \u0158ez\u00e1\u010d, J., & Hobza, P. (2009). Journal of Chemical Theory and Computation, 5(10), 2695-2704.\n* \"Performance of the PBE0 functional for noncovalent interactions\" by \u0158ez\u00e1\u010d, J., & Hobza, P. (2010). Journal of Chemical Physics, 132(15), 154104.\n* \"Benchmarking the performance of density functional theory for noncovalent interactions\" by \u0158ez\u00e1\u010d, J., & Hobza, P. (2011). Journal of Physical Chemistry A, 115(45), 12355-12364.\n\nPlease note that these references may not provide the specific MAE of the PBE0 functional on the S66 dataset, but they may give you some general information on the performance of the PBE0 functional for noncovalent interactions.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 325,
+      "latency": 1.4,
+      "error_type": "Type II",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": false
+    },
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To calculate the Mean Absolute Error (MAE) of the PBE0 functional on the S66 dataset, we need to follow these steps:\n\n1. **Understand the PBE0 functional**: PBE0 is a hybrid functional that combines the Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional with 25% exact exchange. This functional is known for its good performance in describing the electronic structure of molecules.\n\n2. **Understand the S66 dataset**: S66 is a benchmark dataset of 66 non-covalent interactions, including hydrogen bonds, \u03c0-\u03c0 interactions, and van der Waals interactions. It is widely used to evaluate the performance of density functional theory (DFT) methods.\n\n3. **Calculate the reference values**: To calculate the MAE, we need to know the reference values, which are typically obtained using high-level ab initio methods such as CCSD(T) or MP2. These reference values are used as a gold standard to evaluate the performance of lower-level methods like DFT.\n\n4. **Perform DFT calculations using PBE0**: We need to perform DFT calculations on the S66 dataset using the PBE0 functional. This involves optimizing the geometries of the molecules and calculating the interaction energies.\n\n5. **Calculate the interaction energies**: We need to calculate the interaction energies for each molecule in the S66 dataset using the PBE0 functional. This involves subtracting the sum of the monomer energies from the dimer energy.\n\n6. **Calculate the absolute errors**: We need to calculate the absolute errors between the PBE0 interaction energies and the reference values.\n\n7. **Calculate the Mean Absolute Error (MAE)**: Finally, we need to calculate the MAE by taking the average of the absolute errors.\n\nTo give a specific answer, I would need to know the reference values for the S66 dataset and the specific implementation of the PBE0 functional used in the calculations. However, based on previous studies, the MAE of the PBE0 functional on the S66 dataset is typically around 1-2 kcal/mol.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 304,
+      "latency": 0.8,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
+      "from_cache": false
+    },
+    "BM25 Retriever": {
+      "answer": "To find the Mean Absolute Error (MAE) of PBE0 on S66, we need to look at the table provided. However, PBE0 is not directly listed in the table. PBE0 is a hybrid functional that combines the PBE exchange-correlation functional with 25% Hartree-Fock exchange. \n\nSince PBE0 is not listed, we can look at the MAE of PBE, which is a functional similar to PBE0 but without the Hartree-Fock exchange. The MAE of PBE on S66 is 3.63.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 76,
+      "latency": 5.5,
+      "error_type": "none",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": false
+    },
+    "Cross-Encoder Reranker": {
+      "answer": "The MAE (Mean Absolute Error) of PBE0 on S66 is not directly available in the given text. However, we can see that PBE0 is not listed in the table for S66.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 31,
+      "latency": 6.1,
+      "error_type": "Type III",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": false
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 0,
+      "latency": 14.2,
+      "error_type": "Type I",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": false
+    },
+    "Standard RAG": {
+      "answer": "",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 0,
+      "latency": 22.4,
+      "error_type": "Type I",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": false
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "The Mean Absolute Error (MAE) of PBE0 on the S66 dataset is not explicitly stated in the provided evidence. However, the evidence does mention that the results for PBE0 on the S66 dataset are taken from Ref. 42, but the actual MAE value is not included.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 46,
+      "latency": 23.1,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0004",
       "from_cache": false
     },
     "Graph Deterministic": {
       "answer": "",
-      "rouge": 0,
-      "latency": 28.8,
       "nodes_hit": 0,
-      "metrics": "Deterministic Graph Active",
+      "has_citation": false,
+      "ans_len": 0,
+      "latency": 30.8,
+      "error_type": "Type I",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": false
+    },
+    "Multi-Agent System (BM25+Reranker Fallback)": {
+      "answer": "The Mean Absolute Error (MAE) of PBE0 on the S66 dataset is not explicitly stated in the provided evidence. However, the evidence does mention that the results for PBE0 on the S66 dataset are taken from Ref. 42, but the actual MAE value is not included.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 46,
+      "latency": 33.8,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0004",
+      "from_cache": false
+    }
+  },
+  "best functional for tmc32?": {
+    "Zero-Shot Prompting": {
+      "answer": "I'm not aware of any information about a \"TMC32\". Could you provide more context or information about what TMC32 is?",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 20,
+      "latency": 0.1,
+      "error_type": "none",
+      "metrics": "Zero-Shot | No retrieval",
+      "from_cache": false
+    },
+    "Template Prompting": {
+      "answer": "TMC-32 is a transition metal complex. For transition metal complexes, the choice of DFT functional is crucial for accurate predictions.\n\nBased on benchmark evidence, the B3LYP functional is often considered a good starting point for transition metal complexes. However, for TMC-32, a more accurate functional is required.\n\nOne of the most accurate functionals for transition metal complexes is the M06 functional, specifically M06-L and M06. However, for TMC-32, the M06-L functional has been shown to be particularly effective.\n\nA study published in the Journal of Chemical Physics (2011) by Zhao and Truhlar compared the performance of various DFT functionals for transition metal complexes, including TMC-32. The study found that the M06-L functional provided the most accurate results for TMC-32, with an average absolute error of 0.15 eV in the calculation of the bond dissociation energy.\n\nAnother study published in the Journal of Physical Chemistry A (2013) by Li and coworkers compared the performance of various DFT functionals for TMC-32, including B3LYP, M06, and M06-L. The study found that the M06-L functional provided the most accurate results for TMC-32, with an average absolute error of 0.12 eV in the calculation of the bond dissociation energy.\n\nTherefore, based on benchmark evidence, I would recommend using the M06-L functional for TMC-32.\n\nReferences:\n\n* Zhao, Y.; Truhlar, D. G. The M06 suite of density functionals for main group thermochemistry, thermochemical kinetics, noncovalent interactions, excited states, and transition states. J. Chem. Phys. 2011, 134 (2), 224109.\n* Li, X.; Zhang, J.; Wang, J.; Zhang, Y. Density functional theory study of the structure and bonding of TMC-32. J. Phys. Chem. A 2013, 117 (15), 3131-3138.",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 269,
+      "latency": 0.8,
+      "error_type": "none",
+      "metrics": "Template Prompting | Domain persona",
+      "from_cache": false
+    },
+    "BM25 Retriever": {
+      "answer": "Based on the information provided, the M06 functional is recommended for applications involving organometallic chemistry and inorganometallic chemistry, which includes transition metal chemistry (TMC). Therefore, the best functional for TMC32 would be the M06 functional.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 35,
+      "latency": 2.2,
+      "error_type": "none",
+      "metrics": "BM25 Sparse | 5 docs",
+      "from_cache": false
+    },
+    "Cross-Encoder Reranker": {
+      "answer": "Based on the provided information, the M06 functional is recommended for applications involving organometallic chemistry, which includes transition metal complexes (TMCs). Therefore, the best functional for TMC32 would be the M06 functional.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 32,
+      "latency": 2.0,
+      "error_type": "none",
+      "metrics": "Cross-Encoder | 5 docs reranked",
+      "from_cache": false
+    },
+    "Standard RAG": {
+      "answer": "The text does not specifically mention the best functional for the TMC32 database. However, it does mention the best functionals for the NCIE53 database, which are the M06-2X, M05-2X, M06-HF, and M06 functionals.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 33,
+      "latency": 0.2,
+      "error_type": "Type III",
+      "metrics": "Standard RAG | 5 chunks",
+      "from_cache": false
+    },
+    "GraphRAG": {
+      "answer": "The best functional for TMC32 is PBE, as indicated by the ValidationResult VR_TMC32_PBE_D4-ATM with a MAD value of 1.1 pm. This suggests that the PBE functional provides a good description of the TMC32 system.",
+      "nodes_hit": 1,
+      "has_citation": true,
+      "ans_len": 34,
+      "latency": 0.6,
+      "error_type": "none",
+      "metrics": "GraphRAG | Star-topology traversal",
+      "from_cache": false
+    },
+    "BM25 + Reranker RAG": {
+      "answer": "Based on the information provided, the M06 functional is recommended for applications involving organometallic chemistry and inorganometallic chemistry, which includes transition metal chemistry (TMC). Therefore, the best functional for TMC32 would be the M06 functional.",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 35,
+      "latency": 2.1,
+      "error_type": "none",
+      "metrics": "BM25+Reranker Hybrid | 5 docs",
+      "from_cache": false
+    },
+    "Graph Deterministic": {
+      "answer": "To answer the user query, we need to identify the candidate(s) most relevant to the query \"Best functional for TMC32?\".\n\nUpon examining the graph evidence, we find that Candidate 10 [ID: M06-L] is connected to TMC32, but it is not directly related to the query. However, we notice that Candidate 10 [ID: M06-L] is connected to Candidate 3 [ID: Sys_TMC32_004], which is connected to TMC32.\n\nUpon further examination, we find that Candidate 3 [ID: Sys_TMC32_004] is connected to TMC32, and Candidate 10 [ID: M06-L] is connected to Candidate 3 [ID: Sys_TMC32_004]. However, we also notice that Candidate 10 [ID: M06-L] is a functional, and it is not directly related to TMC32.\n\nHowever, we notice that Candidate 10 [ID: M06-L] is connected to Candidate 3 [ID: Sys_TMC32_004], which is connected to TMC32. But we also notice that Candidate 10 [ID: M06-L] is a functional, and it is not directly related to TMC32.\n\nHowever, we notice that Candidate 10 [ID: M06-L] is connected to Candidate 3 [ID: Sys_TMC32_004], which is connected to TMC32. But we also notice that Candidate 10 [ID: M06-L] is a functional, and it is not directly related to TMC32.\n\nHowever, we notice that Candidate 10 [ID: M06-L] is connected to Candidate 3 [ID: Sys_TMC32_004], which is connected to TMC32. But we also notice that Candidate 10 [ID: M06-L] is a functional, and it is not directly related to TMC32.\n\nHowever, we notice that Candidate 10 [ID: M06-L] is connected to Candidate 3 [ID: Sys_TMC32_004], which is connected to TMC32. But we also notice that Candidate 10 [ID: M06-L] is a functional, and it is not directly related to TMC32.\n\nHowever, we notice that Candidate 10 [ID: M06-L] is connected to Candidate 3 [ID: Sys_TMC32_004], which is connected to T",
+      "nodes_hit": 0,
+      "has_citation": true,
+      "ans_len": 291,
+      "latency": 21.5,
+      "error_type": "none",
+      "metrics": "Graph Deterministic | Hub-based 1-hop",
+      "from_cache": false
+    },
+    "Multi-Agent System (GraphRAG Fallback)": {
+      "answer": "",
+      "nodes_hit": 0,
+      "has_citation": false,
+      "ans_len": 0,
+      "latency": 34.8,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0000",
       "from_cache": false
     },
     "Multi-Agent System (BM25+Reranker Fallback)": {
       "answer": "",
-      "rouge": 0,
-      "latency": 12.1,
       "nodes_hit": 0,
-      "metrics": "BM25+Reranker: 5 docs",
+      "has_citation": false,
+      "ans_len": 0,
+      "latency": 47.6,
+      "error_type": "Type I",
+      "metrics": "Multi-Agent | Cost: $0.0000",
       "from_cache": false
     },
-    "Multi-Agent System (GraphRAG Fallback)": {
-      "answer": "B3LYP fails for barrier heights because it underestimates reaction barriers due to the Self-Interaction Error (SIE). This error is exacerbated by the addition of dispersion corrections, which further stabilizes the transition state, leading to even lower barrier heights. As a result, B3LYP is not reliable enough to accurately treat barrier height calculations.",
-      "rouge": 0.348,
-      "latency": 25.7,
+    "Chain-of-Thought (CoT) Prompting": {
+      "answer": "To determine the best functional for TMC-3168 (also known as TMC-32), we need to consider the properties of this compound and the characteristics of different density functional theory (DFT) functionals.\n\n1. **Compound properties**: TMC-3168 is a transition metal complex, specifically a ruthenium-based compound. It's used in various applications, including catalysis and photoredox reactions. Given its transition metal nature, we should focus on functionals that can accurately describe metal-ligand interactions and transition metal complexes.\n\n2. **Functional characteristics**: Different DFT functionals have varying levels of accuracy for different types of systems. We can categorize functionals into several groups based on their performance:\n   - **Local and semi-local functionals** (e.g., BLYP, BP86): These functionals are computationally efficient but often lack accuracy for transition metal complexes.\n   - **Hybrid functionals** (e.g., B3LYP, PBE0): These functionals combine local and non-local exchange-correlation terms, offering improved accuracy for transition metal complexes.\n   - **Range-separated hybrid functionals** (e.g., CAM-B3LYP, \u03c9B97XD): These functionals separate the exchange and correlation terms, allowing for better description of long-range interactions, which is crucial for transition metal complexes.\n\n3. **Specific considerations for TMC-3168**: Given the compound's transition metal nature, we should focus on functionals that can accurately describe metal-ligand interactions and transition metal complexes. Range-separated hybrid functionals are often preferred for these types of systems due to their ability to capture long-range interactions.\n\nConsidering these points, some suitable functionals for TMC-3168 could be:\n\n- **CAM-B3LYP**: This functional is a range-separated hybrid that combines the B3LYP exchange-correlation functional with a range-separated exchange term. It's known for its ability to accurately describe transition metal complexes and long-range interactions.\n- **\u03c9B97XD**: This functional is another range-separated hybrid that includes a long-range corrected exchange term. It's been shown to be effective for transition metal complexes and has been used in various studies related to catalysis and photoredox reactions.\n- **PBE0**: This functional is a hybrid functional that combines the PBE exchange-correlation functional with a non-local exchange term. It's known for its accuracy in describing transition metal complexes and",
       "nodes_hit": 0,
-      "metrics": "Cost: $0.0004",
+      "has_citation": false,
+      "ans_len": 327,
+      "latency": 1.0,
+      "error_type": "none",
+      "metrics": "CoT Prompting | Step-by-step reasoning",
       "from_cache": false
     }
   }

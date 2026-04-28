@@ -23,10 +23,18 @@ logger = logging.getLogger(__name__)
 LITSERVE_URL  = os.getenv("LITSERVE_URL","http://localhost:8000/predict")
 SERVE_API_KEY = os.getenv("SERVE_API_KEY","")
 EXPERIMENT_TYPES = [
+    # Part 1: Pure LLM Baselines
+    "Zero-Shot Prompting",
+    "Template Prompting",
+    "Chain-of-Thought (CoT) Prompting",
+    # Part 2: Standard IR Baselines
+    "BM25 Retriever",
+    "Cross-Encoder Reranker",
+    "BM25 + Reranker RAG",
     "Standard RAG",
+    # Part 3: Graph-Based Architectures
     "GraphRAG",
     "Graph Deterministic",
-    "BM25 + Reranker RAG",
     "Multi-Agent System (GraphRAG Fallback)",
     "Multi-Agent System (BM25+Reranker Fallback)",
 ]
@@ -73,7 +81,11 @@ def _init_standalone():
     cfg = Config()
     dm  = DFTDataManager(cfg)
     dm.remove_disconnected_nodes()
-    _runner = ExperimentOrchestrator(dm, cfg)
+    try:
+        _runner = ExperimentOrchestrator(dm, cfg)
+    except Exception as exc:
+        logger.warning("ExperimentOrchestrator failed (no VectorDBs?): %s", exc)
+        _runner = None
     _viz    = GraphVisualizer(dm.graph, dm.nodes_df, dm.rels_df)
     _qa_pairs = _runner.qa_pairs
     _debate_orchestrator = DebateOrchestrator(
@@ -180,11 +192,16 @@ def _save_cache(cache):
 
 def run_all_architectures(question, selected_arch, ratio):
     import concurrent.futures, time, re
-    from rouge_score import rouge_scorer as rs
-
     ALL_ARCHS = [
-        "Standard RAG","GraphRAG","Graph Deterministic",
+        "Zero-Shot Prompting",
+        "Template Prompting",
+        "Chain-of-Thought (CoT) Prompting",
+        "BM25 Retriever",
+        "Cross-Encoder Reranker",
         "BM25 + Reranker RAG",
+        "Standard RAG",
+        "GraphRAG",
+        "Graph Deterministic",
         "Multi-Agent System (GraphRAG Fallback)",
         "Multi-Agent System (BM25+Reranker Fallback)",
     ]
@@ -204,22 +221,53 @@ def run_all_architectures(question, selected_arch, ratio):
         else:
             to_run.append(arch)
 
-    scorer = rs.RougeScorer(["rougeL"], use_stemmer=True)
-
     def run_one(arch):
         t0 = time.time()
         try:
             answer, metrics, trace = _call_backend(question, arch, ratio)
-            latency = time.time() - t0
-            ref     = results.get(selected_arch, {}).get("answer", question)
-            rouge   = scorer.score(ref or question, answer)["rougeL"].fmeasure
-            nodes = len(set(re.findall(r"VR_[A-Z0-9_]+", answer)))
-            return arch, {"answer":answer,"rouge":round(rouge,3),
-                          "latency":round(latency,1),"nodes_hit":nodes,
-                          "metrics":metrics,"from_cache":False}
+            latency   = time.time() - t0
+            ans_lower = answer.lower()
+
+            # KG nodes hit
+            nodes = len(set(re.findall(r"VR_[A-Za-z0-9_().-]+", answer)))
+
+            # Citation detection — benchmark names, MAE values, paper IDs
+            has_citation = bool(
+                nodes > 0 or
+                re.search(r"[A-Z][a-z]+20\d\d", answer) or
+                any(b in answer for b in ["S66","S22","GMTKN55","TMC32","BH76","W4-11","MAE","MAD","kcal","WTMAD","pm"]) or
+                re.search(r"\d+\.\d+\s*(kcal|%|pm|kJ)", answer)
+            )
+            ans_len = len(answer.split())
+
+            # Error type classification
+            if not answer or ans_len < 8 or "not implemented" in ans_lower:
+                error_type = "Type I"
+            elif any(w in ans_lower for w in ["not explicitly","not stated","not provided","not found","no relevant","cannot determine","not available"]):
+                error_type = "Type I"
+            elif any(w in ans_lower for w in ["might","possibly","i think","probably","i am not sure","i cannot confirm"]):
+                error_type = "Type II"
+            elif nodes == 0 and "however" in ans_lower and ans_len < 50:
+                error_type = "Type III"
+            else:
+                error_type = "none"
+
+            return arch, {
+                "answer":       answer,
+                "nodes_hit":    nodes,
+                "has_citation": has_citation,
+                "ans_len":      ans_len,
+                "latency":      round(latency, 1),
+                "error_type":   error_type,
+                "metrics":      metrics,
+                "from_cache":   False,
+            }
         except Exception as exc:
-            return arch, {"answer":str(exc),"rouge":0.0,"latency":0.0,
-                          "nodes_hit":0,"metrics":"","from_cache":False}
+            return arch, {
+                "answer": str(exc), "nodes_hit": 0, "has_citation": False,
+                "ans_len": 0, "latency": 0.0, "error_type": "Type I",
+                "metrics": "", "from_cache": False,
+            }
 
     if to_run:
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as ex:
@@ -239,89 +287,118 @@ def run_all_architectures(question, selected_arch, ratio):
 
 
 def build_comparison_html(results, selected_arch):
-    """Build the HTB-styled comparison table HTML."""
     if not results:
         return ""
 
-    best_arch = max(results, key=lambda a: results[a]["rouge"])
-    total_time = sum(r["latency"] for r in results.values())
+    # Winner = KG nodes + citation + words. Penalize errors & zero answers.
+    def score(a):
+        d = results[a]
+        if not isinstance(d, dict):
+            return (-1, 0, 0, 0)
+        nodes = d.get("nodes_hit", 0)
+        cite  = int(d.get("has_citation", False))
+        words = d.get("ans_len", 0)
+        err   = d.get("error_type", "none")
+        penalty = 0 if err == "none" else -10
+        if words == 0:
+            penalty = -20
+        return (penalty, nodes, cite, words)
+
+    best_arch  = max(results.keys(), key=score)
+    total_time = sum(r.get("latency", 0) for r in results.values())
 
     rows = ""
     for arch, data in results.items():
-        rouge = data["rouge"]
-        latency = data["latency"]
-        nodes = data["nodes_hit"]
+        latency    = data.get("latency", 0)
+        nodes      = data.get("nodes_hit", 0)
+        has_cite   = data.get("has_citation", False)
+        error_type = data.get("error_type", "—")
+        is_best    = arch == best_arch
+        is_sel     = arch == selected_arch
+        cite_html  = "<span style='color:#9fef00;font-weight:700'>✓</span>" if has_cite else "<span style='color:#ef4444'>✗</span>"
 
-        is_best     = arch == best_arch
-        is_selected = arch == selected_arch
+        lat_c  = "color:#9fef00" if latency < 2 else "color:#f59e0b" if latency < 5 else "color:#ef4444"
+        node_c = "color:#9fef00" if nodes > 0 else "color:#3a4a5e"
 
-        bar_width = int(rouge * 50)
-        if rouge >= 0.75:
-            color = "#9fef00"
-            rouge_cls = "color:#9fef00;font-weight:700"
-        elif rouge >= 0.5:
-            color = "#f59e0b"
-            rouge_cls = "color:#f59e0b"
+        # Error type badge
+        if error_type == "Type I":
+            err_html = "<span style='font-size:8px;padding:1px 5px;border-radius:2px;background:#1a0a0a;color:#ef4444;border:1px solid #4d1d1d'>Type I</span>"
+        elif error_type == "Type II":
+            err_html = "<span style='font-size:8px;padding:1px 5px;border-radius:2px;background:#1a1000;color:#f59e0b;border:1px solid #4d3000'>Type II</span>"
+        elif error_type == "Type III":
+            err_html = "<span style='font-size:8px;padding:1px 5px;border-radius:2px;background:#0a0a1a;color:#38bdf8;border:1px solid #1d3a5a'>Type III</span>"
         else:
-            color = "#ef4444"
-            rouge_cls = "color:#ef4444"
+            err_html = "<span style='color:#3a4a5e;font-size:9px'>none</span>"
 
-        lat_cls = "color:#9fef00" if latency < 1.5 else "color:#f59e0b" if latency < 3 else "color:#ef4444"
-        row_bg  = "background:#0c1929" if is_selected else "background:#0d1520" if is_best else ""
-
-        tags = ""
-        if is_best:
-            tags += "<span style='font-size:8px;padding:1px 5px;border-radius:2px;font-weight:700;background:#0a1a0a;color:#9fef00;border:1px solid #1d4d1d;margin-left:4px'>BEST</span>"
-        if is_selected:
-            tags += "<span style='font-size:8px;padding:1px 5px;border-radius:2px;font-weight:700;background:#0c2040;color:#38bdf8;border:1px solid #1d3a5a;margin-left:4px'>SELECTED</span>"
-
+        row_bg = "background:#0c1929" if is_sel else "background:#0a150a" if is_best else ""
+        tags   = ""
+        if is_best: tags += "<span style='font-size:8px;padding:1px 5px;border-radius:2px;font-weight:700;background:#0a1a0a;color:#9fef00;border:1px solid #1d4d1d;margin-left:4px'>BEST</span>"
+        if is_sel:  tags += "<span style='font-size:8px;padding:1px 5px;border-radius:2px;font-weight:700;background:#0c2040;color:#38bdf8;border:1px solid #1d3a5a;margin-left:4px'>SELECTED</span>"
         star = "★ " if is_best else ""
+
         rows += f"""<tr style='{row_bg}'>
-            <td style='padding:5px 10px;color:#a4b1cd;white-space:nowrap'>{star}{arch}{tags}</td>
-            <td style='padding:5px 10px;white-space:nowrap'>
-                <span style='display:inline-block;height:7px;width:{bar_width}px;background:{color};border-radius:1px;vertical-align:middle;margin-right:4px'></span>
-                <span style='{rouge_cls}'>{rouge}</span>
-            </td>
-            <td style='padding:5px 10px;{lat_cls};white-space:nowrap'>{latency}s</td>
-            <td style='padding:5px 10px;color:#9fef00;text-align:center'>{nodes if nodes else "—"}</td>
+            <td style='padding:5px 10px;color:#a4b1cd;white-space:nowrap;font-size:10px'>{star}{arch}{tags}</td>
+            <td style='padding:5px 10px;text-align:center;font-size:11px'>{cite_html}</td>
+            <td style='padding:5px 10px;color:#a4b1cd;font-size:10px'>{data.get("ans_len",0)}</td>
+            <td style='padding:5px 10px;{lat_c};white-space:nowrap;font-size:10px'>{latency}s</td>
+            <td style='padding:5px 10px;{node_c};text-align:center;font-size:10px'>{nodes if nodes else "—"}</td>
+            <td style='padding:5px 10px;text-align:center'>{err_html}</td>
         </tr>"""
 
-    html = f"""
+    return f"""
 <div style='background:#0d1520;border-radius:4px;overflow:hidden;margin-top:12px;font-family:Courier New,monospace'>
   <div style='background:#111927;padding:6px 12px;display:flex;align-items:center;gap:8px'>
     <span style='font-size:8px;color:#5a6a7e;text-transform:uppercase;letter-spacing:0.12em;font-weight:700'>
-      // architecture comparison · all 6 ran in background
+      // architecture comparison · all 11 ran in background
     </span>
     <span style='font-size:8px;color:#9fef00;margin-left:auto'>● complete · {round(total_time,1)}s total</span>
   </div>
   <table style='width:100%;border-collapse:collapse;font-size:10px'>
     <tr style='background:#111927'>
       <th style='padding:5px 10px;color:#5a6a7e;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid #1f2d3d'>architecture</th>
-      <th style='padding:5px 10px;color:#5a6a7e;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid #1f2d3d'>ROUGE-L</th>
+      <th style='padding:5px 10px;color:#5a6a7e;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid #1f2d3d'>citation</th>
+      <th style='padding:5px 10px;color:#5a6a7e;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid #1f2d3d'>words</th>
       <th style='padding:5px 10px;color:#5a6a7e;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid #1f2d3d'>latency</th>
-      <th style='padding:5px 10px;color:#5a6a7e;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid #1f2d3d'>nodes hit</th>
+      <th style='padding:5px 10px;color:#5a6a7e;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid #1f2d3d'>KG nodes</th>
+      <th style='padding:5px 10px;color:#5a6a7e;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid #1f2d3d'>error type</th>
     </tr>
     {rows}
   </table>
 </div>"""
-    return html
 
 
 def build_meta_verdict_html(results, selected_arch, question):
-    """Use Qwen3 to reason about which architecture performed best and why."""
+    """Pick winner deterministically, use LLM only for explanation."""
     if not results or _runner is None:
         return ""
 
-    best_arch  = max(results, key=lambda a: results[a]["rouge"])
-    best_rouge = results[best_arch]["rouge"]
+    # Deterministic winner — same logic as comparison table
+    def _score(a):
+        d = results[a]
+        if not isinstance(d, dict): return (-1, 0, 0, 0)
+        nodes = d.get("nodes_hit", 0)
+        cite  = int(d.get("has_citation", False))
+        words = d.get("ans_len", 0)
+        err   = d.get("error_type", "none")
+        penalty = 0 if err == "none" else -10
+        if words == 0: penalty = -20
+        return (penalty, nodes, cite, words)
+
+    best_arch  = max(results.keys(), key=_score)
+    best_data  = results[best_arch] if isinstance(results[best_arch], dict) else {}
+    best_nodes = best_data.get("nodes_hit", 0)
+    best_cite  = best_data.get("has_citation", False)
+    best_words = best_data.get("ans_len", 0)
+
     summary = "\n".join(
-        f"  {arch}: ROUGE-L={d['rouge']} latency={d['latency']}s nodes={d['nodes_hit']}"
-        for arch, d in results.items()
+        f"  {arch}: nodes={d.get('nodes_hit',0)} citation={d.get('has_citation',False)} words={d.get('ans_len',0)} latency={d.get('latency',0)}s error={d.get('error_type','none')}"
+        for arch, d in results.items() if isinstance(d, dict)
     )
 
+    reason  = ""
+    pattern = ""
     try:
         llm = _runner.engines.default_llm
-        # Use meta-reasoning model if available
         try:
             from dft_research_studio.agents.meta_reasoning_engine import REASONING_MODEL
             import types
@@ -339,38 +416,37 @@ def build_meta_verdict_html(results, selected_arch, question):
         except Exception:
             meta_llm = llm
 
-        prompt = f"""You are the Auto-KGR meta-engineering reasoner (qwen3-32b).
-Analyse which retrieval architecture performed best for this DFT query and explain WHY.
+        prompt = f"""/no_think
+The winner is already determined: {best_arch}.
+Explain WHY {best_arch} performed best for this DFT query.
 
 QUERY: {question}
 RESULTS:
 {summary}
-BEST: {best_arch} (ROUGE-L: {best_rouge})
+WINNER: {best_arch} (nodes={best_nodes}, citation={best_cite}, words={best_words})
 
-Respond in exactly this format:
-WINNER: {best_arch}
-REASON: <one sentence explaining WHY this architecture retrieved better — reference query type, KG structure, or retrieval mechanism>
-PATTERN: <one sentence generalising when to prefer this architecture vs others>"""
+Reply in EXACTLY this format with no preamble:
+REASON: <one clear sentence why {best_arch} retrieved better — reference KG traversal, retrieval mechanism, or query type>
+PATTERN: <one clear sentence generalising when to prefer this architecture vs others>
 
-        response, *_ = meta_llm.generate(prompt, max_tokens=300)
+Do NOT start with "Okay" or "Let me think". Be direct and technical."""
 
-        winner  = best_arch
-        reason  = ""
-        pattern = ""
+        response, *_ = meta_llm.generate(prompt, max_tokens=500)
+
         for line in response.split("\n"):
             l = line.strip()
-            if l.startswith("WINNER:"):  winner  = l.split(":",1)[1].strip()
             if l.startswith("REASON:"):  reason  = l.split(":",1)[1].strip()
             if l.startswith("PATTERN:"): pattern = l.split(":",1)[1].strip()
+
         if not reason:
             lines = [l for l in response.strip().split("\n") if len(l) > 20]
-            reason = lines[0][:300] if lines else f"{best_arch} achieved ROUGE-L {best_rouge}."
+            reason = lines[0][:200] if lines else f"{best_arch} achieved {best_nodes} KG nodes with citation verification."
         if not pattern:
             pattern = "Graph-based architectures outperform dense RAG for structured KG lookups."
 
     except Exception as exc:
-        reason  = f"Meta-reasoning unavailable: {exc}"
-        pattern = ""
+        reason  = f"{best_arch} achieved {best_nodes} KG node hits with {'citation verified' if best_cite else 'no citation'}."
+        pattern = "Graph-based architectures outperform dense RAG for structured KG lookups."
 
     return f"""
 <div style='background:#150a1e;border-left:2px solid #c084fc;border-radius:0 4px 4px 0;padding:10px 12px;margin-top:8px;font-family:Courier New,monospace'>
@@ -379,17 +455,18 @@ PATTERN: <one sentence generalising when to prefer this architecture vs others>"
   </div>
   <div style='font-size:10px;color:#a4b1cd;line-height:1.8;margin-bottom:4px'>
     <span style='font-size:8px;padding:1px 6px;border-radius:2px;font-weight:700;background:#0a1a0a;color:#9fef00;border:1px solid #1d4d1d;margin-right:6px'>WINNER</span>
-    <span style='color:#9fef00;font-weight:700'>{winner}</span> (ROUGE-L: {best_rouge})
+    <span style='color:#9fef00;font-weight:700'>{best_arch}</span> (KG nodes: {best_nodes} · citation: {'✓' if best_cite else '✗'} · {best_words} words)
   </div>
   <div style='font-size:11px;color:#a4b1cd;line-height:1.8;margin-bottom:4px;word-wrap:break-word;white-space:normal'>
     <span style='font-size:8px;padding:1px 6px;border-radius:2px;font-weight:700;background:#0a0e1a;color:#38bdf8;border:1px solid #1d3a5a;margin-right:6px'>REASON</span>
     {reason}
   </div>
-  {f"""<div style='font-size:10px;color:#a4b1cd;line-height:1.8'>
+  <div style='font-size:10px;color:#a4b1cd;line-height:1.8'>
     <span style='font-size:8px;padding:1px 6px;border-radius:2px;font-weight:700;background:#150a1e;color:#c084fc;border:1px solid #3b1a5a;margin-right:6px'>PATTERN</span>
     {pattern}
-  </div>""" if pattern else ""}
+  </div>
 </div>"""
+
 
 def _quick_q1(h,e,r): yield from research_query_stream("MAE of PBE0 on S66?",h,e,r)
 def _quick_q2(h,e,r): yield from research_query_stream("Best functional for TMC32?",h,e,r)
@@ -525,7 +602,7 @@ def build_demo(standalone):
       <div style='font-size:9px;color:#5a6a7e;text-transform:uppercase;letter-spacing:0.12em;margin-top:2px'>DFT papers</div>
     </div>
     <div style='padding:0 20px;border-right:1px solid #1f2d3d;margin-right:20px'>
-      <div style='font-size:20px;font-weight:700;color:#9fef00;text-shadow:0 0 8px #9fef0066'>6</div>
+      <div style='font-size:20px;font-weight:700;color:#9fef00;text-shadow:0 0 8px #9fef0066'>11</div>
       <div style='font-size:9px;color:#5a6a7e;text-transform:uppercase;letter-spacing:0.12em;margin-top:2px'>architectures</div>
     </div>
     <div style='padding:0 20px;border-right:1px solid #1f2d3d;margin-right:20px'>

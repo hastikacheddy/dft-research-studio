@@ -1,0 +1,13 @@
+VectorDBs/
+.git/
+__pycache__/
+*.pyc
+.env
+notebooks/
+results/
+dft_research_studio/data/raw/
+*.ipynb
+checkpoint_results.jsonl
+debug_*
+nltk_data/
+.netrc
