@@ -183,22 +183,84 @@ class ExperimentOrchestrator:
 
     def get_chatbot_answer(self, question, experiment_type, distractor_ratio):
         ratio = distractor_ratio
-        if "Standard RAG" in experiment_type:
-            docs = self.engines.rag(ratio).retriever.invoke(question)
-            context = "\n".join(d.page_content for d in docs)
-            ans, *_ = self.engines.default_llm.generate(f"Context: {context}\nQ: {question}")
-            return ans, f"Retrieved {len(docs)} chunks", context
+        llm   = self.engines.default_llm
+
+        # ── Part 1: Pure LLM Baselines ──────────────────────────────────
+        if experiment_type == "Zero-Shot Prompting":
+            ans, *_ = llm.generate(question)
+            return ans, "Zero-Shot | No retrieval", ""
+
+        if experiment_type == "Template Prompting":
+            prompt = (
+                "You are an expert computational chemist specialising in DFT. "
+                "Answer precisely using benchmark evidence where possible.\n\n"
+                f"Question: {question}"
+            )
+            ans, *_ = llm.generate(prompt)
+            return ans, "Template Prompting | Domain persona", ""
+
+        if experiment_type == "Chain-of-Thought (CoT) Prompting":
+            prompt = (
+                "You are an expert computational chemist. "
+                "Think step by step before answering.\n\n"
+                f"Question: {question}\n\n"
+                "Let's think step by step:"
+            )
+            ans, *_ = llm.generate(prompt)
+            return ans, "CoT Prompting | Step-by-step reasoning", ""
+
+        # ── Part 2: Standard IR Baselines ───────────────────────────────
+        if experiment_type == "BM25 Retriever":
+            try:
+                bm25  = self.engines.bm25_reranker(ratio)
+                docs  = bm25.invoke(question)
+                context = "\n".join(d.page_content for d in docs)[:2000]
+                ans, *_ = llm.generate(f"Context: {context}\nQ: {question}")
+                return ans, f"BM25 Sparse | {len(docs)} docs", context
+            except Exception as exc:
+                return f"BM25 error: {exc}", "", ""
+
+        if experiment_type == "Cross-Encoder Reranker":
+            try:
+                bm25  = self.engines.bm25_reranker(ratio)
+                docs  = bm25.invoke(question)
+                context = "\n".join(d.page_content for d in docs)[:2000]
+                ans, *_ = llm.generate(f"Context (reranked): {context}\nQ: {question}")
+                return ans, f"Cross-Encoder | {len(docs)} docs reranked", context
+            except Exception as exc:
+                return f"Reranker error: {exc}", "", ""
+
+        if "BM25 + Reranker" in experiment_type and "Multi-Agent" not in experiment_type:
+            try:
+                bm25  = self.engines.bm25_reranker(ratio)
+                docs  = bm25.invoke(question)
+                context = "\n".join(d.page_content for d in docs)[:2000]
+                ans, *_ = llm.generate(f"Context: {context}\nQ: {question}")
+                return ans, f"BM25+Reranker Hybrid | {len(docs)} docs", context
+            except Exception as exc:
+                return f"BM25+Reranker error: {exc}", "", ""
+
+        if "Standard RAG" in experiment_type and "Multi-Agent" not in experiment_type:
+            docs    = self.engines.rag(ratio).retriever.invoke(question)
+            context = "\n".join(d.page_content for d in docs)[:2000]
+            ans, *_ = llm.generate(f"Context: {context}\nQ: {question}")
+            return ans, f"Standard RAG | {len(docs)} chunks", context
+
+        # ── Part 3: Graph-Based Architectures ───────────────────────────
         if experiment_type == "GraphRAG":
             ctx, pids, _ = self.engines.graph(ratio).get_star_context(question)
             prompt = self.engines.graph(ratio).generate_paranoid_prompt(question, ctx)
-            ans, *_ = self.engines.default_llm.generate(prompt)
-            return ans, "Graph Trace Active", ctx
+            ans, *_ = llm.generate(prompt)
+            return ans, "GraphRAG | Star-topology traversal", ctx
+
         if experiment_type == "Graph Deterministic":
             ctx, _, pids = self.engines.topo(ratio).get_topological_context(question)
             prompt = self.engines.topo(ratio).generate_deterministic_prompt(question, ctx)
-            ans, *_ = self.engines.default_llm.generate(prompt)
-            return ans, "Deterministic Graph Active", ctx
+            ans, *_ = llm.generate(prompt)
+            return ans, "Graph Deterministic | Hub-based 1-hop", ctx
+
         if "Multi-Agent" in experiment_type:
             ans, log, chunks, pids, it, ot, cost, calls = self.engines.mas(ratio).run_workflow(question)
-            return ans, f"Cost: ${cost:.4f}", "\n".join(log["steps"])
+            return ans, f"Multi-Agent | Cost: ${cost:.4f}", "\n".join(log["steps"])
+
         return "Mode not implemented", "", ""
