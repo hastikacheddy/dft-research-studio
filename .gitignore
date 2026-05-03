@@ -76,3 +76,22 @@ nltk_data/
 
 # Docker
 Dockerfile.app
+
+# IDE / editor servers
+.cursor-server/
+.vscode-server/
+.windsurf-server/
+.vscode/
+
+# Lightning internals
+.lightning_studio/
+
+# System / downloads
+Downloads/
+lib/
+nltk_data/
+
+# DVC
+.dvc/
+.dvcignore
+Dockerfile.app
