@@ -55,3 +55,24 @@ __pycache__/
 *.pyc
 .env
 .netrc
+
+# IDE / editor servers
+.cursor-server/
+.vscode-server/
+.windsurf-server/
+.vscode/
+
+# Lightning internals
+.lightning_studio/
+
+# System / downloads
+Downloads/
+lib/
+nltk_data/
+
+# DVC (using git directly)
+.dvc/
+.dvcignore
+
+# Docker
+Dockerfile.app
