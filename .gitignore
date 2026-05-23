@@ -35,7 +35,6 @@ full_reproducibility*
 *.png
 *.pdf
 *.csv
-notebooks/
 nltk_data/
 README_HF.md
 app_hf.py
