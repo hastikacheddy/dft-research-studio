@@ -1,0 +1,101 @@
+Architecture,Metric,Tier,Auto-KGR Score,BM25RerankerRAG Score,Graph Lift (dG)
+GraphRAG,correctness,Overall,1.592,2.733,-0.4177
+GraphRAG,correctness,T1: Factual,1.467,2.573,-0.4301
+GraphRAG,correctness,T2: Constraint,1.733,2.953,-0.4131
+GraphRAG,correctness,T3: MultiHop,1.46,2.52,-0.4206
+GraphRAG,correctness,T4: Comparative,1.707,2.887,-0.4088
+GraphRAG,groundedness,Overall,0.943,0.758,0.244
+GraphRAG,groundedness,T1: Factual,0.933,0.947,-0.0141
+GraphRAG,groundedness,T2: Constraint,0.933,0.713,0.3084
+GraphRAG,groundedness,T3: MultiHop,0.973,0.773,0.2586
+GraphRAG,groundedness,T4: Comparative,0.933,0.6,0.5556
+GraphRAG,relevance,Overall,1.32,2.967,-0.5551
+GraphRAG,relevance,T1: Factual,1.4,2.58,-0.4574
+GraphRAG,relevance,T2: Constraint,1.633,3.607,-0.5471
+GraphRAG,relevance,T3: MultiHop,1.1,2.44,-0.5492
+GraphRAG,relevance,T4: Comparative,1.147,3.24,-0.6461
+GraphRAG,rougeL_fmeasure,Overall,0.151,0.24,-0.3709
+GraphRAG,rougeL_fmeasure,T1: Factual,0.125,0.273,-0.5421
+GraphRAG,rougeL_fmeasure,T2: Constraint,0.174,0.275,-0.3672
+GraphRAG,rougeL_fmeasure,T3: MultiHop,0.154,0.224,-0.3148
+GraphRAG,rougeL_fmeasure,T4: Comparative,0.151,0.187,-0.1937
+GraphRAG,gold_retrieval_recall_at_k,Overall,0.452,0.768,-0.4117
+GraphRAG,gold_retrieval_recall_at_k,T1: Factual,0.467,0.777,-0.3991
+GraphRAG,gold_retrieval_recall_at_k,T2: Constraint,0.383,0.797,-0.5188
+GraphRAG,gold_retrieval_recall_at_k,T3: MultiHop,0.533,0.842,-0.3668
+GraphRAG,gold_retrieval_recall_at_k,T4: Comparative,0.423,0.656,-0.3542
+GraphDeterministic,correctness,Overall,1.583,2.733,-0.4207
+GraphDeterministic,correctness,T1: Factual,1.833,2.573,-0.2876
+GraphDeterministic,correctness,T2: Constraint,1.6,2.953,-0.4582
+GraphDeterministic,correctness,T3: MultiHop,1.433,2.52,-0.4312
+GraphDeterministic,correctness,T4: Comparative,1.467,2.887,-0.4919
+GraphDeterministic,groundedness,Overall,0.867,0.758,0.1429
+GraphDeterministic,groundedness,T1: Factual,0.933,0.947,-0.0141
+GraphDeterministic,groundedness,T2: Constraint,0.8,0.713,0.1215
+GraphDeterministic,groundedness,T3: MultiHop,0.9,0.773,0.1638
+GraphDeterministic,groundedness,T4: Comparative,0.833,0.6,0.3889
+GraphDeterministic,relevance,Overall,1.475,2.967,-0.5028
+GraphDeterministic,relevance,T1: Factual,1.7,2.58,-0.3411
+GraphDeterministic,relevance,T2: Constraint,1.5,3.607,-0.5841
+GraphDeterministic,relevance,T3: MultiHop,1.333,2.44,-0.4536
+GraphDeterministic,relevance,T4: Comparative,1.367,3.24,-0.5782
+GraphDeterministic,rougeL_fmeasure,Overall,0.104,0.24,-0.5644
+GraphDeterministic,rougeL_fmeasure,T1: Factual,0.109,0.273,-0.5989
+GraphDeterministic,rougeL_fmeasure,T2: Constraint,0.108,0.275,-0.6066
+GraphDeterministic,rougeL_fmeasure,T3: MultiHop,0.104,0.224,-0.5378
+GraphDeterministic,rougeL_fmeasure,T4: Comparative,0.096,0.187,-0.4838
+GraphDeterministic,gold_retrieval_recall_at_k,Overall,0.0,0.768,-1.0
+GraphDeterministic,gold_retrieval_recall_at_k,T1: Factual,0.0,0.777,-1.0
+GraphDeterministic,gold_retrieval_recall_at_k,T2: Constraint,0.0,0.797,-1.0
+GraphDeterministic,gold_retrieval_recall_at_k,T3: MultiHop,0.0,0.842,-1.0
+GraphDeterministic,gold_retrieval_recall_at_k,T4: Comparative,0.0,0.656,-1.0
+MultiAgent,correctness,Overall,1.668,2.733,-0.3896
+MultiAgent,correctness,T1: Factual,1.4,2.573,-0.456
+MultiAgent,correctness,T2: Constraint,1.767,2.953,-0.4018
+MultiAgent,correctness,T3: MultiHop,1.673,2.52,-0.336
+MultiAgent,correctness,T4: Comparative,1.833,2.887,-0.3649
+MultiAgent,groundedness,Overall,0.933,0.758,0.2308
+MultiAgent,groundedness,T1: Factual,0.967,0.947,0.0211
+MultiAgent,groundedness,T2: Constraint,0.9,0.713,0.2617
+MultiAgent,groundedness,T3: MultiHop,0.933,0.773,0.2069
+MultiAgent,groundedness,T4: Comparative,0.933,0.6,0.5556
+MultiAgent,relevance,Overall,1.442,2.967,-0.514
+MultiAgent,relevance,T1: Factual,1.267,2.58,-0.509
+MultiAgent,relevance,T2: Constraint,1.567,3.607,-0.5656
+MultiAgent,relevance,T3: MultiHop,1.533,2.44,-0.3716
+MultiAgent,relevance,T4: Comparative,1.4,3.24,-0.5679
+MultiAgent,rougeL_fmeasure,Overall,0.15,0.24,-0.3737
+MultiAgent,rougeL_fmeasure,T1: Factual,0.121,0.273,-0.5562
+MultiAgent,rougeL_fmeasure,T2: Constraint,0.174,0.275,-0.3673
+MultiAgent,rougeL_fmeasure,T3: MultiHop,0.158,0.224,-0.2976
+MultiAgent,rougeL_fmeasure,T4: Comparative,0.148,0.187,-0.2082
+MultiAgent,gold_retrieval_recall_at_k,Overall,0.439,0.768,-0.428
+MultiAgent,gold_retrieval_recall_at_k,T1: Factual,0.4,0.777,-0.485
+MultiAgent,gold_retrieval_recall_at_k,T2: Constraint,0.4,0.797,-0.4979
+MultiAgent,gold_retrieval_recall_at_k,T3: MultiHop,0.533,0.842,-0.3668
+MultiAgent,gold_retrieval_recall_at_k,T4: Comparative,0.423,0.656,-0.3542
+MultiAgentBM25,correctness,Overall,1.683,2.733,-0.3841
+MultiAgentBM25,correctness,T1: Factual,1.4,2.573,-0.456
+MultiAgentBM25,correctness,T2: Constraint,1.833,2.953,-0.3792
+MultiAgentBM25,correctness,T3: MultiHop,1.667,2.52,-0.3386
+MultiAgentBM25,correctness,T4: Comparative,1.833,2.887,-0.3649
+MultiAgentBM25,groundedness,Overall,0.925,0.758,0.2198
+MultiAgentBM25,groundedness,T1: Factual,0.967,0.947,0.0211
+MultiAgentBM25,groundedness,T2: Constraint,0.9,0.713,0.2617
+MultiAgentBM25,groundedness,T3: MultiHop,0.933,0.773,0.2069
+MultiAgentBM25,groundedness,T4: Comparative,0.9,0.6,0.5
+MultiAgentBM25,relevance,Overall,1.467,2.967,-0.5056
+MultiAgentBM25,relevance,T1: Factual,1.267,2.58,-0.509
+MultiAgentBM25,relevance,T2: Constraint,1.667,3.607,-0.5379
+MultiAgentBM25,relevance,T3: MultiHop,1.533,2.44,-0.3716
+MultiAgentBM25,relevance,T4: Comparative,1.4,3.24,-0.5679
+MultiAgentBM25,rougeL_fmeasure,Overall,0.15,0.24,-0.3745
+MultiAgentBM25,rougeL_fmeasure,T1: Factual,0.121,0.273,-0.5562
+MultiAgentBM25,rougeL_fmeasure,T2: Constraint,0.176,0.275,-0.3589
+MultiAgentBM25,rougeL_fmeasure,T3: MultiHop,0.161,0.224,-0.2822
+MultiAgentBM25,rougeL_fmeasure,T4: Comparative,0.141,0.187,-0.2432
+MultiAgentBM25,gold_retrieval_recall_at_k,Overall,0.448,0.768,-0.4171
+MultiAgentBM25,gold_retrieval_recall_at_k,T1: Factual,0.433,0.777,-0.4421
+MultiAgentBM25,gold_retrieval_recall_at_k,T2: Constraint,0.4,0.797,-0.4979
+MultiAgentBM25,gold_retrieval_recall_at_k,T3: MultiHop,0.533,0.842,-0.3668
+MultiAgentBM25,gold_retrieval_recall_at_k,T4: Comparative,0.423,0.656,-0.3542
