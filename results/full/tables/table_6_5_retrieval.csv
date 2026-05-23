@@ -1,0 +1,12 @@
+Architecture,Recall@K,Precision@K,MRR,Has Retrieval
+Baseline,0.0,0.0,0.0,False
+TemplatePrompting,0.0,0.0,0.0,False
+CoTPrompting,0.0,0.0,0.0,False
+BM25Retriever,0.768,0.682,0.847,True
+CrossEncoderReranker,0.768,0.682,0.847,True
+BM25RerankerRAG,0.768,0.682,0.847,True
+StandardRAG,0.753,0.687,0.805,True
+GraphRAG,0.452,0.203,0.373,True
+GraphDeterministic,0.0,0.0,0.0,True
+MultiAgent,0.439,0.19,0.317,True
+MultiAgentBM25,0.448,0.195,0.327,True

@@ -1,0 +1,12 @@
+Architecture,Baseline,TemplatePrompting,CoTPrompting,BM25Retriever,CrossEncoderReranker,BM25RerankerRAG,StandardRAG,GraphRAG,GraphDeterministic,MultiAgent,MultiAgentBM25
+Baseline,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+TemplatePrompting,0.0,1.0,0.0,0.7612,0.2664,0.6298,0.0264,0.0,0.0,0.0,0.0
+CoTPrompting,0.0,0.0,1.0,0.0001,0.0,0.0001,0.0,0.0,0.0,0.0,0.0
+BM25Retriever,0.0,0.7612,0.0001,1.0,0.2319,0.8848,0.034,0.0,0.0,0.0,0.0
+CrossEncoderReranker,0.0,0.2664,0.0,0.2319,1.0,0.1736,0.3505,0.0,0.0,0.0,0.0
+BM25RerankerRAG,0.0,0.6298,0.0001,0.8848,0.1736,1.0,0.0214,0.0,0.0,0.0,0.0
+StandardRAG,0.0,0.0264,0.0,0.034,0.3505,0.0214,1.0,0.0,0.0,0.0,0.0
+GraphRAG,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.8251,0.0561,0.0281
+GraphDeterministic,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.8251,1.0,0.0407,0.0203
+MultiAgent,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0561,0.0407,1.0,0.7398
+MultiAgentBM25,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0281,0.0203,0.7398,1.0

@@ -1,0 +1,12 @@
+ID,Architecture,Type,Core Mechanism,Part
+Baseline,Zero-Shot Prompting,Parametric,No retrieval,Part 1: Pure LLM
+TemplatePrompting,Template Prompting,Parametric,Domain persona,Part 1: Pure LLM
+CoTPrompting,Chain-of-Thought,Parametric,Step-by-step reasoning,Part 1: Pure LLM
+BM25Retriever,BM25 Retriever,Sparse,Okapi BM25 keyword matching,Part 2: Standard IR
+CrossEncoderReranker,Cross-Encoder Reranker,Neural,Deep semantic pair scoring,Part 2: Standard IR
+BM25RerankerRAG,BM25 + Reranker RAG,Hybrid,BM25 recall + Cross-Encoder precision,Part 2: Standard IR
+StandardRAG,Standard Vector RAG,Dense,HuggingFace embeddings + ChromaDB,Part 2: Standard IR
+GraphRAG,GraphRAG (Star Context),Symbolic,NER + fuzzy match + ego-graph,Part 3: Graph-Based
+GraphDeterministic,Topological Retriever,Deterministic,Hub-based 1-hop ranked by degree,Part 3: Graph-Based
+MultiAgent,Multi-Agent (GraphRAG),Adaptive,Strategist + Critic + graph validation,Part 3: Graph-Based
+MultiAgentBM25,Multi-Agent (BM25),Adaptive,Strategist + Critic + BM25 fallback,Part 3: Graph-Based

@@ -40,8 +40,23 @@ class EngineRegistry:
         self._topo[ratio]  = TopologicalRetriever(self.dm.nodes_df, self.dm.rels_df)
         if self._reranker is None:
             self._reranker = Reranker()
+        # If no PDFs found, extract docs from ChromaDB for BM25
+        bm25_docs = docs
+        if not bm25_docs:
+            try:
+                chroma_data = self._rag[ratio].vector_store.get()
+                if chroma_data and chroma_data.get("documents"):
+                    from langchain_core.documents import Document as LCDoc
+                    bm25_docs = [
+                        LCDoc(page_content=text, metadata={"source": meta.get("source","")})
+                        for text, meta in zip(chroma_data["documents"], chroma_data.get("metadatas", [{}]*len(chroma_data["documents"])))
+                        if text and len(text) > 50
+                    ]
+                    logger.info("BM25: loaded %d docs from ChromaDB (no PDFs available)", len(bm25_docs))
+            except Exception as exc:
+                logger.warning("BM25: could not extract docs from ChromaDB: %s", exc)
         self._bm25_reranker[ratio] = BM25RerankerAdapter(
-            documents=docs, reranker=self._reranker, top_k=self.cfg.top_k_retrieval,
+            documents=bm25_docs, reranker=self._reranker, top_k=self.cfg.top_k_retrieval,
         )
         self._mas[ratio] = MultiAgentGraphRAG(
             graph_engine=self._graph[ratio],

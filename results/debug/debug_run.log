@@ -1,0 +1,266 @@
+nohup: ignoring input
+2026-05-21 10:50:38 | INFO     | dft_research_studio.utils.logging_config | Logging initialised — level=INFO
+[Tracker] Determinism enforced — seed=42.
+2026-05-21 10:50:41 | INFO     | __main__ | Loading knowledge graph and QA data …
+2026-05-21 10:50:49 | INFO     | __main__ | Graph loaded. Removed 0 disconnected nodes.
+2026-05-21 10:50:49 | INFO     | __main__ | Initialising experiment orchestrator …
+2026-05-21 10:50:49 | INFO     | dft_research_studio.utils.experiment_orchestrator | Initialising engines for 5 ratios ...
+2026-05-21 10:50:49 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=0.00 ...
+[DataManager] Processing 0 PDFs (0 relevant, 0 distractors) …
+/teamspace/studios/this_studio/dft_research_studio/retrievers/standard_rag.py:34: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+  self.embeddings = HuggingFaceEmbeddings(
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4663.46it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_0_0' …
+/teamspace/studios/this_studio/dft_research_studio/retrievers/standard_rag.py:40: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  self.vector_store = Chroma(
+[StandardRAG] Vector store has 2330 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s]Loading weights: 100%|██████████| 105/105 [00:00<00:00, 5218.84it/s]
+[1mBertForSequenceClassification LOAD REPORT[0m from: cross-encoder/ms-marco-MiniLM-L-6-v2
+Key                          | Status     |  | 
+-----------------------------+------------+--+-
+bert.embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[Reranker] Initialised with 'cross-encoder/ms-marco-MiniLM-L-6-v2'.
+2026-05-21 10:51:02 | INFO     | dft_research_studio.utils.engine_registry | BM25: loaded 2330 docs from ChromaDB (no PDFs available)
+[BM25] Initialised with 2330 documents.
+[BM25Reranker] Adapter ready for 2330 documents.
+2026-05-21 10:51:05 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=0.50 ...
+[DataManager] Processing 0 PDFs (0 relevant, 0 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 5991.78it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_0_5' …
+[StandardRAG] Vector store has 3097 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+2026-05-21 10:51:15 | INFO     | dft_research_studio.utils.engine_registry | BM25: loaded 3097 docs from ChromaDB (no PDFs available)
+[BM25] Initialised with 3097 documents.
+[BM25Reranker] Adapter ready for 3097 documents.
+2026-05-21 10:51:18 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=1.00 ...
+[DataManager] Processing 0 PDFs (0 relevant, 0 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 5028.79it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_1_0' …
+[StandardRAG] Vector store has 4025 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+2026-05-21 10:51:28 | INFO     | dft_research_studio.utils.engine_registry | BM25: loaded 4025 docs from ChromaDB (no PDFs available)
+[BM25] Initialised with 4025 documents.
+[BM25Reranker] Adapter ready for 4025 documents.
+2026-05-21 10:51:33 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=2.00 ...
+[DataManager] Processing 0 PDFs (0 relevant, 0 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4370.48it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_2_0' …
+[StandardRAG] Vector store has 5679 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+2026-05-21 10:51:43 | INFO     | dft_research_studio.utils.engine_registry | BM25: loaded 5679 docs from ChromaDB (no PDFs available)
+[BM25] Initialised with 5679 documents.
+[BM25Reranker] Adapter ready for 5679 documents.
+2026-05-21 10:51:49 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=3.00 ...
+[DataManager] Processing 0 PDFs (0 relevant, 0 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 6225.42it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_3_0' …
+[StandardRAG] Vector store has 7828 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+2026-05-21 10:52:00 | INFO     | dft_research_studio.utils.engine_registry | BM25: loaded 7828 docs from ChromaDB (no PDFs available)
+[BM25] Initialised with 7828 documents.
+[BM25Reranker] Adapter ready for 7828 documents.
+2026-05-21 10:52:08 | INFO     | dft_research_studio.utils.experiment_orchestrator | All engines ready. 0 results in checkpoint.
+2026-05-21 10:52:08 | INFO     | __main__ | Starting DEBUG experiment: 4 QA pairs × 5 ratios × 11 architectures = 220 runs
+QA pairs:   0%|          | 0/4 [00:00<?, ?q/s]2026-05-21 10:52:08 | INFO     | __main__ | Processing: Q1.1v0 | What is the M06-L density functional designed to capture?
+QA pairs:  25%|██▌       | 1/4 [04:37<13:52, 277.37s/q]2026-05-21 10:56:46 | INFO     | __main__ | Processing: Q2.1v0 | Which authors compiled the GMTKN55 benchmark database?
+QA pairs:  50%|█████     | 2/4 [07:35<07:18, 219.23s/q]2026-05-21 10:59:44 | INFO     | __main__ | Processing: Q3.1v0 | What are the key differences in application focus and comput
+QA pairs:  75%|███████▌  | 3/4 [15:09<05:26, 326.13s/q]2026-05-21 11:07:17 | INFO     | __main__ | Processing: Q4.1v0 | Why do comprehensive benchmark studies like GMTKN55 include 
+QA pairs: 100%|██████████| 4/4 [22:06<00:00, 362.12s/q]QA pairs: 100%|██████████| 4/4 [22:06<00:00, 331.64s/q]
+2026-05-21 11:14:15 | INFO     | __main__ | All experiment runs completed successfully.
+2026-05-21 11:14:15 | INFO     | dft_research_studio.utils.experiment_orchestrator | Results saved → 'results/debug/debug_results_raw.json' (220 entries).
+2026-05-21 11:14:15 | INFO     | __main__ | Running LLM-as-Judge evaluation …
+2026-05-21 11:14:15 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Loaded 220 validated results.
+2026-05-21 11:14:15 | INFO     | absl | Using default tokenizer.
+2026-05-21 11:14:15 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Running evaluation (judge=qwen2.5:14b) ...
+Evaluating:   0%|          | 0/220 [00:00<?, ?it/s]Evaluating:   0%|          | 1/220 [00:58<3:33:00, 58.36s/it]Evaluating:   1%|          | 2/220 [01:02<1:35:29, 26.28s/it]Evaluating:   1%|▏         | 3/220 [01:05<57:25, 15.88s/it]  Evaluating:   2%|▏         | 4/220 [01:10<41:04, 11.41s/it]Evaluating:   2%|▏         | 5/220 [01:14<31:59,  8.93s/it]Evaluating:   3%|▎         | 6/220 [01:19<26:31,  7.43s/it]Evaluating:   3%|▎         | 7/220 [01:23<23:08,  6.52s/it]Evaluating:   4%|▎         | 8/220 [01:29<21:29,  6.08s/it]Evaluating:   4%|▍         | 9/220 [01:34<20:12,  5.74s/it]Evaluating:   5%|▍         | 10/220 [01:38<18:31,  5.29s/it]Evaluating:   5%|▌         | 11/220 [01:42<17:16,  4.96s/it]Evaluating:   5%|▌         | 12/220 [01:46<15:59,  4.61s/it]Evaluating:   6%|▌         | 13/220 [01:50<15:21,  4.45s/it]Evaluating:   6%|▋         | 14/220 [01:53<14:16,  4.16s/it]Evaluating:   7%|▋         | 15/220 [01:58<14:34,  4.27s/it]Evaluating:   7%|▋         | 16/220 [02:02<14:44,  4.34s/it]Evaluating:   8%|▊         | 17/220 [02:07<14:49,  4.38s/it]Evaluating:   8%|▊         | 18/220 [02:12<14:59,  4.46s/it]Evaluating:   9%|▊         | 19/220 [02:17<15:38,  4.67s/it]Evaluating:   9%|▉         | 20/220 [02:22<15:56,  4.78s/it]Evaluating:  10%|▉         | 21/220 [02:26<15:24,  4.65s/it]Evaluating:  10%|█         | 22/220 [02:30<14:53,  4.51s/it]Evaluating:  10%|█         | 23/220 [02:34<14:07,  4.30s/it]Evaluating:  11%|█         | 24/220 [02:38<13:52,  4.25s/it]Evaluating:  11%|█▏        | 25/220 [02:42<13:03,  4.02s/it]Evaluating:  12%|█▏        | 26/220 [02:46<13:32,  4.19s/it]Evaluating:  12%|█▏        | 27/220 [02:51<13:47,  4.29s/it]Evaluating:  13%|█▎        | 28/220 [02:55<13:57,  4.36s/it]Evaluating:  13%|█▎        | 29/220 [03:00<14:08,  4.44s/it]Evaluating:  14%|█▎        | 30/220 [03:05<14:48,  4.68s/it]Evaluating:  14%|█▍        | 31/220 [03:10<15:06,  4.80s/it]Evaluating:  15%|█▍        | 32/220 [03:15<14:32,  4.64s/it]Evaluating:  15%|█▌        | 33/220 [03:19<14:02,  4.51s/it]Evaluating:  15%|█▌        | 34/220 [03:23<13:19,  4.30s/it]Evaluating:  16%|█▌        | 35/220 [03:27<13:05,  4.24s/it]Evaluating:  16%|█▋        | 36/220 [03:30<12:18,  4.02s/it]Evaluating:  17%|█▋        | 37/220 [03:35<12:44,  4.18s/it]Evaluating:  17%|█▋        | 38/220 [03:39<12:58,  4.28s/it]Evaluating:  18%|█▊        | 39/220 [03:44<13:05,  4.34s/it]Evaluating:  18%|█▊        | 40/220 [03:48<13:16,  4.43s/it]Evaluating:  19%|█▊        | 41/220 [03:54<13:51,  4.64s/it]Evaluating:  19%|█▉        | 42/220 [03:59<14:05,  4.75s/it]Evaluating:  20%|█▉        | 43/220 [04:03<13:34,  4.60s/it]Evaluating:  20%|██        | 44/220 [04:07<13:07,  4.48s/it]Evaluating:  20%|██        | 45/220 [04:11<12:27,  4.27s/it]Evaluating:  21%|██        | 46/220 [04:15<12:12,  4.21s/it]Evaluating:  21%|██▏       | 47/220 [04:18<11:30,  3.99s/it]Evaluating:  22%|██▏       | 48/220 [04:23<11:53,  4.15s/it]Evaluating:  22%|██▏       | 49/220 [04:27<12:07,  4.26s/it]Evaluating:  23%|██▎       | 50/220 [04:32<12:16,  4.33s/it]Evaluating:  23%|██▎       | 51/220 [04:36<12:28,  4.43s/it]Evaluating:  24%|██▎       | 52/220 [04:42<13:02,  4.66s/it]Evaluating:  24%|██▍       | 53/220 [04:47<13:16,  4.77s/it]Evaluating:  25%|██▍       | 54/220 [04:51<12:47,  4.62s/it]Evaluating:  25%|██▌       | 55/220 [04:55<12:21,  4.50s/it]Evaluating:  25%|██▌       | 56/220 [05:00<12:25,  4.55s/it]Evaluating:  26%|██▌       | 57/220 [05:03<11:17,  4.16s/it]Evaluating:  26%|██▋       | 58/220 [05:08<11:31,  4.27s/it]Evaluating:  27%|██▋       | 59/220 [05:12<11:24,  4.25s/it]Evaluating:  27%|██▋       | 60/220 [05:16<11:18,  4.24s/it]Evaluating:  28%|██▊       | 61/220 [05:21<11:31,  4.35s/it]Evaluating:  28%|██▊       | 62/220 [05:25<11:08,  4.23s/it]Evaluating:  29%|██▊       | 63/220 [05:30<11:56,  4.56s/it]Evaluating:  29%|██▉       | 64/220 [05:34<11:43,  4.51s/it]Evaluating:  30%|██▉       | 65/220 [05:39<11:37,  4.50s/it]Evaluating:  30%|███       | 66/220 [05:43<11:31,  4.49s/it]Evaluating:  30%|███       | 67/220 [05:48<11:34,  4.54s/it]Evaluating:  31%|███       | 68/220 [05:51<10:31,  4.15s/it]Evaluating:  31%|███▏      | 69/220 [05:56<10:44,  4.27s/it]Evaluating:  32%|███▏      | 70/220 [06:00<10:39,  4.26s/it]Evaluating:  32%|███▏      | 71/220 [06:04<10:31,  4.24s/it]Evaluating:  33%|███▎      | 72/220 [06:09<10:43,  4.35s/it]Evaluating:  33%|███▎      | 73/220 [06:13<10:23,  4.24s/it]Evaluating:  34%|███▎      | 74/220 [06:18<11:05,  4.56s/it]Evaluating:  34%|███▍      | 75/220 [06:22<10:52,  4.50s/it]Evaluating:  35%|███▍      | 76/220 [06:27<10:47,  4.50s/it]Evaluating:  35%|███▌      | 77/220 [06:31<10:43,  4.50s/it]Evaluating:  35%|███▌      | 78/220 [06:36<10:46,  4.55s/it]Evaluating:  36%|███▌      | 79/220 [06:39<09:48,  4.18s/it]Evaluating:  36%|███▋      | 80/220 [06:44<09:59,  4.28s/it]Evaluating:  37%|███▋      | 81/220 [06:48<09:53,  4.27s/it]Evaluating:  37%|███▋      | 82/220 [06:52<09:45,  4.24s/it]Evaluating:  38%|███▊      | 83/220 [06:57<09:55,  4.34s/it]Evaluating:  38%|███▊      | 84/220 [07:01<09:34,  4.22s/it]Evaluating:  39%|███▊      | 85/220 [07:06<10:13,  4.55s/it]Evaluating:  39%|███▉      | 86/220 [07:11<10:02,  4.50s/it]Evaluating:  40%|███▉      | 87/220 [07:15<10:00,  4.51s/it]Evaluating:  40%|████      | 88/220 [07:20<09:54,  4.51s/it]Evaluating:  40%|████      | 89/220 [07:24<09:58,  4.57s/it]Evaluating:  41%|████      | 90/220 [07:28<09:03,  4.18s/it]Evaluating:  41%|████▏     | 91/220 [07:32<09:12,  4.28s/it]Evaluating:  42%|████▏     | 92/220 [07:36<09:08,  4.28s/it]Evaluating:  42%|████▏     | 93/220 [07:41<09:00,  4.25s/it]Evaluating:  43%|████▎     | 94/220 [07:45<09:09,  4.36s/it]Evaluating:  43%|████▎     | 95/220 [07:49<08:49,  4.23s/it]Evaluating:  44%|████▎     | 96/220 [07:54<09:25,  4.56s/it]Evaluating:  44%|████▍     | 97/220 [07:59<09:14,  4.50s/it]Evaluating:  45%|████▍     | 98/220 [08:03<09:10,  4.51s/it]Evaluating:  45%|████▌     | 99/220 [08:08<09:03,  4.49s/it]Evaluating:  45%|████▌     | 100/220 [08:12<09:04,  4.54s/it]Evaluating:  46%|████▌     | 101/220 [08:16<08:15,  4.16s/it]Evaluating:  46%|████▋     | 102/220 [08:20<08:24,  4.27s/it]Evaluating:  47%|████▋     | 103/220 [08:24<08:19,  4.27s/it]Evaluating:  47%|████▋     | 104/220 [08:29<08:12,  4.25s/it]Evaluating:  48%|████▊     | 105/220 [08:33<08:23,  4.37s/it]Evaluating:  48%|████▊     | 106/220 [08:37<08:04,  4.25s/it]Evaluating:  49%|████▊     | 107/220 [08:43<08:36,  4.57s/it]Evaluating:  49%|████▉     | 108/220 [08:47<08:24,  4.50s/it]Evaluating:  50%|████▉     | 109/220 [08:52<08:20,  4.51s/it]Evaluating:  50%|█████     | 110/220 [08:56<08:14,  4.49s/it]Evaluating:  50%|█████     | 111/220 [09:00<08:00,  4.40s/it]Evaluating:  51%|█████     | 112/220 [09:04<07:38,  4.25s/it]Evaluating:  51%|█████▏    | 113/220 [09:09<07:57,  4.47s/it]Evaluating:  52%|█████▏    | 114/220 [09:27<14:54,  8.44s/it]Evaluating:  52%|█████▏    | 115/220 [09:32<12:54,  7.38s/it]Evaluating:  53%|█████▎    | 116/220 [09:38<12:04,  6.97s/it]Evaluating:  53%|█████▎    | 117/220 [09:43<11:07,  6.48s/it]Evaluating:  54%|█████▎    | 118/220 [09:48<10:10,  5.98s/it]Evaluating:  54%|█████▍    | 119/220 [09:53<09:37,  5.72s/it]Evaluating:  55%|█████▍    | 120/220 [09:58<09:14,  5.55s/it]Evaluating:  55%|█████▌    | 121/220 [10:03<08:56,  5.42s/it]Evaluating:  55%|█████▌    | 122/220 [10:07<08:13,  5.04s/it]Evaluating:  56%|█████▌    | 123/220 [10:11<07:35,  4.69s/it]Evaluating:  56%|█████▋    | 124/220 [10:16<07:39,  4.78s/it]Evaluating:  57%|█████▋    | 125/220 [10:32<12:43,  8.04s/it]Evaluating:  57%|█████▋    | 126/220 [10:37<11:05,  7.08s/it]Evaluating:  58%|█████▊    | 127/220 [10:42<10:14,  6.61s/it]Evaluating:  58%|█████▊    | 128/220 [10:48<09:33,  6.23s/it]Evaluating:  59%|█████▊    | 129/220 [10:52<08:48,  5.80s/it]Evaluating:  59%|█████▉    | 130/220 [10:57<08:23,  5.60s/it]Evaluating:  60%|█████▉    | 131/220 [11:03<08:06,  5.46s/it]Evaluating:  60%|██████    | 132/220 [11:08<07:50,  5.35s/it]Evaluating:  60%|██████    | 133/220 [11:12<07:14,  4.99s/it]Evaluating:  61%|██████    | 134/220 [11:16<06:41,  4.67s/it]Evaluating:  61%|██████▏   | 135/220 [11:21<06:46,  4.79s/it]Evaluating:  62%|██████▏   | 136/220 [11:26<07:00,  5.01s/it]Evaluating:  62%|██████▏   | 137/220 [11:31<06:52,  4.98s/it]Evaluating:  63%|██████▎   | 138/220 [11:37<07:02,  5.15s/it]Evaluating:  63%|██████▎   | 139/220 [11:42<07:04,  5.24s/it]Evaluating:  64%|██████▎   | 140/220 [11:47<06:48,  5.11s/it]Evaluating:  64%|██████▍   | 141/220 [11:52<06:44,  5.12s/it]Evaluating:  65%|██████▍   | 142/220 [11:57<06:40,  5.13s/it]Evaluating:  65%|██████▌   | 143/220 [12:02<06:34,  5.12s/it]Evaluating:  65%|██████▌   | 144/220 [12:07<06:07,  4.83s/it]Evaluating:  66%|██████▌   | 145/220 [12:11<05:41,  4.56s/it]Evaluating:  66%|██████▋   | 146/220 [12:16<05:46,  4.68s/it]Evaluating:  67%|██████▋   | 147/220 [12:21<06:00,  4.94s/it]Evaluating:  67%|██████▋   | 148/220 [12:26<05:53,  4.92s/it]Evaluating:  68%|██████▊   | 149/220 [12:32<06:03,  5.12s/it]Evaluating:  68%|██████▊   | 150/220 [12:37<06:05,  5.23s/it]Evaluating:  69%|██████▊   | 151/220 [12:42<05:52,  5.11s/it]Evaluating:  69%|██████▉   | 152/220 [12:47<05:48,  5.13s/it]Evaluating:  70%|██████▉   | 153/220 [12:52<05:43,  5.13s/it]Evaluating:  70%|███████   | 154/220 [12:57<05:38,  5.13s/it]Evaluating:  70%|███████   | 155/220 [13:01<05:14,  4.84s/it]Evaluating:  71%|███████   | 156/220 [13:05<04:51,  4.55s/it]Evaluating:  71%|███████▏  | 157/220 [13:10<04:54,  4.68s/it]Evaluating:  72%|███████▏  | 158/220 [13:16<05:05,  4.93s/it]Evaluating:  72%|███████▏  | 159/220 [13:21<04:59,  4.92s/it]Evaluating:  73%|███████▎  | 160/220 [13:26<05:05,  5.10s/it]Evaluating:  73%|███████▎  | 161/220 [13:32<05:07,  5.22s/it]Evaluating:  74%|███████▎  | 162/220 [13:37<04:55,  5.10s/it]Evaluating:  74%|███████▍  | 163/220 [13:42<04:51,  5.12s/it]Evaluating:  75%|███████▍  | 164/220 [13:47<04:48,  5.14s/it]Evaluating:  75%|███████▌  | 165/220 [13:52<04:42,  5.14s/it]Evaluating:  75%|███████▌  | 166/220 [13:55<04:06,  4.57s/it]Evaluating:  76%|███████▌  | 167/220 [13:59<03:48,  4.31s/it]Evaluating:  76%|███████▋  | 168/220 [14:03<03:35,  4.15s/it]Evaluating:  77%|███████▋  | 169/220 [14:07<03:33,  4.19s/it]Evaluating:  77%|███████▋  | 170/220 [14:11<03:32,  4.24s/it]Evaluating:  78%|███████▊  | 171/220 [14:17<03:43,  4.56s/it]Evaluating:  78%|███████▊  | 172/220 [14:21<03:36,  4.52s/it]Evaluating:  79%|███████▊  | 173/220 [14:26<03:30,  4.48s/it]Evaluating:  79%|███████▉  | 174/220 [14:30<03:23,  4.43s/it]Evaluating:  80%|███████▉  | 175/220 [14:34<03:20,  4.45s/it]Evaluating:  80%|████████  | 176/220 [14:39<03:14,  4.43s/it]Evaluating:  80%|████████  | 177/220 [14:42<02:54,  4.06s/it]Evaluating:  81%|████████  | 178/220 [14:46<02:46,  3.96s/it]Evaluating:  81%|████████▏ | 179/220 [14:49<02:40,  3.91s/it]Evaluating:  82%|████████▏ | 180/220 [14:54<02:41,  4.03s/it]Evaluating:  82%|████████▏ | 181/220 [14:58<02:41,  4.13s/it]Evaluating:  83%|████████▎ | 182/220 [15:03<02:49,  4.47s/it]Evaluating:  83%|████████▎ | 183/220 [15:08<02:44,  4.45s/it]Evaluating:  84%|████████▎ | 184/220 [15:12<02:39,  4.43s/it]Evaluating:  84%|████████▍ | 185/220 [15:16<02:33,  4.39s/it]Evaluating:  85%|████████▍ | 186/220 [15:21<02:29,  4.40s/it]Evaluating:  85%|████████▌ | 187/220 [15:25<02:25,  4.41s/it]Evaluating:  85%|████████▌ | 188/220 [15:28<02:08,  4.03s/it]Evaluating:  86%|████████▌ | 189/220 [15:32<02:01,  3.92s/it]Evaluating:  86%|████████▋ | 190/220 [15:36<01:56,  3.88s/it]Evaluating:  87%|████████▋ | 191/220 [15:40<01:56,  4.02s/it]Evaluating:  87%|████████▋ | 192/220 [15:45<01:55,  4.12s/it]Evaluating:  88%|████████▊ | 193/220 [15:50<02:00,  4.48s/it]Evaluating:  88%|████████▊ | 194/220 [15:54<01:56,  4.46s/it]Evaluating:  89%|████████▊ | 195/220 [15:59<01:50,  4.44s/it]Evaluating:  89%|████████▉ | 196/220 [16:03<01:45,  4.39s/it]Evaluating:  90%|████████▉ | 197/220 [16:07<01:41,  4.40s/it]Evaluating:  90%|█████████ | 198/220 [16:12<01:36,  4.39s/it]Evaluating:  90%|█████████ | 199/220 [16:15<01:24,  4.02s/it]Evaluating:  91%|█████████ | 200/220 [16:19<01:18,  3.91s/it]Evaluating:  91%|█████████▏| 201/220 [16:22<01:13,  3.87s/it]Evaluating:  92%|█████████▏| 202/220 [16:27<01:12,  4.01s/it]Evaluating:  92%|█████████▏| 203/220 [16:31<01:09,  4.11s/it]Evaluating:  93%|█████████▎| 204/220 [16:36<01:11,  4.47s/it]Evaluating:  93%|█████████▎| 205/220 [16:41<01:06,  4.45s/it]Evaluating:  94%|█████████▎| 206/220 [16:45<01:02,  4.44s/it]Evaluating:  94%|█████████▍| 207/220 [16:50<00:57,  4.41s/it]Evaluating:  95%|█████████▍| 208/220 [16:54<00:52,  4.41s/it]Evaluating:  95%|█████████▌| 209/220 [16:58<00:48,  4.40s/it]Evaluating:  95%|█████████▌| 210/220 [17:01<00:40,  4.03s/it]Evaluating:  96%|█████████▌| 211/220 [17:05<00:35,  3.92s/it]Evaluating:  96%|█████████▋| 212/220 [17:09<00:30,  3.87s/it]Evaluating:  97%|█████████▋| 213/220 [17:14<00:30,  4.30s/it]Evaluating:  97%|█████████▋| 214/220 [17:18<00:25,  4.29s/it]Evaluating:  98%|█████████▊| 215/220 [17:23<00:21,  4.34s/it]Evaluating:  98%|█████████▊| 216/220 [17:27<00:17,  4.36s/it]Evaluating:  99%|█████████▊| 217/220 [17:32<00:13,  4.37s/it]Evaluating:  99%|█████████▉| 218/220 [17:36<00:08,  4.35s/it]Evaluating: 100%|█████████▉| 219/220 [17:40<00:04,  4.38s/it]Evaluating: 100%|██████████| 220/220 [17:45<00:00,  4.40s/it]Evaluating: 100%|██████████| 220/220 [17:45<00:00,  4.84s/it]
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (TemplatePrompting vs Baseline): 1.068 (large)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (CoTPrompting vs Baseline): 1.378 (large)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (BM25Retriever vs Baseline): 2.491 (large)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (CrossEncoderReranker vs Baseline): 2.532 (large)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (BM25RerankerRAG vs Baseline): 2.491 (large)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (StandardRAG vs Baseline): 1.585 (large)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (GraphRAG vs Baseline): 1.849 (large)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (GraphDeterministic vs Baseline): 0.356 (small)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (MultiAgent vs Baseline): 0.796 (medium)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (MultiAgentBM25 vs Baseline): 0.796 (medium)
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Inter-rater reliability Pearson r=0.663 (p=0.0000) between 'qwen2.5:14b' and 'gemma2:9b'
+2026-05-21 11:32:00 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Saved → 'results/debug/debug_experiment_metrics.csv' (220 rows).
+2026-05-21 11:32:00 | INFO     | __main__ | Generating advanced metrics and visualisations …
+
+[AdvancedMetrics] Building statistics table …
+
+================================================================================
+FULL SCIENTIFIC RESULTS TABLE
+================================================================================
+| System               |   Distractor Ratio | Correctness (1-5) (95% CI)   | Relevance (1-5) (95% CI)   | Groundedness (0-1) (95% CI)   | Recall@K (95% CI)   | Precision@K (95% CI)   | MRR (95% CI)      | ROUGE-1 F1 (95% CI)   | ROUGE-L F1 (95% CI)   |
+|:---------------------|-------------------:|:-----------------------------|:---------------------------|:------------------------------|:--------------------|:-----------------------|:------------------|:----------------------|:----------------------|
+| BM25RerankerRAG      |                0   | 3.25 [3.00, 3.75]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.75 [0.50, 0.95]      | 1.00 [1.00, 1.00] | 0.37 [0.26, 0.56]     | 0.31 [0.16, 0.52]     |
+| BM25RerankerRAG      |                0.5 | 3.25 [3.00, 3.75]            | 3.25 [2.00, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.65 [0.40, 0.90]      | 1.00 [1.00, 1.00] | 0.39 [0.30, 0.56]     | 0.31 [0.16, 0.52]     |
+| BM25RerankerRAG      |                1   | 3.25 [3.00, 3.75]            | 3.25 [2.00, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.70 [0.50, 0.90]      | 1.00 [1.00, 1.00] | 0.39 [0.30, 0.56]     | 0.31 [0.16, 0.52]     |
+| BM25RerankerRAG      |                2   | 3.25 [3.00, 3.75]            | 3.25 [2.00, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.65 [0.40, 0.90]      | 1.00 [1.00, 1.00] | 0.39 [0.30, 0.56]     | 0.31 [0.16, 0.52]     |
+| BM25RerankerRAG      |                3   | 3.25 [3.00, 3.75]            | 3.25 [2.00, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.65 [0.40, 0.90]      | 1.00 [1.00, 1.00] | 0.39 [0.30, 0.56]     | 0.31 [0.16, 0.52]     |
+| BM25Retriever        |                0   | 3.25 [3.00, 3.75]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.75 [0.50, 0.95]      | 1.00 [1.00, 1.00] | 0.38 [0.24, 0.55]     | 0.32 [0.17, 0.52]     |
+| BM25Retriever        |                0.5 | 3.25 [3.00, 3.75]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.65 [0.40, 0.90]      | 1.00 [1.00, 1.00] | 0.40 [0.28, 0.57]     | 0.34 [0.18, 0.53]     |
+| BM25Retriever        |                1   | 3.25 [3.00, 3.75]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.70 [0.50, 0.90]      | 1.00 [1.00, 1.00] | 0.40 [0.28, 0.57]     | 0.34 [0.18, 0.53]     |
+| BM25Retriever        |                2   | 3.25 [3.00, 3.75]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.65 [0.40, 0.90]      | 1.00 [1.00, 1.00] | 0.40 [0.28, 0.57]     | 0.34 [0.18, 0.53]     |
+| BM25Retriever        |                3   | 3.25 [3.00, 3.75]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.65 [0.40, 0.90]      | 1.00 [1.00, 1.00] | 0.41 [0.31, 0.57]     | 0.33 [0.18, 0.53]     |
+| Baseline             |                0   | 1.50 [1.00, 2.50]            | 3.50 [2.25, 4.50]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.20 [0.14, 0.26]     | 0.17 [0.10, 0.22]     |
+| Baseline             |                0.5 | 1.50 [1.00, 2.50]            | 3.50 [2.25, 4.50]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.20 [0.14, 0.26]     | 0.17 [0.10, 0.22]     |
+| Baseline             |                1   | 1.50 [1.00, 2.50]            | 3.50 [2.25, 4.50]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.20 [0.14, 0.26]     | 0.17 [0.10, 0.22]     |
+| Baseline             |                2   | 1.50 [1.00, 2.50]            | 3.50 [2.25, 4.50]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.20 [0.14, 0.26]     | 0.17 [0.10, 0.22]     |
+| Baseline             |                3   | 1.50 [1.00, 2.50]            | 3.50 [2.25, 4.50]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.20 [0.14, 0.26]     | 0.17 [0.10, 0.22]     |
+| CoTPrompting         |                0   | 2.50 [2.00, 3.00]            | 3.00 [2.25, 3.75]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.19 [0.16, 0.23]     | 0.13 [0.12, 0.13]     |
+| CoTPrompting         |                0.5 | 2.50 [2.00, 3.00]            | 3.00 [2.25, 3.75]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.19 [0.16, 0.23]     | 0.13 [0.12, 0.13]     |
+| CoTPrompting         |                1   | 2.50 [2.00, 3.00]            | 3.00 [2.25, 3.75]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.19 [0.16, 0.23]     | 0.13 [0.12, 0.13]     |
+| CoTPrompting         |                2   | 2.50 [2.00, 3.00]            | 3.00 [2.25, 3.75]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.19 [0.16, 0.23]     | 0.13 [0.12, 0.13]     |
+| CoTPrompting         |                3   | 2.50 [2.00, 3.00]            | 3.00 [2.25, 3.75]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.19 [0.16, 0.23]     | 0.13 [0.12, 0.13]     |
+| CrossEncoderReranker |                0   | 3.50 [3.00, 4.00]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.75 [0.50, 0.95]      | 1.00 [1.00, 1.00] | 0.43 [0.36, 0.58]     | 0.35 [0.20, 0.55]     |
+| CrossEncoderReranker |                0.5 | 3.25 [3.00, 3.75]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.65 [0.40, 0.90]      | 1.00 [1.00, 1.00] | 0.43 [0.35, 0.58]     | 0.34 [0.20, 0.53]     |
+| CrossEncoderReranker |                1   | 3.25 [3.00, 3.75]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.70 [0.50, 0.90]      | 1.00 [1.00, 1.00] | 0.43 [0.35, 0.58]     | 0.34 [0.20, 0.53]     |
+| CrossEncoderReranker |                2   | 3.25 [3.00, 3.75]            | 3.50 [2.50, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.65 [0.40, 0.90]      | 1.00 [1.00, 1.00] | 0.43 [0.35, 0.58]     | 0.34 [0.20, 0.53]     |
+| CrossEncoderReranker |                3   | 3.25 [3.00, 3.75]            | 3.75 [3.00, 4.50]          | 0.50 [0.00, 1.00]             | 0.79 [0.58, 1.00]   | 0.65 [0.40, 0.90]      | 1.00 [1.00, 1.00] | 0.42 [0.33, 0.57]     | 0.34 [0.19, 0.53]     |
+| Graph-Deterministic  |                0   | 1.75 [1.25, 2.00]            | 1.00 [1.00, 1.00]          | 0.25 [0.00, 0.75]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.15 [0.07, 0.22]     | 0.12 [0.07, 0.15]     |
+| Graph-Deterministic  |                0.5 | 1.75 [1.25, 2.00]            | 1.00 [1.00, 1.00]          | 0.25 [0.00, 0.75]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.15 [0.07, 0.22]     | 0.12 [0.07, 0.15]     |
+| Graph-Deterministic  |                1   | 1.75 [1.25, 2.00]            | 1.00 [1.00, 1.00]          | 0.25 [0.00, 0.75]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.15 [0.07, 0.22]     | 0.12 [0.07, 0.15]     |
+| Graph-Deterministic  |                2   | 1.75 [1.25, 2.00]            | 1.00 [1.00, 1.00]          | 0.25 [0.00, 0.75]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.15 [0.07, 0.22]     | 0.12 [0.07, 0.15]     |
+| Graph-Deterministic  |                3   | 1.75 [1.25, 2.00]            | 1.00 [1.00, 1.00]          | 0.25 [0.00, 0.75]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.15 [0.07, 0.22]     | 0.12 [0.07, 0.15]     |
+| Graph-Anchored       |                0   | 3.00 [2.25, 3.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.46 [0.17, 0.67]   | 0.35 [0.15, 0.55]      | 0.79 [0.36, 1.00] | 0.35 [0.32, 0.38]     | 0.23 [0.19, 0.26]     |
+| Graph-Anchored       |                0.5 | 3.00 [2.25, 3.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.46 [0.17, 0.67]   | 0.35 [0.15, 0.55]      | 0.79 [0.36, 1.00] | 0.35 [0.32, 0.38]     | 0.23 [0.19, 0.26]     |
+| Graph-Anchored       |                1   | 3.00 [2.25, 3.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.46 [0.17, 0.67]   | 0.35 [0.15, 0.55]      | 0.79 [0.36, 1.00] | 0.35 [0.32, 0.38]     | 0.23 [0.19, 0.26]     |
+| Graph-Anchored       |                2   | 3.00 [2.25, 3.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.46 [0.17, 0.67]   | 0.35 [0.15, 0.55]      | 0.79 [0.36, 1.00] | 0.35 [0.32, 0.38]     | 0.23 [0.19, 0.26]     |
+| Graph-Anchored       |                3   | 3.00 [2.25, 3.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.46 [0.17, 0.67]   | 0.35 [0.15, 0.55]      | 0.79 [0.36, 1.00] | 0.35 [0.32, 0.38]     | 0.23 [0.19, 0.26]     |
+| Multi-Agent          |                0   | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| Multi-Agent          |                0.5 | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| Multi-Agent          |                1   | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| Multi-Agent          |                2   | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| Multi-Agent          |                3   | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| Multi-AgentBM25      |                0   | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| Multi-AgentBM25      |                0.5 | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| Multi-AgentBM25      |                1   | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| Multi-AgentBM25      |                2   | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| Multi-AgentBM25      |                3   | 2.00 [2.00, 2.00]            | 2.25 [2.00, 2.75]          | 0.25 [0.00, 0.75]             | 0.46 [0.17, 0.67]   | 0.30 [0.10, 0.50]      | 0.79 [0.36, 1.00] | 0.33 [0.29, 0.37]     | 0.21 [0.18, 0.26]     |
+| StandardRAG          |                0   | 3.00 [2.25, 3.75]            | 2.75 [2.00, 3.75]          | 0.25 [0.00, 0.75]             | 0.79 [0.58, 1.00]   | 0.80 [0.80, 0.80]      | 1.00 [1.00, 1.00] | 0.28 [0.25, 0.31]     | 0.17 [0.15, 0.20]     |
+| StandardRAG          |                0.5 | 3.00 [2.25, 3.75]            | 2.75 [2.00, 3.75]          | 0.25 [0.00, 0.75]             | 0.79 [0.58, 1.00]   | 0.80 [0.80, 0.80]      | 1.00 [1.00, 1.00] | 0.28 [0.25, 0.31]     | 0.17 [0.15, 0.20]     |
+| StandardRAG          |                1   | 2.75 [2.00, 3.75]            | 2.75 [2.00, 3.75]          | 0.25 [0.00, 0.75]             | 0.79 [0.58, 1.00]   | 0.80 [0.80, 0.80]      | 1.00 [1.00, 1.00] | 0.27 [0.24, 0.29]     | 0.16 [0.14, 0.18]     |
+| StandardRAG          |                2   | 2.75 [2.00, 3.75]            | 2.75 [2.00, 3.75]          | 0.25 [0.00, 0.75]             | 0.79 [0.58, 1.00]   | 0.80 [0.80, 0.80]      | 1.00 [1.00, 1.00] | 0.27 [0.24, 0.29]     | 0.16 [0.14, 0.18]     |
+| StandardRAG          |                3   | 2.75 [2.00, 3.75]            | 2.75 [2.00, 3.75]          | 0.25 [0.00, 0.75]             | 0.79 [0.58, 1.00]   | 0.80 [0.80, 0.80]      | 1.00 [1.00, 1.00] | 0.27 [0.24, 0.29]     | 0.16 [0.14, 0.18]     |
+| TemplatePrompting    |                0   | 2.25 [2.00, 2.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.21 [0.20, 0.22]     | 0.13 [0.12, 0.14]     |
+| TemplatePrompting    |                0.5 | 2.25 [2.00, 2.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.21 [0.20, 0.22]     | 0.13 [0.12, 0.14]     |
+| TemplatePrompting    |                1   | 2.25 [2.00, 2.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.21 [0.20, 0.22]     | 0.13 [0.12, 0.14]     |
+| TemplatePrompting    |                2   | 2.25 [2.00, 2.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.21 [0.20, 0.22]     | 0.13 [0.12, 0.14]     |
+| TemplatePrompting    |                3   | 2.25 [2.00, 2.75]            | 3.75 [3.25, 4.00]          | 0.00 [0.00, 0.00]             | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.21 [0.20, 0.22]     | 0.13 [0.12, 0.14]     |
+[AdvancedMetrics] Saved 'final_results_with_ci.csv'.
+
+[AdvancedMetrics] Computing Generative Fidelity Gap …
+| Model                |   Distractor Ratio | Score (μ ± σ)   | Gap Display      | Interpretation   |
+|:---------------------|-------------------:|:----------------|:-----------------|:-----------------|
+| CrossEncoderReranker |                0   | 3.50 ± 0.58     | -6.06% (±8.75%)  | High Fidelity    |
+| BM25RerankerRAG      |                0   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| BM25Retriever        |                0   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| Graph-Anchored       |                0   | 3.00 ± 0.82     | 9.09% (±12.37%)  | High Fidelity    |
+| StandardRAG          |                0   | 3.00 ± 0.82     | 9.09% (±12.37%)  | High Fidelity    |
+| CoTPrompting         |                0   | 2.50 ± 0.58     | 24.24% (±8.75%)  | High Fidelity    |
+| TemplatePrompting    |                0   | 2.25 ± 0.50     | 31.82% (±7.58%)  | Critical Loss    |
+| Multi-Agent          |                0   | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Multi-AgentBM25      |                0   | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Graph-Deterministic  |                0   | 1.75 ± 0.50     | 46.97% (±7.58%)  | Critical Loss    |
+| Baseline             |                0   | 1.50 ± 1.00     | 54.55% (±15.15%) | Critical Loss    |
+| BM25RerankerRAG      |                0.5 | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| BM25Retriever        |                0.5 | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| CrossEncoderReranker |                0.5 | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| Graph-Anchored       |                0.5 | 3.00 ± 0.82     | 9.09% (±12.37%)  | High Fidelity    |
+| StandardRAG          |                0.5 | 3.00 ± 0.82     | 9.09% (±12.37%)  | High Fidelity    |
+| CoTPrompting         |                0.5 | 2.50 ± 0.58     | 24.24% (±8.75%)  | High Fidelity    |
+| TemplatePrompting    |                0.5 | 2.25 ± 0.50     | 31.82% (±7.58%)  | Critical Loss    |
+| Multi-Agent          |                0.5 | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Multi-AgentBM25      |                0.5 | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Graph-Deterministic  |                0.5 | 1.75 ± 0.50     | 46.97% (±7.58%)  | Critical Loss    |
+| Baseline             |                0.5 | 1.50 ± 1.00     | 54.55% (±15.15%) | Critical Loss    |
+| BM25RerankerRAG      |                1   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| BM25Retriever        |                1   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| CrossEncoderReranker |                1   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| Graph-Anchored       |                1   | 3.00 ± 0.82     | 9.09% (±12.37%)  | High Fidelity    |
+| StandardRAG          |                1   | 2.75 ± 0.96     | 16.67% (±14.51%) | High Fidelity    |
+| CoTPrompting         |                1   | 2.50 ± 0.58     | 24.24% (±8.75%)  | High Fidelity    |
+| TemplatePrompting    |                1   | 2.25 ± 0.50     | 31.82% (±7.58%)  | Critical Loss    |
+| Multi-Agent          |                1   | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Multi-AgentBM25      |                1   | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Graph-Deterministic  |                1   | 1.75 ± 0.50     | 46.97% (±7.58%)  | Critical Loss    |
+| Baseline             |                1   | 1.50 ± 1.00     | 54.55% (±15.15%) | Critical Loss    |
+| BM25RerankerRAG      |                2   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| BM25Retriever        |                2   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| CrossEncoderReranker |                2   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| Graph-Anchored       |                2   | 3.00 ± 0.82     | 9.09% (±12.37%)  | High Fidelity    |
+| StandardRAG          |                2   | 2.75 ± 0.96     | 16.67% (±14.51%) | High Fidelity    |
+| CoTPrompting         |                2   | 2.50 ± 0.58     | 24.24% (±8.75%)  | High Fidelity    |
+| TemplatePrompting    |                2   | 2.25 ± 0.50     | 31.82% (±7.58%)  | Critical Loss    |
+| Multi-Agent          |                2   | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Multi-AgentBM25      |                2   | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Graph-Deterministic  |                2   | 1.75 ± 0.50     | 46.97% (±7.58%)  | Critical Loss    |
+| Baseline             |                2   | 1.50 ± 1.00     | 54.55% (±15.15%) | Critical Loss    |
+| BM25RerankerRAG      |                3   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| BM25Retriever        |                3   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| CrossEncoderReranker |                3   | 3.25 ± 0.50     | 1.52% (±7.58%)   | High Fidelity    |
+| Graph-Anchored       |                3   | 3.00 ± 0.82     | 9.09% (±12.37%)  | High Fidelity    |
+| StandardRAG          |                3   | 2.75 ± 0.96     | 16.67% (±14.51%) | High Fidelity    |
+| CoTPrompting         |                3   | 2.50 ± 0.58     | 24.24% (±8.75%)  | High Fidelity    |
+| TemplatePrompting    |                3   | 2.25 ± 0.50     | 31.82% (±7.58%)  | Critical Loss    |
+| Multi-Agent          |                3   | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Multi-AgentBM25      |                3   | 2.00 ± 0.00     | 39.39% (±0.00%)  | Critical Loss    |
+| Graph-Deterministic  |                3   | 1.75 ± 0.50     | 46.97% (±7.58%)  | Critical Loss    |
+| Baseline             |                3   | 1.50 ± 1.00     | 54.55% (±15.15%) | Critical Loss    |
+
+[AdvancedMetrics] Generating plots …
+[AdvancedMetrics] Saved 'metrics_bar_grid.png'.
+[AdvancedMetrics] Saved 'metrics_line_grid.png'.
+[Tracker] Reproducibility log saved to 'debug_reproducibility_log.json'.
+2026-05-21 11:32:31 | INFO     | __main__ | Pipeline complete. Outputs: results/debug/debug_results_raw.json, results/debug/debug_experiment_metrics.csv

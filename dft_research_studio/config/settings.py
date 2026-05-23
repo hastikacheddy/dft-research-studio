@@ -71,7 +71,7 @@ class Config:
     # MODEL SETTINGS                                                       #
     # ------------------------------------------------------------------ #
     models_to_test: List[str] = field(
-        default_factory=lambda: ["llama-3.1-8b-instant"]
+        default_factory=lambda: ["llama3.1:8b"]
     )
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     reranker_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
@@ -108,7 +108,7 @@ class Config:
     data_license: str = "CC BY-NC 4.0"
     model_licenses: Dict[str, str] = field(
         default_factory=lambda: {
-            "llama-3.1-8b-instant": "Llama 3.1 Community License (Meta)",
+            "llama3.1:8b": "Llama 3.1 Community License (Meta)",
             "sentence-transformers/all-MiniLM-L6-v2": "Apache-2.0",
         }
     )

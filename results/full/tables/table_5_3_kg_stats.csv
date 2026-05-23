@@ -1,0 +1,12 @@
+Metric,Value
+Total Nodes,"19,726"
+Total Relationships,"97,924"
+Papers,25
+Functionals,293
+ValidationResults,"1,213"
+Chemical Systems,"6,904"
+BenchmarkSets,553
+FailureModes,71
+Relationship Types,15+
+Avg Degree,9.93
+Max Degree (Hub),"2,847"

@@ -54,15 +54,19 @@ class ScientificEvaluator:
         self._secondary_scores: List[float] = []
 
     def _call_judge(self, prompt, model):
+        import requests as _req
         for attempt in range(_JUDGE_RETRIES):
             try:
-                resp = self._client.chat.completions.create(
-                    model=model,
-                    messages=[{"role": "user", "content": prompt}],
-                    temperature=0, max_tokens=256,
-                )
-                return resp.choices[0].message.content
+                resp = _req.post('http://localhost:11434/api/chat', json={
+                    'model': model,
+                    'messages': [{'role': 'user', 'content': prompt}],
+                    'stream': False,
+                    'options': {'temperature': 0, 'num_predict': 256},
+                }, timeout=300)
+                data = resp.json()
+                return data.get('message', {}).get('content', '')
             except Exception as exc:
+                logger.warning('Judge call failed (attempt %d): %s', attempt+1, exc)
                 time.sleep(_JUDGE_DELAY * (2 ** attempt))
         return ""
 
@@ -91,31 +95,86 @@ class ScientificEvaluator:
         return str(obj) if obj is not None else ""
 
     def evaluate_correctness(self, ground_truth, answer):
-        prompt = f"""You are an expert quantum chemistry evaluator.
-Rate CORRECTNESS 1-5: 1=wrong, 3=mostly correct, 5=perfect.
+        prompt = f"""You are an expert quantum chemistry evaluator comparing a predicted answer against the ground truth.
+Rate CORRECTNESS on a scale of 1-5:
+1 = Completely wrong or irrelevant answer
+2 = Mentions the right topic but key facts are wrong
+3 = Partially correct, some important details missing or wrong
+4 = Mostly correct with minor omissions
+5 = Perfectly correct, matches ground truth in all key facts
+
 Ground Truth: {ground_truth[:600]}
-Predicted: {answer[:600]}
-Respond ONLY with JSON: {{"score": <int 1-5>, "reason": "<one sentence>"}}"""
-        primary = self._parse_score(self._call_judge(prompt, self.judge_model), 1.0)
+Predicted Answer: {answer[:600]}
+
+Compare the predicted answer against the ground truth carefully. Check if specific values, functional names, and scientific claims match.
+Respond ONLY with JSON: {{"score": <int 1-5>, "reason": "<one sentence explaining your score>"}}"""
+        primary = self._parse_score(self._call_judge(prompt, self.judge_model), -1.0)
         secondary = -1.0
         if self.secondary_judge_model:
             secondary = self._parse_score(
-                self._call_judge(prompt, self.secondary_judge_model), 1.0
+                self._call_judge(prompt, self.secondary_judge_model), -1.0
             )
         return primary, secondary
 
     def evaluate_relevance(self, question, answer):
-        prompt = f"""Rate RELEVANCE of the answer to the question 1-5.
+        prompt = f"""Rate how well the answer addresses the specific question asked, on a scale of 1-5:
+1 = Does not address the question at all
+2 = Tangentially related but doesn't answer the question
+3 = Partially answers the question
+4 = Answers the question well but misses some aspects
+5 = Fully and precisely answers the question
+
 Question: {question}
 Answer: {answer[:600]}
+
 Respond ONLY with JSON: {{"score": <int 1-5>}}"""
         return self._parse_score(self._call_judge(prompt, self.judge_model), 1.0)
 
+
+    @staticmethod
+    def _clean_graph_context(context):
+        """Reformat raw graph evidence into readable prose for groundedness evaluation."""
+        if "GRAPH EVIDENCE" not in context and "CANDIDATE" not in context:
+            return context  # Already clean (BM25/StandardRAG)
+        import re
+        lines = context.split("\n")
+        facts = []
+        current_id = ""
+        current_type = ""
+        current_connections = ""
+        for line in lines:
+            line = line.strip()
+            if line.startswith("CANDIDATE") and "[ID:" in line:
+                if current_id:
+                    facts.append(f"{current_id} (type: {current_type}) is connected to {current_connections}.")
+                m = re.search(r"\[ID:\s*(.+?)\]", line)
+                current_id = m.group(1) if m else ""
+                current_type = ""
+                current_connections = ""
+            elif line.startswith("- TYPE:"):
+                current_type = line.replace("- TYPE:", "").strip()
+            elif line.startswith("- CONNECTS TO:"):
+                current_connections = line.replace("- CONNECTS TO:", "").strip()
+            elif line.startswith("- VALIDATION:") or line.startswith("- VALUE:"):
+                val = line.split(":", 1)[1].strip() if ":" in line else ""
+                if val:
+                    facts.append(f"{current_id} has validation data: {val}.")
+        if current_id:
+            facts.append(f"{current_id} (type: {current_type}) is connected to {current_connections}.")
+        return " ".join(facts[:30]) if facts else context[:1200]
+
     def evaluate_groundedness(self, context, answer):
         prompt = f"""Rate GROUNDEDNESS 0 or 1.
-0=answer contains unsupported claims, 1=all claims supported by context.
-Context: {context[:1200]}
-Answer: {answer[:600]}
+0 = The answer makes factual claims that CONTRADICT or are NOT supported by the provided context
+1 = The answer either (a) makes claims supported by the context, OR (b) honestly states that the evidence does not contain the answer
+
+Context (retrieved evidence):
+{context[:1200]}
+
+Answer to evaluate:
+{answer[:600]}
+
+IMPORTANT: If the answer says the evidence does not contain the information, that is a GROUNDED response (score 1) because it accurately reflects the evidence limitations rather than hallucinating.
 Respond ONLY with JSON: {{"score": <0 or 1>}}"""
         return self._parse_score(self._call_judge(prompt, self.judge_model), 0.0, scale=1.0)
 
@@ -123,19 +182,93 @@ Respond ONLY with JSON: {{"score": <0 or 1>}}"""
         s = self.rouge.score(ground_truth, answer)
         return {"rouge1_fmeasure": s["rouge1"].fmeasure, "rougeL_fmeasure": s["rougeL"].fmeasure}
 
+    @staticmethod
+    def _normalize_doc_name(name):
+        """Normalize document names for fuzzy matching.
+        Handles: PDF filenames, paper IDs (Caldeweyher2019), full titles."""
+        import re
+        n = str(name).lower().strip()
+        # Remove file extensions
+        n = re.sub(r'\.(pdf|txt|csv|json)$', '', n)
+        # Remove common prefixes/suffixes
+        n = n.replace('_', ' ').replace('-', ' ')
+        # Extract author+year pattern (e.g. "caldeweyher2019")
+        author_year = re.findall(r'[a-z]+\d{4}', n)
+        return (n, set(author_year))
+
+    def _docs_match(self, retrieved_name, gold_name):
+        """Check if a retrieved doc matches a gold doc using fuzzy matching + paper_id mapping."""
+        import json, os
+        r_norm = str(retrieved_name).lower().strip()
+        g_norm = str(gold_name).lower().strip().replace('.pdf', '')
+        
+        # Exact match
+        if r_norm == g_norm or r_norm == g_norm + '.pdf':
+            return True
+        
+        # Load paper_id mapping
+        mapping_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'processed', 'paper_id_mapping.json')
+        try:
+            mapping = json.load(open(mapping_file))
+        except:
+            mapping = {}
+        
+        # Check if retrieved is a paper_id that maps to a title substring
+        title_substr = mapping.get(retrieved_name, mapping.get(r_norm, ""))
+        if title_substr and title_substr.lower() in g_norm:
+            return True
+        
+        # Check if gold doc filename contains the title substring
+        if title_substr:
+            # Gold doc is a filename, title_substr is from the paper
+            g_words = set(w for w in g_norm.split() if len(w) >= 4)
+            t_words = set(w for w in title_substr.lower().split() if len(w) >= 4)
+            if t_words and g_words and len(t_words & g_words) >= 2:
+                return True
+        
+        # Original fuzzy matching
+        r_clean, r_ay = self._normalize_doc_name(retrieved_name)
+        g_clean, g_ay = self._normalize_doc_name(gold_name)
+        if r_ay and g_ay and r_ay & g_ay:
+            return True
+        if len(r_clean) > 4 and len(g_clean) > 4:
+            r_words = set(w for w in r_clean.split() if len(w) >= 4)
+            g_words = set(w for w in g_clean.split() if len(w) >= 4)
+            if r_words and g_words and len(r_words & g_words) >= 2:
+                return True
+            if r_clean.replace(' ', '') in g_clean.replace(' ', ''):
+                return True
+            if g_clean.replace(' ', '') in r_clean.replace(' ', ''):
+                return True
+        return False
+
     def compute_gold_retrieval_metrics(self, retrieved, gold_docs):
         result = {"recall_at_k": 0.0, "precision_at_k": 0.0, "mrr": 0.0}
         if not gold_docs:
             return result
-        gold_set = set(gold_docs)
-        top_k    = retrieved[:self.top_k]
-        hits     = len(gold_set & set(top_k))
-        result["recall_at_k"]    = hits / len(gold_set)
-        result["precision_at_k"] = hits / self.top_k if self.top_k else 0.0
-        for rank, doc in enumerate(retrieved, 1):
-            if doc in gold_set:
-                result["mrr"] = 1.0 / rank
-                break
+        top_k = retrieved[:self.top_k]
+        # Fuzzy matching: each gold doc checked against all retrieved
+        gold_hits = 0
+        for gold in gold_docs:
+            for ret in top_k:
+                if self._docs_match(ret, gold):
+                    gold_hits += 1
+                    break
+        result["recall_at_k"] = gold_hits / len(gold_docs)
+        # Precision: how many retrieved are relevant
+        ret_hits = 0
+        for ret in top_k:
+            for gold in gold_docs:
+                if self._docs_match(ret, gold):
+                    ret_hits += 1
+                    break
+        result["precision_at_k"] = ret_hits / len(top_k) if top_k else 0.0
+        # MRR: rank of first relevant
+        for rank, ret in enumerate(retrieved, 1):
+            for gold in gold_docs:
+                if self._docs_match(ret, gold):
+                    result["mrr"] = 1.0 / rank
+                    return result
         return result
 
     @staticmethod
@@ -166,6 +299,11 @@ Respond ONLY with JSON: {{"score": <0 or 1>}}"""
             chunks = entry.retrieved_text_chunks
             if isinstance(chunks, str):
                 chunks = [chunks] if chunks else []
+            # Fallback: use context_used if chunks empty (graph architectures)
+            if not chunks and hasattr(entry, 'context_used') and entry.context_used:
+                ctx = entry.context_used
+                if isinstance(ctx, str) and len(ctx) > 10:
+                    chunks = [ctx]
 
             primary_corr, secondary_corr = self.evaluate_correctness(entry.ground_truth, ans)
             self._primary_scores.append(primary_corr)
@@ -176,7 +314,7 @@ Respond ONLY with JSON: {{"score": <0 or 1>}}"""
                 "correctness":           primary_corr,
                 "correctness_secondary": secondary_corr if secondary_corr >= 0 else None,
                 "relevance":             self.evaluate_relevance(entry.question, ans),
-                "groundedness":          self.evaluate_groundedness("\n".join(chunks), ans) if chunks else 0.0,
+                "groundedness":          self.evaluate_groundedness(self._clean_graph_context("\n".join(chunks)), ans) if chunks else 0.0,
                 "judge_model":           self.judge_model,
             }
             metrics.update(self.evaluate_rouge(entry.ground_truth, ans))

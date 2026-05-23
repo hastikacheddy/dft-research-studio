@@ -1,0 +1,13 @@
+Architecture,Valid Pairs,Pearson r,Agreement,Mean Diff
+Baseline,600,0.786,Strong,0.39
+TemplatePrompting,600,0.651,Moderate,0.33
+CoTPrompting,600,0.423,Moderate,0.46
+BM25Retriever,600,0.839,Strong,0.4
+CrossEncoderReranker,600,0.866,Strong,0.32
+BM25RerankerRAG,600,0.855,Strong,0.34
+StandardRAG,600,0.849,Strong,0.3
+GraphRAG,600,0.655,Moderate,0.3
+GraphDeterministic,600,0.804,Strong,0.21
+MultiAgent,600,0.814,Strong,0.26
+MultiAgentBM25,600,0.844,Strong,0.23
+OVERALL,6600,0.856,Strong,0.32

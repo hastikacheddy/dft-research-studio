@@ -1,0 +1,251 @@
+nohup: ignoring input
+2026-04-14 10:51:42 | INFO     | dft_research_studio.utils.logging_config | Logging initialised — level=INFO
+[Tracker] Determinism enforced — seed=42.
+2026-04-14 10:51:44 | INFO     | __main__ | Loading knowledge graph and QA data …
+2026-04-14 10:51:51 | INFO     | __main__ | Graph loaded. Removed 0 disconnected nodes.
+2026-04-14 10:51:51 | INFO     | __main__ | Initialising experiment orchestrator …
+2026-04-14 10:51:51 | INFO     | dft_research_studio.utils.experiment_orchestrator | Initialising engines for 5 ratios ...
+2026-04-14 10:51:51 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=0.00 ...
+[DataManager] Processing 25 PDFs (25 relevant, 0 distractors) …
+/teamspace/studios/this_studio/dft_research_studio/retrievers/standard_rag.py:34: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+  self.embeddings = HuggingFaceEmbeddings(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-14 10:51:55 | WARNING  | huggingface_hub.utils._http | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4817.06it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_0_0' …
+/teamspace/studios/this_studio/dft_research_studio/retrievers/standard_rag.py:40: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  self.vector_store = Chroma(
+[StandardRAG] Vector store has 2330 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s]Loading weights: 100%|██████████| 105/105 [00:00<00:00, 4681.94it/s]
+[1mBertForSequenceClassification LOAD REPORT[0m from: cross-encoder/ms-marco-MiniLM-L-6-v2
+Key                          | Status     |  | 
+-----------------------------+------------+--+-
+bert.embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[Reranker] Initialised with 'cross-encoder/ms-marco-MiniLM-L-6-v2'.
+[BM25] Initialised with 121 documents.
+[BM25Reranker] Adapter ready for 121 documents.
+2026-04-14 10:52:07 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=0.50 ...
+[DataManager] Processing 37 PDFs (25 relevant, 12 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4520.67it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_0_5' …
+[StandardRAG] Vector store has 3097 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+[BM25] Initialised with 198 documents.
+[BM25Reranker] Adapter ready for 198 documents.
+2026-04-14 10:52:24 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=1.00 ...
+[DataManager] Processing 50 PDFs (25 relevant, 25 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 5238.43it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_1_0' …
+[StandardRAG] Vector store has 4025 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+[BM25] Initialised with 274 documents.
+[BM25Reranker] Adapter ready for 274 documents.
+2026-04-14 10:52:48 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=2.00 ...
+[DataManager] Processing 75 PDFs (25 relevant, 50 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4824.27it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_2_0' …
+[StandardRAG] Vector store has 5679 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+[BM25] Initialised with 417 documents.
+[BM25Reranker] Adapter ready for 417 documents.
+2026-04-14 10:53:23 | INFO     | dft_research_studio.utils.engine_registry | Building engines for ratio=3.00 ...
+[DataManager] Processing 100 PDFs (25 relevant, 75 distractors) …
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3787.73it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[StandardRAG] Loading ChromaDB from '/teamspace/studios/this_studio/VectorDBs/chroma_dft_ratio_3_0' …
+[StandardRAG] Vector store has 7828 documents.
+[StandardRAG] Test retrieval OK — snippet: is basically like PBE0, but instead of 25% Fock-exchange  it contains 37.5% (3/8 …
+[GraphRAG] Loading SpaCy model …
+[TopologicalRetriever] Graph: 19726 nodes, 97924 edges.
+[BM25] Initialised with 563 documents.
+[BM25Reranker] Adapter ready for 563 documents.
+2026-04-14 10:54:03 | INFO     | dft_research_studio.utils.experiment_orchestrator | All engines ready. 0 results in checkpoint.
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from WANDB_API_KEY.
+wandb: Currently logged in as: hastikacheddy06 (hastikacheddy06-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run om8bqcxd
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /teamspace/studios/this_studio/wandb/run-20260414_105403-om8bqcxd
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run expert-cherry-1
+wandb: ⭐️ View project at https://wandb.ai/hastikacheddy06-/dft-research-studio
+wandb: 🚀 View run at https://wandb.ai/hastikacheddy06-/dft-research-studio/runs/om8bqcxd
+wandb: Detected [groq] in use.
+wandb: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.
+wandb: For more information, check out the docs at: https://weave-docs.wandb.ai
+2026-04-14 10:54:04 | INFO     | dft_research_studio.utils.experiment_orchestrator | W&B run: https://wandb.ai/hastikacheddy06-/dft-research-studio/runs/om8bqcxd
+2026-04-14 10:54:04 | INFO     | __main__ | Starting DEBUG experiment: 1 QA pairs × 5 ratios × 5 architectures = 25 runs
+QA pairs:   0%|          | 0/1 [00:00<?, ?q/s]2026-04-14 10:54:04 | INFO     | __main__ | Processing: Q1.1v0 | What is the M06-L density functional designed to capture?
+2026-04-14 10:54:07 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2026-04-14 10:54:12 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 15.000000 seconds
+2026-04-14 10:54:28 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:54:29 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2026-04-14 10:54:33 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 5.000000 seconds
+2026-04-14 10:54:39 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2026-04-14 10:54:52 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:54:54 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 14.000000 seconds
+2026-04-14 10:55:09 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:55:11 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 7.000000 seconds
+2026-04-14 10:55:19 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 11.000000 seconds
+2026-04-14 10:55:30 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2026-04-14 10:55:34 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:55:35 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-04-14 10:55:46 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:55:47 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2026-04-14 10:56:00 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:56:02 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2026-04-14 10:56:15 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2026-04-14 10:56:18 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2026-04-14 10:56:22 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 16.000000 seconds
+2026-04-14 10:56:38 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:56:39 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-04-14 10:56:50 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2026-04-14 10:57:04 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2026-04-14 10:57:17 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:57:19 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:57:22 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2026-04-14 10:57:25 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 16.000000 seconds
+2026-04-14 10:57:41 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-04-14 10:57:52 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2026-04-14 10:58:05 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:58:07 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 14.000000 seconds
+2026-04-14 10:58:21 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-14 10:58:23 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2026-04-14 10:58:28 | INFO     | groq._base_client | Retrying request to /openai/v1/chat/completions in 15.000000 seconds
+QA pairs: 100%|██████████| 1/1 [04:39<00:00, 279.18s/q]QA pairs: 100%|██████████| 1/1 [04:39<00:00, 279.18s/q]
+2026-04-14 10:58:43 | INFO     | __main__ | All experiment runs completed successfully.
+2026-04-14 10:58:43 | INFO     | dft_research_studio.utils.experiment_orchestrator | Results saved → 'debug_results_raw.json' (25 entries).
+2026-04-14 10:58:43 | INFO     | __main__ | Running LLM-as-Judge evaluation …
+2026-04-14 10:58:43 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Loaded 25 validated results.
+2026-04-14 10:58:43 | INFO     | absl | Using default tokenizer.
+2026-04-14 10:58:43 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Running evaluation (judge=llama-3.3-70b-versatile) ...
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating:   4%|▍         | 1/25 [00:14<05:54, 14.79s/it]Evaluating:   8%|▊         | 2/25 [00:29<05:43, 14.92s/it]Evaluating:  12%|█▏        | 3/25 [00:44<05:29, 15.00s/it]Evaluating:  16%|█▌        | 4/25 [00:59<05:14, 14.98s/it]Evaluating:  20%|██        | 5/25 [01:15<05:03, 15.17s/it]Evaluating:  24%|██▍       | 6/25 [01:30<04:46, 15.09s/it]Evaluating:  28%|██▊       | 7/25 [01:45<04:34, 15.26s/it]Evaluating:  32%|███▏      | 8/25 [02:01<04:19, 15.29s/it]Evaluating:  36%|███▌      | 9/25 [02:19<04:19, 16.19s/it]Evaluating:  40%|████      | 10/25 [02:34<03:58, 15.88s/it]Evaluating:  44%|████▍     | 11/25 [02:49<03:37, 15.51s/it]Evaluating:  48%|████▊     | 12/25 [03:04<03:19, 15.35s/it]Evaluating:  52%|█████▏    | 13/25 [03:20<03:05, 15.50s/it]Evaluating:  56%|█████▌    | 14/25 [03:35<02:50, 15.47s/it]Evaluating:  60%|██████    | 15/25 [03:50<02:33, 15.34s/it]Evaluating:  64%|██████▍   | 16/25 [04:05<02:16, 15.13s/it]Evaluating:  68%|██████▊   | 17/25 [04:20<02:00, 15.07s/it]Evaluating:  72%|███████▏  | 18/25 [04:35<01:46, 15.25s/it]Evaluating:  76%|███████▌  | 19/25 [04:50<01:30, 15.17s/it]Evaluating:  80%|████████  | 20/25 [05:06<01:16, 15.24s/it]Evaluating:  84%|████████▍ | 21/25 [05:21<01:00, 15.21s/it]Evaluating:  88%|████████▊ | 22/25 [05:36<00:45, 15.26s/it]Evaluating:  92%|█████████▏| 23/25 [05:52<00:30, 15.30s/it]Evaluating:  96%|█████████▌| 24/25 [06:07<00:15, 15.32s/it]Evaluating: 100%|██████████| 25/25 [06:22<00:00, 15.15s/it]Evaluating: 100%|██████████| 25/25 [06:22<00:00, 15.29s/it]
+2026-04-14 11:05:05 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (StandardRAG vs Baseline): nan (negligible)
+2026-04-14 11:05:05 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (GraphRAG vs Baseline): nan (negligible)
+2026-04-14 11:05:05 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (GraphDeterministic vs Baseline): nan (negligible)
+2026-04-14 11:05:05 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Cohen's d (MultiAgent vs Baseline): nan (negligible)
+/home/zeus/miniconda3/envs/cloudspace/lib/python3.12/site-packages/scipy/stats/_stats_py.py:4781: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  warnings.warn(stats.ConstantInputWarning(msg))
+2026-04-14 11:05:05 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Inter-rater reliability Pearson r=nan (p=nan) between 'llama-3.3-70b-versatile' and 'mixtral-8x7b-32768'
+2026-04-14 11:05:05 | INFO     | dft_research_studio.evaluation.scientific_evaluator | Saved → 'debug_experiment_metrics.csv' (25 rows).
+2026-04-14 11:05:05 | INFO     | __main__ | Generating advanced metrics and visualisations …
+
+[AdvancedMetrics] Building statistics table …
+
+================================================================================
+FULL SCIENTIFIC RESULTS TABLE
+================================================================================
+| System              |   Distractor Ratio | Correctness (1-5) (95% CI)   | Relevance (1-5) (95% CI)   | Recall@K (95% CI)   | Precision@K (95% CI)   | MRR (95% CI)      | ROUGE-1 F1 (95% CI)   | ROUGE-L F1 (95% CI)   |
+|:--------------------|-------------------:|:-----------------------------|:---------------------------|:--------------------|:-----------------------|:------------------|:----------------------|:----------------------|
+| Baseline            |                0   | 1.00 [1.00, 1.00]            | 5.00 [5.00, 5.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.26 [0.26, 0.26]     | 0.24 [0.24, 0.24]     |
+| Baseline            |                0.5 | 1.00 [1.00, 1.00]            | 5.00 [5.00, 5.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.26 [0.26, 0.26]     | 0.24 [0.24, 0.24]     |
+| Baseline            |                1   | 1.00 [1.00, 1.00]            | 5.00 [5.00, 5.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.26 [0.26, 0.26]     | 0.24 [0.24, 0.24]     |
+| Baseline            |                2   | 1.00 [1.00, 1.00]            | 5.00 [5.00, 5.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.26 [0.26, 0.26]     | 0.24 [0.24, 0.24]     |
+| Baseline            |                3   | 1.00 [1.00, 1.00]            | 5.00 [5.00, 5.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.26 [0.26, 0.26]     | 0.24 [0.24, 0.24]     |
+| Graph-Deterministic |                0   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Graph-Deterministic |                0.5 | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Graph-Deterministic |                1   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Graph-Deterministic |                2   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Graph-Deterministic |                3   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Graph-Anchored      |                0   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Graph-Anchored      |                0.5 | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Graph-Anchored      |                1   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Graph-Anchored      |                2   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Graph-Anchored      |                3   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Multi-Agent         |                0   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Multi-Agent         |                0.5 | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Multi-Agent         |                1   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Multi-Agent         |                2   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| Multi-Agent         |                3   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| StandardRAG         |                0   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| StandardRAG         |                0.5 | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| StandardRAG         |                1   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| StandardRAG         |                2   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+| StandardRAG         |                3   | 0.00 [0.00, 0.00]            | 0.00 [0.00, 0.00]          | 0.00 [0.00, 0.00]   | 0.00 [0.00, 0.00]      | 0.00 [0.00, 0.00] | 0.00 [0.00, 0.00]     | 0.00 [0.00, 0.00]     |
+[AdvancedMetrics] Saved 'final_results_with_ci.csv'.
+
+[AdvancedMetrics] Computing Generative Fidelity Gap …
+| Model               |   Distractor Ratio | Score (μ ± σ)   | Gap Display      | Interpretation   |
+|:--------------------|-------------------:|:----------------|:-----------------|:-----------------|
+| Baseline            |                0   | 1.00 ± nan      | 0.00% (±0.00%)   | High Fidelity    |
+| Graph-Deterministic |                0   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Graph-Anchored      |                0   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Multi-Agent         |                0   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| StandardRAG         |                0   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Baseline            |                0.5 | 1.00 ± nan      | 0.00% (±0.00%)   | High Fidelity    |
+| Graph-Deterministic |                0.5 | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Graph-Anchored      |                0.5 | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Multi-Agent         |                0.5 | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| StandardRAG         |                0.5 | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Baseline            |                1   | 1.00 ± nan      | 0.00% (±0.00%)   | High Fidelity    |
+| Graph-Deterministic |                1   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Graph-Anchored      |                1   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Multi-Agent         |                1   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| StandardRAG         |                1   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Baseline            |                2   | 1.00 ± nan      | 0.00% (±0.00%)   | High Fidelity    |
+| Graph-Deterministic |                2   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Graph-Anchored      |                2   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Multi-Agent         |                2   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| StandardRAG         |                2   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Baseline            |                3   | 1.00 ± nan      | 0.00% (±0.00%)   | High Fidelity    |
+| Graph-Deterministic |                3   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Graph-Anchored      |                3   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| Multi-Agent         |                3   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+| StandardRAG         |                3   | 0.00 ± nan      | 100.00% (±0.00%) | Critical Loss    |
+
+[AdvancedMetrics] Generating plots …
+[AdvancedMetrics] Saved 'metrics_bar_grid.png'.
+[AdvancedMetrics] Saved 'metrics_line_grid.png'.
+[Tracker] Reproducibility log saved to 'debug_reproducibility_log.json'.
+wandb: updating run metadata
+wandb: uploading summary, console lines 49-126
+wandb: 🚀 View run expert-cherry-1 at: https://wandb.ai/hastikacheddy06-/dft-research-studio/runs/om8bqcxd
+wandb: ⭐️ View project at: https://wandb.ai/hastikacheddy06-/dft-research-studio
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260414_105403-om8bqcxd/logs
+2026-04-14 11:05:10 | INFO     | __main__ | Pipeline complete. Outputs: debug_results_raw.json, debug_experiment_metrics.csv

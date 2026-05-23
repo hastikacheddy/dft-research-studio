@@ -1,0 +1,12 @@
+Architecture,GFG ratio=0.0,GFG ratio=0.5,GFG ratio=1.0,GFG ratio=2.0,GFG ratio=3.0
+Baseline,19.83,20.06,19.83,19.59,20.29
+TemplatePrompting,2.62,4.07,3.79,3.51,4.35
+CoTPrompting,10.79,10.76,10.5,10.23,11.01
+BM25Retriever,4.66,3.2,4.96,3.8,4.35
+CrossEncoderReranker,1.75,1.16,2.04,1.75,2.32
+BM25RerankerRAG,4.37,3.2,4.96,4.68,5.22
+StandardRAG,0.0,0.0,0.0,0.0,0.0
+GraphRAG,44.31,44.48,44.31,44.15,44.64
+GraphDeterministic,44.61,44.77,44.61,44.44,44.93
+MultiAgent,41.4,41.86,41.69,41.52,42.03
+MultiAgentBM25,41.11,41.28,41.11,40.94,41.45

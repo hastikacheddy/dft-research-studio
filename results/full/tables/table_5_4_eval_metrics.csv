@@ -1,0 +1,11 @@
+Metric,Scale,Method,Description
+Correctness,1-5 (Likert),LLM-as-Judge,How well the answer matches ground truth
+Correctness (2nd),1-5 (Likert),LLM-as-Judge,Inter-rater reliability check
+Relevance,1-5 (Likert),LLM-as-Judge,How well the answer addresses the question
+Groundedness,0-1 (Binary),LLM-as-Judge,Whether claims are supported by context
+ROUGE-1,0-1 (F1),Automated,Unigram overlap with ground truth
+ROUGE-L,0-1 (F1),Automated,Longest common subsequence overlap
+Recall@K,0-1,Automated,Fraction of gold documents retrieved
+Precision@K,0-1,Automated,Fraction of retrieved docs that are relevant
+MRR,0-1,Automated,Mean reciprocal rank of first relevant document
+Cohen's d,Real,Computed,Effect size vs baseline (pooled std)

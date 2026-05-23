@@ -1,0 +1,84 @@
+{
+    "timestamp_start": "2026-05-20T17:16:40.783506",
+    "python_version": "3.12.11 | packaged by Anaconda, Inc. | (main, Jun  5 2025, 13:09:17) [GCC 11.2.0]",
+    "os_platform": "Linux-6.8.0-1007-gcp-x86_64-with-glibc2.39",
+    "hardware": {
+        "cpu_count_logical": 4,
+        "cpu_count_physical": 2,
+        "ram_total_gb": 15.62,
+        "gpu_name": "None",
+        "gpu_count": 0,
+        "cuda_version": "N/A"
+    },
+    "libraries": {
+        "numpy": "1.26.4",
+        "torch": "2.8.0+cu128",
+        "chromadb": "1.5.7",
+        "networkx": "3.6.1",
+        "pandas": "2.1.4",
+        "spacy": "3.8.14",
+        "scikit-learn": "1.8.0",
+        "langchain-community": "0.4.1",
+        "langchain-text-splitters": "1.1.1",
+        "rouge-score": "0.1.2",
+        "thefuzz": "0.22.1",
+        "groq": "1.1.2",
+        "pymupdf": "1.27.2.2",
+        "pyvis": "0.3.2",
+        "python": "3.12.11",
+        "platform": "Linux-6.8.0-1007-gcp-x86_64-with-glibc2.39"
+    },
+    "config_snapshot": {
+        "base_dir": "/teamspace/studios/this_studio/dft_research_studio/data/processed",
+        "chroma_base_dir": "/teamspace/studios/this_studio/VectorDBs",
+        "models_to_test": [
+            "llama-3.1-8b-instant"
+        ],
+        "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+        "spacy_model": "en_core_web_sm",
+        "top_k_retrieval": 5,
+        "chunk_size": 1000,
+        "chunk_overlap": 100,
+        "random_seed": 42,
+        "distractor_ratios": [
+            0.0,
+            0.5,
+            1.0,
+            2.0,
+            3.0
+        ],
+        "question_levels": {
+            "L1": [
+                0,
+                30
+            ],
+            "L2": [
+                30,
+                60
+            ],
+            "L3": [
+                60,
+                90
+            ],
+            "L4": [
+                90,
+                120
+            ]
+        },
+        "data_license": "CC BY-NC 4.0",
+        "model_licenses": {
+            "llama-3.1-8b-instant": "Llama 3.1 Community License (Meta)",
+            "sentence-transformers/all-MiniLM-L6-v2": "Apache-2.0"
+        }
+    },
+    "data_hashes": {
+        "/teamspace/studios/this_studio/dft_research_studio/data/processed/dft_kg_nodes.csv": "b78b8ccea1ab665a19b640bad34f5fa5",
+        "/teamspace/studios/this_studio/dft_research_studio/data/processed/dft_kg_relationships.csv": "832a888c6498ff89d32e844d4a679c98",
+        "/teamspace/studios/this_studio/dft_research_studio/data/processed/_DFT-QA-120.csv": "603e827dc10fc5f38da5a1fa3d898a32"
+    },
+    "timestamp_end": "2026-05-20T17:55:01.120251",
+    "total_runtime_seconds": 2300.34,
+    "estimated_kwh": 0.0958,
+    "estimated_co2_grams": 45.53
+}
