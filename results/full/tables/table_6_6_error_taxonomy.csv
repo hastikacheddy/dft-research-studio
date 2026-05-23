@@ -1,0 +1,12 @@
+Architecture,N,Correct,Correct %,Type I,Type I %,Type II,Type II %,Type III,Type III %
+Baseline,600,184,30.7,30,5.0,386,64.3,0,0.0
+TemplatePrompting,600,387,64.5,0,0.0,213,35.5,0,0.0
+CoTPrompting,600,324,54.0,0,0.0,276,46.0,0,0.0
+BM25Retriever,600,304,50.7,0,0.0,260,43.3,36,6.0
+CrossEncoderReranker,600,329,54.8,2,0.3,242,40.3,27,4.5
+BM25RerankerRAG,600,313,52.2,0,0.0,253,42.2,34,5.7
+StandardRAG,600,350,58.3,0,0.0,230,38.3,20,3.3
+GraphRAG,600,25,4.2,0,0.0,300,50.0,275,45.8
+GraphDeterministic,600,65,10.8,0,0.0,220,36.7,315,52.5
+MultiAgent,600,65,10.8,0,0.0,256,42.7,279,46.5
+MultiAgentBM25,600,70,11.7,0,0.0,250,41.7,280,46.7

@@ -1,0 +1,17 @@
+Parameter,Value
+Generator Model,llama3.1:8b (Ollama local)
+Primary Judge,qwen2.5:14b (Ollama local)
+Secondary Judge,gemma2:9b (Ollama local)
+Embedding Model,sentence-transformers/all-MiniLM-L6-v2
+Reranker,cross-encoder/ms-marco-MiniLM-L-6-v2
+Distractor Ratios,"0.0, 0.5, 1.0, 2.0, 3.0"
+Questions,120 (Q-120 Challenge Set)
+Total Runs,"6,600 (11 x 5 x 120)"
+Random Seed,42
+Max Tokens (Answer),500
+Max Tokens (Judge),512
+Temperature,0.0 (deterministic)
+Hardware,NVIDIA L4 (24GB VRAM)
+Platform,Lightning.ai
+Vector Store,ChromaDB (per-ratio)
+BM25 Source,Extracted from ChromaDB

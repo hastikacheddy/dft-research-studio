@@ -1,0 +1,12 @@
+Architecture,v0 Mean,v1 Mean,v2 Mean,Mean Std,Max Gap
+Baseline,2.38,2.31,2.2,0.446,0.18
+TemplatePrompting,2.68,2.8,2.8,0.41,0.12
+CoTPrompting,2.56,2.52,2.58,0.309,0.06
+BM25Retriever,2.66,2.73,2.8,0.548,0.15
+CrossEncoderReranker,2.78,2.77,2.85,0.507,0.08
+BM25RerankerRAG,2.73,2.72,2.72,0.489,0.01
+StandardRAG,2.93,2.72,2.9,0.399,0.21
+GraphRAG,1.56,1.55,1.65,0.339,0.1
+GraphDeterministic,1.59,1.58,1.58,0.447,0.01
+MultiAgent,1.72,1.6,1.7,0.457,0.11
+MultiAgentBM25,1.74,1.55,1.78,0.444,0.22

@@ -151,7 +151,10 @@ class TopologicalRetriever:
                 if "paper_id" in data and pd.notna(data["paper_id"]):
                     paper_ids.add(data["paper_id"])
 
-        sorted_hubs = [h for h, _ in Counter(hub_candidates).most_common(15)]
+        # Filter out non-informative generic hub nodes
+        _SKIP_HUBS = {'Global_Metadata_Hub', 'Density Functional Theory', 'DFT', 'Hub', 'Metadata'}
+        sorted_hubs = [h for h, _ in Counter(hub_candidates).most_common(25)
+                       if h not in _SKIP_HUBS and not h.startswith('Global_')][:15]
 
         # D. Build context
         lines = [f"--- GRAPH EVIDENCE ({len(sorted_hubs)} hubs found) ---"]

@@ -1,0 +1,12 @@
+Architecture,T1: Factual Corr,T1: Factual Grnd,T2: Constraint Corr,T2: Constraint Grnd,T3: MultiHop Corr,T3: MultiHop Grnd,T4: Comparative Corr,T4: Comparative Grnd
+Baseline,2.03,0.0,2.47,0.0,2.14,0.0,2.53,0.0
+TemplatePrompting,2.53,0.0,2.87,0.0,2.68,0.0,2.95,0.0
+CoTPrompting,2.47,0.0,2.6,0.0,2.6,0.0,2.56,0.0
+BM25Retriever,2.53,0.91,2.99,0.77,2.57,0.71,2.88,0.59
+CrossEncoderReranker,2.61,0.81,2.93,0.77,2.62,0.76,3.08,0.65
+BM25RerankerRAG,2.57,0.95,2.95,0.71,2.52,0.77,2.89,0.6
+StandardRAG,2.77,0.67,3.2,0.75,2.42,0.67,3.06,0.62
+GraphRAG,1.47,0.93,1.73,0.93,1.46,0.97,1.71,0.93
+GraphDeterministic,1.83,0.93,1.6,0.8,1.43,0.9,1.47,0.83
+MultiAgent,1.4,0.97,1.77,0.9,1.67,0.93,1.83,0.93
+MultiAgentBM25,1.4,0.97,1.83,0.9,1.67,0.93,1.83,0.9

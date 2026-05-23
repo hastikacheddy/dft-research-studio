@@ -35,7 +35,6 @@ full_reproducibility*
 *.png
 *.pdf
 *.csv
-results/
 notebooks/
 nltk_data/
 README_HF.md
@@ -50,7 +49,6 @@ Downloads/
 *.tar.gz
 checkpoint_results.jsonl
 debug_*
-results/
 __pycache__/
 *.pyc
 .env
@@ -95,3 +93,5 @@ nltk_data/
 .dvc/
 .dvcignore
 Dockerfile.app
+.bash_history
+.ollama/

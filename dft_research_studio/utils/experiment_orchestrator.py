@@ -172,6 +172,101 @@ class ExperimentOrchestrator:
                      str(log), chunks, pids,
                      round((time.perf_counter()-t0)*1000, 2))
 
+    def run_template_prompting(self, models, qa, ratio):
+        for m in models:
+            if self._is_done(qa["id"], ratio, "TemplatePrompting"):
+                return
+            t0 = time.perf_counter()
+            llm = LLMWrapper(m, config=self.cfg)
+            prompt = (
+                "You are an expert computational chemist specialising in DFT. "
+                "Answer precisely using benchmark evidence where possible.\n\n"
+                f"Question: {qa['question']}"
+            )
+            ans, *_ = llm.generate(prompt)
+            self._record(m, qa, ratio, "TemplatePrompting", "Template", ans, {},
+                         latency_ms=round((time.perf_counter()-t0)*1000, 2))
+
+    def run_cot_prompting(self, models, qa, ratio):
+        for m in models:
+            if self._is_done(qa["id"], ratio, "CoTPrompting"):
+                return
+            t0 = time.perf_counter()
+            llm = LLMWrapper(m, config=self.cfg)
+            prompt = (
+                "You are an expert computational chemist. "
+                "Think step by step before answering.\n\n"
+                f"Question: {qa['question']}\n\n"
+                "Let's think step by step:"
+            )
+            ans, *_ = llm.generate(prompt)
+            self._record(m, qa, ratio, "CoTPrompting", "Chain-of-Thought", ans, {},
+                         latency_ms=round((time.perf_counter()-t0)*1000, 2))
+
+    def run_bm25_retriever(self, models, qa, ratio):
+        if self._is_done(qa["id"], ratio, "BM25Retriever"):
+            return
+        t0 = time.perf_counter()
+        try:
+            bm25 = self.engines.bm25_reranker(ratio)
+            docs = bm25.invoke(qa["question"])
+            context = "\n".join(d.page_content for d in docs)[:2000]
+            sources = [d.metadata.get("source", "") for d in docs]
+            for m in models:
+                llm = LLMWrapper(m, config=self.cfg)
+                ans, *_ = llm.generate(f"Context: {context}\nQ: {qa['question']}")
+                self._record(m, qa, ratio, "BM25Retriever", "Sparse", ans, {},
+                             context, [context], sources,
+                             round((time.perf_counter()-t0)*1000, 2))
+        except Exception as exc:
+            logger.warning("BM25Retriever error: %s", exc)
+
+    def run_cross_encoder_reranker(self, models, qa, ratio):
+        if self._is_done(qa["id"], ratio, "CrossEncoderReranker"):
+            return
+        t0 = time.perf_counter()
+        try:
+            bm25 = self.engines.bm25_reranker(ratio)
+            docs = bm25.invoke(qa["question"])
+            context = "\n".join(d.page_content for d in docs)[:2000]
+            sources = [d.metadata.get("source", "") for d in docs]
+            for m in models:
+                llm = LLMWrapper(m, config=self.cfg)
+                ans, *_ = llm.generate(f"Context (reranked): {context}\nQ: {qa['question']}")
+                self._record(m, qa, ratio, "CrossEncoderReranker", "Reranked", ans, {},
+                             context, [context], sources,
+                             round((time.perf_counter()-t0)*1000, 2))
+        except Exception as exc:
+            logger.warning("CrossEncoderReranker error: %s", exc)
+
+    def run_bm25_reranker_rag(self, models, qa, ratio):
+        if self._is_done(qa["id"], ratio, "BM25RerankerRAG"):
+            return
+        t0 = time.perf_counter()
+        try:
+            bm25 = self.engines.bm25_reranker(ratio)
+            docs = bm25.invoke(qa["question"])
+            context = "\n".join(d.page_content for d in docs)[:2000]
+            sources = [d.metadata.get("source", "") for d in docs]
+            for m in models:
+                llm = LLMWrapper(m, config=self.cfg)
+                ans, *_ = llm.generate(f"Context: {context}\nQ: {qa['question']}")
+                self._record(m, qa, ratio, "BM25RerankerRAG", "HybridSparse", ans, {},
+                             context, [context], sources,
+                             round((time.perf_counter()-t0)*1000, 2))
+        except Exception as exc:
+            logger.warning("BM25RerankerRAG error: %s", exc)
+
+    def run_multi_agent_bm25(self, models, qa, ratio):
+        if self._is_done(qa["id"], ratio, "MultiAgentBM25"):
+            return
+        t0  = time.perf_counter()
+        mas = self.engines.mas(ratio)
+        ans, log, chunks, pids, it, ot, cost, calls = mas.run_workflow(qa["question"])
+        self._record(models[0], qa, ratio, "MultiAgentBM25", "HybridAgent", ans, {},
+                     str(log), chunks, pids,
+                     round((time.perf_counter()-t0)*1000, 2))
+
     def save_results(self, filename="experiment_results_raw.json"):
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(self.results, f, indent=2, ensure_ascii=False)

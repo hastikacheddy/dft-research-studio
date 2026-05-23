@@ -114,7 +114,9 @@ def main() -> None:
     log.info("Graph loaded. Removed %d disconnected nodes.", removed)
 
     # ── Orchestrator ─────────────────────────────────────────────────
-    checkpoint_file = f"{tag}_checkpoint.jsonl"
+    import os as _os
+    _os.makedirs(f"results/{tag}", exist_ok=True)
+    checkpoint_file = f"results/{tag}/{tag}_checkpoint.jsonl"
     if not args.resume and Path(checkpoint_file).exists():
         log.warning(
             "Checkpoint '%s' exists but --resume was not passed. "
@@ -131,12 +133,12 @@ def main() -> None:
     )
 
     # ── Experiment scope ─────────────────────────────────────────────
-    qa_subset = [runner.qa_pairs[0]] if args.debug else runner.qa_pairs
+    qa_subset = [q for q in runner.qa_pairs if q["id"] in ["Q1.1v0","Q2.1v0","Q3.1v0","Q4.1v0"]] if args.debug else runner.qa_pairs
     models    = config.models_to_test[:1] if args.debug else config.models_to_test
 
-    total_runs = len(qa_subset) * len(config.distractor_ratios) * 5  # 5 architectures
+    total_runs = len(qa_subset) * len(config.distractor_ratios) * 11  # 11 architectures
     log.info(
-        "Starting %s experiment: %d QA pairs × %d ratios × 5 architectures = %d runs",
+        "Starting %s experiment: %d QA pairs × %d ratios × 11 architectures = %d runs",
         tag.upper(), len(qa_subset), len(config.distractor_ratios), total_runs,
     )
 
@@ -150,11 +152,20 @@ def main() -> None:
             for ratio in config.distractor_ratios:
                 log.debug("  ratio=%.1f", ratio)
 
+                # Part 1: Pure LLM Baselines
                 runner.run_baseline(models, qa, ratio)
+                runner.run_template_prompting(models, qa, ratio)
+                runner.run_cot_prompting(models, qa, ratio)
+                # Part 2: Standard IR Baselines
+                runner.run_bm25_retriever(models, qa, ratio)
+                runner.run_cross_encoder_reranker(models, qa, ratio)
+                runner.run_bm25_reranker_rag(models, qa, ratio)
                 runner.run_rag(models, qa, ratio)
+                # Part 3: Graph-Based Architectures
                 runner.run_graph_rag(models, qa, ratio)
                 runner.run_graph_deterministic(models, qa, ratio)
                 runner.run_multi_agent_system(models, qa, ratio)
+                runner.run_multi_agent_bm25(models, qa, ratio)
 
         log.info("All experiment runs completed successfully.")
 
@@ -173,12 +184,12 @@ def main() -> None:
         sys.exit(1)
 
     # ── Persist full results ──────────────────────────────────────────
-    results_file = f"{tag}_results_raw.json"
+    results_file = f"results/{tag}/{tag}_results_raw.json"
     runner.save_results(results_file)
 
     # ── Evaluation ───────────────────────────────────────────────────
     log.info("Running LLM-as-Judge evaluation …")
-    metrics_file = f"{tag}_experiment_metrics.csv"
+    metrics_file = f"results/{tag}/{tag}_experiment_metrics.csv"
     try:
         evaluator = ScientificEvaluator(results_file=results_file, config=config)
         evaluator.run_all_evaluations(output_csv=metrics_file)

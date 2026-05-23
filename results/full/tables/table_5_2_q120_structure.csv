@@ -1,0 +1,5 @@
+Tier,Questions,Base Questions,Variations,Example
+T1: Factual,30,10,3,What is the M06-L density functional designed to capture?
+T2: Constraint,30,10,3,Which authors compiled the GMTKN55 benchmark database?
+T3: MultiHop,30,10,3,What are the key differences in application focus and computational cost scaling
+T4: Comparative,30,10,3,Why do comprehensive benchmark studies like GMTKN55 include separate recommendat

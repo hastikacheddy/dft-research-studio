@@ -1,0 +1,4 @@
+Paradigm,Architectures,Mean Groundedness,Std,Mean Correctness,Mean Relevance
+Baselines,3,0.0,0.0,2.54,3.01
+IR,4,0.732,0.443,2.79,3.04
+Graph,4,0.917,0.276,1.63,1.43

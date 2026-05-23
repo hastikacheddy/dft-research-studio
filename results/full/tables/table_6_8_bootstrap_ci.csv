@@ -1,0 +1,12 @@
+Architecture,Mean,Std,CI Lower (2.5%),CI Upper (97.5%),CI Width
+Baseline,2.292,0.798,2.23,2.355,0.125
+TemplatePrompting,2.757,0.664,2.705,2.808,0.103
+CoTPrompting,2.557,0.529,2.517,2.6,0.083
+BM25Retriever,2.742,1.009,2.66,2.825,0.165
+CrossEncoderReranker,2.81,0.968,2.735,2.888,0.153
+BM25RerankerRAG,2.733,0.981,2.657,2.817,0.16
+StandardRAG,2.862,0.947,2.788,2.938,0.15
+GraphRAG,1.592,0.626,1.542,1.64,0.098
+GraphDeterministic,1.583,0.678,1.53,1.638,0.108
+MultiAgent,1.668,0.756,1.607,1.728,0.122
+MultiAgentBM25,1.683,0.806,1.618,1.75,0.132
