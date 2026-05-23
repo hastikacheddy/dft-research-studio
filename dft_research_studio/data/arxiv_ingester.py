@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 import pandas as pd
+from .graph_postprocessor import GraphPostProcessor
 import requests
 
 logger = logging.getLogger(__name__)
@@ -231,6 +232,10 @@ class ArXivIngester:
                 processed += 1
                 time.sleep(1)
         if save_kg and any(r.status=="merged" for r in results):
+            # Post-process: normalize, enhance, resolve entities
+            gpp = GraphPostProcessor(self.nodes_df, self.rels_df)
+            self.nodes_df, self.rels_df = gpp.run_full_pipeline()
+            logger.info(gpp.get_summary())
             self._save_kg()
         self._save_seen()
         return results
