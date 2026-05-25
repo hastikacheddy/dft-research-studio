@@ -220,12 +220,12 @@ class DebateOrchestrator:
             self.kg = None
             import logging
             logging.getLogger(__name__).warning("KGQueryEngine not loaded: %s", exc)
-        # Meta-engineering reasoning engine (qwen/qwen3-32b)
+        # Meta-engineering reasoning engine (qwen2.5:14b)
         try:
             from .meta_reasoning_engine import MetaReasoningEngine
             self.meta_engine = MetaReasoningEngine(llm=llm, kg=self.kg)
             import logging
-            logging.getLogger(__name__).info("MetaReasoningEngine ready with qwen/qwen3-32b.")
+            logging.getLogger(__name__).info("MetaReasoningEngine ready with qwen2.5:14b.")
         except Exception as exc:
             self.meta_engine = None
             import logging

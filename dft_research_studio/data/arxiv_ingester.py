@@ -103,7 +103,9 @@ class ArXivIngester:
             json.dump(list(self._seen), f)
 
     def search_arxiv(self, query, max_results=5):
-        params = {"search_query":f"all:{query}","start":0,
+        # Restrict to physics/chemistry categories relevant to DFT
+        cat_filter = 'cat:physics.chem-ph OR cat:physics.comp-ph OR cat:cond-mat.mtrl-sci OR cat:physics.atom-ph'
+        params = {"search_query":f"all:{query} AND ({cat_filter})","start":0,
                   "max_results":max_results,"sortBy":"submittedDate","sortOrder":"descending"}
         try:
             resp = requests.get(self.ARXIV_API, params=params, timeout=30)
@@ -157,7 +159,21 @@ class ArXivIngester:
             response, *_ = self.llm.generate(prompt, max_tokens=1500)
             m = re.search(r"\{.*\}", response, re.DOTALL)
             if not m: return [], []
-            data = json.loads(m.group())
+            raw_json = m.group()
+            # Fix common LLM JSON errors
+            raw_json = re.sub(r',\s*}', '}', raw_json)  # trailing comma before }
+            raw_json = re.sub(r',\s*]', ']', raw_json)  # trailing comma before ]
+            raw_json = re.sub(r'""', '"', raw_json)     # double quotes
+            try:
+                data = json.loads(raw_json)
+            except json.JSONDecodeError:
+                # Try fixing with ast
+                try:
+                    import ast
+                    data = ast.literal_eval(raw_json)
+                except Exception:
+                    logger.warning("JSON parse failed, attempting line-by-line fix")
+                    return [], []
             nodes = data.get("nodes",[])
             rels  = data.get("relationships",[])
             nodes.append({"node_id":paper.paper_id,"label":"Paper",

@@ -24,6 +24,13 @@ class LLMWrapper:
         if not self.use_ollama:
             from groq import Groq
             self.client = Groq(api_key=cfg.groq_api_key)
+            # Map Ollama model names to Groq equivalents
+            _GROQ_MAP = {
+                'llama3.1:8b': 'llama-3.1-8b-instant',
+                'qwen2.5:14b': 'llama-3.3-70b-versatile',
+                'gemma2:9b': 'llama-3.3-70b-versatile',
+            }
+            self.model_name = _GROQ_MAP.get(self.model_name, self.model_name)
 
     def generate(
         self,

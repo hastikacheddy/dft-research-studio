@@ -3,7 +3,7 @@ agents/meta_reasoning_engine.py
 --------------------------------
 Meta-Engineering Reasoning Engine
 
-Uses qwen/qwen3-32b — a native chain-of-thought reasoning model.
+Uses qwen2.5:14b — a native chain-of-thought reasoning model.
 
 Meta-engineering = the system reasons about its OWN reasoning process:
 
@@ -35,7 +35,7 @@ from .llm_wrapper import LLMWrapper
 logger = logging.getLogger(__name__)
 
 # Reasoning model — Qwen3 has native CoT
-REASONING_MODEL = "qwen/qwen3-32b"
+REASONING_MODEL = "qwen2.5:14b"
 
 MAE_THRESHOLDS = {
     "Non-covalent interactions": (0.5,  "kcal/mol"),
@@ -75,7 +75,7 @@ class ReasoningChain:
 
 class MetaReasoningEngine:
     """
-    Meta-Engineering Reasoning Engine using qwen/qwen3-32b.
+    Meta-Engineering Reasoning Engine using qwen2.5:14b.
 
     Three meta-engineering capabilities:
     1. Criteria evaluation — is the Advisor's selection logic valid?
@@ -88,11 +88,8 @@ class MetaReasoningEngine:
         self.kg  = kg
         # Create a separate LLM instance for meta-reasoning with Qwen3
         # Reuse the same Groq client, just swap the model
-        self.meta_llm = LLMWrapper.__new__(LLMWrapper)
-        self.meta_llm.client     = llm.client
-        self.meta_llm.model_name = REASONING_MODEL
-        self.meta_llm._in_cost   = 0.0
-        self.meta_llm._out_cost  = 0.0
+        from ..config import Config
+        self.meta_llm = LLMWrapper(REASONING_MODEL, config=Config())
         self._rejection_history: List[Dict] = []  # tracks rejected proposals
         logger.info("MetaReasoningEngine ready with %s for meta-reasoning.", REASONING_MODEL)
 
@@ -113,7 +110,7 @@ class MetaReasoningEngine:
         Evaluate WHETHER the Advisor's selection criteria are valid,
         not just whether the functional is accurate.
 
-        Uses qwen/qwen3-32b for native chain-of-thought reasoning.
+        Uses qwen2.5:14b for native chain-of-thought reasoning.
         """
         prompt = f"""<think>
 You are a meta-engineering reasoner for quantum chemistry.
@@ -443,8 +440,8 @@ Reason about which knowledge source is more reliable for {task}."""
             f"║  Threshold:      < {thr} {thr_unit}",
             f"║  Citation:       {citation[:44] if citation else 'KG ValidationResult'}",
             "╠"+"═"*54+"╣",
-            f"║  Reasoning model: qwen/qwen3-32b (native CoT)    ║",
-            f"║  Retrieval model: llama-3.3-70b-versatile        ║",
+            f"║  Reasoning model: qwen2.5:14b (native CoT)    ║",
+            f"║  Retrieval model: qwen2.5:14b        ║",
             "╠"+"═"*54+"╣",
             "║  ✅  Accuracy within KG-verified threshold",
             f"║  {'✅' if dispersion else 'ℹ '}  Dispersion: {dispersion[1:] if dispersion else 'not required for this task'}",

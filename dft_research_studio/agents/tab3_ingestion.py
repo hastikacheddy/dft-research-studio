@@ -136,8 +136,10 @@ def run_ingestion(keyword, max_papers):
 def _make_kg_stats():
     if _ingester is None:
         return "<p style='color:#64748b'>Engine not loaded.</p>"
-    orig_nodes = len(_ingester.nodes_df)
-    orig_rels  = len(_ingester.rels_df)
+    # Read ORIGINAL file from disk (not in-memory which gets updated during ingestion)
+    import pandas as pd
+    orig_nodes = len(pd.read_csv(_ingester.nodes_path))
+    orig_rels  = len(pd.read_csv(_ingester.rels_path))
 
     # Check augmented files
     aug_path = os.path.join(
