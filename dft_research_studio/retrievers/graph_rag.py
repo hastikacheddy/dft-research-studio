@@ -108,16 +108,31 @@ class GraphRAG:
                 found[term] = hits
                 debug_log.append(f"  '{term}' → {hits}")
 
-        # C. Gather candidates via edges
+        # C. Gather candidates via edges (with hub filtering)
+        _SKIP_HUBS = {"Global_Metadata_Hub", "Density Functional Theory", "DFT",
+                       "Hub", "Metadata", "GMTKN55", "GMTKN30"}
         candidates: Set[str] = set()
+        # Add the matched nodes themselves first
         for node_ids in found.values():
             for nid in node_ids:
+                candidates.add(nid)
                 incoming = self.rels_df[self.rels_df["target_id"] == nid]
                 outgoing = self.rels_df[self.rels_df["source_id"] == nid]
-                candidates.update(incoming["source_id"].tolist())
-                candidates.update(outgoing["target_id"].tolist())
+                # Only add neighbors that aren't massive hubs
+                for neighbor in incoming["source_id"].tolist() + outgoing["target_id"].tolist():
+                    if neighbor not in _SKIP_HUBS:
+                        candidates.add(neighbor)
                 paper_ids.update(incoming["paper_id"].dropna().tolist())
                 paper_ids.update(outgoing["paper_id"].dropna().tolist())
+        # Cap at 50 most relevant candidates
+        if len(candidates) > 50:
+            # Prioritize: matched nodes first, then VR nodes, then others
+            matched = set()
+            for node_ids in found.values():
+                matched.update(node_ids)
+            vr_nodes = {c for c in candidates if c.startswith("VR_")}
+            others = candidates - matched - vr_nodes
+            candidates = matched | set(list(vr_nodes)[:30]) | set(list(others)[:20-len(matched)])
 
         if not candidates:
             return "No direct graph matches found.", list(paper_ids), debug_log
@@ -150,12 +165,36 @@ class GraphRAG:
                     rel_details.append(f"{rel['relationship_type']} → {rel['target_id']}")
                 else:
                     rel_details.append(f"{rel['source_id']} → {rel['relationship_type']} → {res_id}")
+            # Collect VALUES from connected VR_ nodes (the key enrichment)
+            vr_facts = []
+            for conn_id in conns[:10]:
+                if str(conn_id).startswith("VR_") and conn_id in self.node_map:
+                    vr_detail = self.node_map[conn_id]
+                    vr_val = vr_detail.get("value", "N/A")
+                    vr_unit = vr_detail.get("unit", "")
+                    if str(vr_val) not in ("nan", "N/A", "None", ""):
+                        # Parse VR node ID for benchmark and metric info
+                        vr_parts = str(conn_id).replace("VR_", "").split("_")
+                        vr_facts.append(f"{conn_id} = {vr_val} {vr_unit}")
+            # Also get rung/class/family for Functional nodes
+            rung = details.get("rung", "")
+            cls = details.get("class", "")
+            family = details.get("family", "")
+            classification = ""
+            if str(rung) not in ("nan", "", "None", "Unknown"):
+                classification = f"Rung {rung} ({cls})"
+                if str(family) not in ("nan", "", "None", "Unknown"):
+                    classification += f", {family} family"
             lines = [
                 f"CANDIDATE {count + 1} [ID: {res_id}]",
                 f"  - TYPE: {node_type}",
-                f"  - RELATIONSHIPS: {'; '.join(rel_details[:6])}",
-                f"  - ALSO CONNECTS TO: {', '.join(str(c) for c in conns[:5])}",
             ]
+            if classification:
+                lines.append(f"  - CLASSIFICATION: {classification}")
+            lines.append(f"  - RELATIONSHIPS: {'; '.join(rel_details[:6])}")
+            if vr_facts:
+                lines.append(f"  - QUANTITATIVE DATA: {'; '.join(vr_facts[:5])}")
+            lines.append(f"  - ALSO CONNECTS TO: {', '.join(str(c) for c in conns[:5])}")
             if str(val) not in ("nan", "N/A"):
                 lines.append(f"  - VALUE: {val} {unit}")
             context_parts.append("\n".join(lines))
@@ -172,12 +211,13 @@ class GraphRAG:
         return f"""ROLE: You are a precise quantum chemistry assistant. You MUST answer ONLY from the evidence provided below.
 TASK: Answer the USER QUERY using ONLY the graph evidence below. Do NOT use your own knowledge.
 STRICT RULES:
-1. Answer the query using ONLY the GRAPH EVIDENCE below. You MAY interpret relationship names (e.g., "VALIDATED_ON → S66" means the functional was tested on the S66 benchmark).
-2. If a VALUE, MAE, RMSD, or benchmark result appears, cite it with its unit and node ID.
-3. If the evidence contains relevant relationships but no direct textual answer, describe what the graph structure reveals about the entity.
-4. Do NOT add facts from your training data — only interpret the evidence below.
-5. If the evidence is genuinely irrelevant to the query, say "The provided evidence does not contain this information."
-6. Give a direct answer in 2-4 sentences, citing node IDs.
+1. Answer the question using the GRAPH EVIDENCE below. Interpret relationship names as facts (e.g., "RESULT_FOR_METHOD → M06-L" means the result was measured for M06-L; "RECOMMENDED_FOR → Noncovalent_Interactions" means it is recommended for noncovalent interactions).
+2. Cite supporting evidence with [CANDIDATE X] references where possible.
+3. If a VALUE appears, cite it exactly with its unit.
+4. You MAY compare entities by examining their different connections and values in the evidence.
+5. Base your answer primarily on the evidence. If you must add brief context to make the answer coherent, clearly distinguish it from evidence-based claims.
+6. If the evidence is genuinely irrelevant, say so — but first check if relationships or values can answer the question indirectly.
+7. Give a direct, informative answer in 2-5 sentences.
 GRAPH EVIDENCE:
 {context}
 USER QUERY: {user_query}

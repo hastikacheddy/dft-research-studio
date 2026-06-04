@@ -52,6 +52,10 @@ class ScientificEvaluator:
         self.rouge   = rouge_scorer.RougeScorer(["rouge1", "rougeL"], use_stemmer=True)
         self._primary_scores:   List[float] = []
         self._secondary_scores: List[float] = []
+        self._relevance_primary: List[float] = []
+        self._relevance_secondary: List[float] = []
+        self._ground_primary: List[float] = []
+        self._ground_secondary: List[float] = []
 
     def _call_judge(self, prompt, model):
         import requests as _req
@@ -128,7 +132,11 @@ Question: {question}
 Answer: {answer[:600]}
 
 Respond ONLY with JSON: {{"score": <int 1-5>}}"""
-        return self._parse_score(self._call_judge(prompt, self.judge_model), 1.0)
+        primary = self._parse_score(self._call_judge(prompt, self.judge_model), 1.0)
+        secondary = -1.0
+        if self.secondary_judge_model:
+            secondary = self._parse_score(self._call_judge(prompt, self.secondary_judge_model), -1.0)
+        return primary, secondary
 
 
     @staticmethod
@@ -176,7 +184,13 @@ Answer to evaluate:
 
 IMPORTANT: If the answer says the evidence does not contain the information, that is a GROUNDED response (score 1) because it accurately reflects the evidence limitations rather than hallucinating.
 Respond ONLY with JSON: {{"score": <0 or 1>}}"""
-        return self._parse_score(self._call_judge(prompt, self.judge_model), 0.0, scale=1.0)
+        primary = self._parse_score(self._call_judge(prompt, self.judge_model), 0.0, scale=1.0)
+        secondary = -1.0
+        if self.secondary_judge_model:
+            secondary = self._parse_score(
+                self._call_judge(prompt, self.secondary_judge_model), -1.0, scale=1.0
+            )
+        return primary, secondary
 
     def evaluate_rouge(self, ground_truth, answer):
         s = self.rouge.score(ground_truth, answer)
@@ -310,13 +324,26 @@ Respond ONLY with JSON: {{"score": <0 or 1>}}"""
             if secondary_corr >= 0:
                 self._secondary_scores.append(secondary_corr)
 
+            relevance_primary, relevance_secondary = self.evaluate_relevance(entry.question, ans)
+            if chunks:
+                ground_primary, ground_secondary = self.evaluate_groundedness(self._clean_graph_context("\n".join(chunks)), ans)
+            else:
+                ground_primary, ground_secondary = 0.0, 0.0
             metrics: Dict[str, Any] = {
-                "correctness":           primary_corr,
-                "correctness_secondary": secondary_corr if secondary_corr >= 0 else None,
-                "relevance":             self.evaluate_relevance(entry.question, ans),
-                "groundedness":          self.evaluate_groundedness(self._clean_graph_context("\n".join(chunks)), ans) if chunks else 0.0,
-                "judge_model":           self.judge_model,
+                "correctness":              primary_corr,
+                "correctness_secondary":    secondary_corr if secondary_corr >= 0 else None,
+                "relevance":                relevance_primary,
+                "relevance_secondary":      relevance_secondary if relevance_secondary >= 0 else None,
+                "groundedness":             ground_primary,
+                "groundedness_secondary":   ground_secondary if ground_secondary >= 0 else None,
+                "judge_model":              self.judge_model,
             }
+            self._relevance_primary.append(relevance_primary)
+            if relevance_secondary >= 0:
+                self._relevance_secondary.append(relevance_secondary)
+            self._ground_primary.append(ground_primary)
+            if ground_secondary >= 0:
+                self._ground_secondary.append(ground_secondary)
             metrics.update(self.evaluate_rouge(entry.ground_truth, ans))
             gold = self.compute_gold_retrieval_metrics(
                 entry.retrieved_source_filenames, entry.gold_docs
