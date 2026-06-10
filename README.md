@@ -188,7 +188,7 @@ python main.py --ratios 0.0 1.0 3.0
 
 ## 📊 Results
 
-### Generate All Charts (37 publication-quality visualizations)
+### Generate All Charts (37 visualizations)
 
 ```bash
 python -m dft_research_studio.visualization.generate_all_charts \
@@ -196,7 +196,7 @@ python -m dft_research_studio.visualization.generate_all_charts \
     --output results/full/charts
 ```
 
-### Generate All Tables (15 CSV tables for dissertation)
+### Generate All Tables (15 CSV tables )
 
 ```bash
 python -m dft_research_studio.visualization.generate_all_tables \
