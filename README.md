@@ -374,6 +374,7 @@ git push hf main --force
 | MRR | 0-1 | Automated | Mean reciprocal rank of first relevant document |
 | Cohen's d | Real | Computed | Effect size vs baseline (pooled std) |
 | GFG | % | Computed | Generative Fidelity Gap vs StandardRAG |
+|Graph Lift (ΔG%)| % | Computed | Relative groundedness improvement of graph-based architectures vs the strongest vector-baseline reference (BM25RerankerRAG)|
 
 ---
 
