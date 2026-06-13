@@ -291,7 +291,7 @@ dft-research-studio/
 │   │
 │   ├── visualization/
 │   │   ├── __init__.py
-│   │   ├── generate_all_charts.py  # Publication-quality charts
+│   │   ├── generate_all_charts.py  #  charts
 │   │   ├── generate_all_tables.py  # CSV summary tables
 │   │   ├── heatmap.py              # Multi-subplot heatmaps
 │   │   ├── radar.py                # Architecture capability radar
