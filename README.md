@@ -31,7 +31,7 @@ The system compares **11 retrieval architectures** across **3 paradigms** (Pure 
 
 ### Key Contributions
 
-- **19,726-node Knowledge Graph** constructed from 25 DFT benchmark papers with 97,924 relationships
+- **19,726-node Knowledge Graph** constructed from 25 DFT benchmark papers with 100,442 relationships
 - **Multi-Agent Dialectic Debate System (MAMEF)** with Advisor, Safety Officer, and Meta-Reasoner agents
 - **Groundedness-Correctness Tradeoff Discovery**: Graph architectures achieve **94% groundedness** (vs 0% for baselines) while maintaining verifiable scientific reasoning
 - **Dual-Judge Evaluation** with inter-rater agreement **r = 0.856**
@@ -225,73 +225,138 @@ dft-research-studio/
 ├── main.py                         # Experiment runner (debug/full)
 ├── setup_ollama.sh                 # Ollama installation script
 ├── requirements.txt                # Python dependencies
+├── pyproject.toml                  # Project metadata + build config
+├── pytest.ini                      # Pytest configuration
+├── Makefile                        # Common dev commands
 ├── Dockerfile                      # HuggingFace Spaces deployment
+├── Dockerfile.serve                # LitServe production deployment
+├── docker-compose.yml              # Multi-container orchestration
+├── demo_cache.json                 # Pre-computed answers for HF Spaces cache mode
+├── README.md                       # This file
+├── README_HF.md                    # HuggingFace Spaces README
 ├── .env                            # Configuration (create from template above)
+├── .dockerignore                   # Docker build exclusions
+├── .gitignore                      # Git exclusions
+├── .lightningignore                # Lightning AI exclusions
 │
 ├── dft_research_studio/
+│   ├── __init__.py
+│   ├── README.md                   # Package-level documentation
+│   │
 │   ├── agents/
+│   │   ├── __init__.py
 │   │   ├── llm_wrapper.py          # Ollama/Groq unified LLM interface
-│   │   ├── debate_orchestrator.py  # Multi-agent dialectic debate
-│   │   ├── multi_agent_graph_rag.py# Strategist + Critic workflow
-│   │   └── meta_reasoning_engine.py# Meta-reasoner (5-step CoT)
+│   │   ├── debate_orchestrator.py  # Multi-agent dialectic debate (Auto-KGR Lab)
+│   │   ├── multi_agent_graph_rag.py# Strategist + Critic retrieval pipeline
+│   │   ├── meta_reasoning_engine.py# Meta-reasoner (5-step CoT)
+│   │   ├── kg_query_engine.py      # KG query helper for agents
+│   │   └── tab3_ingestion.py       # ArXiv ingestion tab logic
 │   │
 │   ├── config/
+│   │   ├── __init__.py
 │   │   └── settings.py             # Centralised experiment configuration
 │   │
 │   ├── data/
+│   │   ├── __init__.py
 │   │   ├── data_manager.py         # KG + dataset orchestrator
 │   │   ├── pdf_processor.py        # Scientific PDF extraction
 │   │   ├── arxiv_ingester.py       # ArXiv auto-ingestion pipeline
+│   │   ├── graph_postprocessor.py  # KG normalization & cleanup
 │   │   └── processed/
-│   │       ├── dft_kg_nodes.csv        # 19,726 KG nodes
-│   │       ├── dft_kg_relationships.csv# 97,924 relationships
-│   │       ├── _DFT-QA-120.csv         # Q-120 challenge set
-│   │       └── paper_id_mapping.json   # Paper ID → filename mapping
+│   │       ├── dft_kg_nodes.csv         # 19,726 KG nodes
+│   │       ├── dft_kg_relationships.csv # 100,442 relationships
+│   │       ├── _DFT-QA-120.csv          # Q-120 challenge set
+│   │       └── paper_id_mapping.json    # Paper ID → filename mapping
 │   │
 │   ├── retrievers/
+│   │   ├── __init__.py
 │   │   ├── standard_rag.py         # ChromaDB vector retrieval
 │   │   ├── graph_rag.py            # Star-topology graph traversal
-│   │   ├── topological_retriever.py# Hub-based deterministic retrieval
+│   │   ├── topological_retriever.py# GraphDeterministic (NetworkX traversal)
 │   │   ├── bm25_retriever.py       # Okapi BM25 sparse retrieval
 │   │   ├── reranker.py             # Cross-encoder neural reranker
 │   │   └── bm25_reranker_adapter.py# BM25 + Reranker hybrid
 │   │
 │   ├── evaluation/
+│   │   ├── __init__.py
 │   │   ├── scientific_evaluator.py # LLM-as-Judge + ROUGE + IR metrics
 │   │   ├── advanced_metrics.py     # Bootstrap CI, Cohen's d, GFG
-│   │   └── reproducibility_tracker.py# Hardware specs, seeds, hashes
+│   │   ├── reproducibility_tracker.py# Hardware specs, seeds, hashes
+│   │   ├── schemas.py              # Pydantic schemas for evaluation outputs
+│   │   └── epistemic_metrics.py    # Experimental epistemic safety metrics
+│   │
+│   ├── serving/
+│   │   ├── __init__.py
+│   │   └── litserve_api.py         # LitServe production API endpoint
 │   │
 │   ├── visualization/
-│   │   ├── generate_all_charts.py  # 29 publication-quality charts
-│   │   ├── generate_all_tables.py  # 15 CSV tables
+│   │   ├── __init__.py
+│   │   ├── generate_all_charts.py  # Publication-quality charts
+│   │   ├── generate_all_tables.py  # CSV summary tables
 │   │   ├── heatmap.py              # Multi-subplot heatmaps
 │   │   ├── radar.py                # Architecture capability radar
 │   │   ├── noise_sensitivity.py    # Robustness profile curves
 │   │   ├── fidelity_gap.py         # Generative Fidelity Gap heatmap
-│   │   └── significance.py         # Welch's t-test p-value matrix
+│   │   ├── compute_graph_lift.py   # Graph Lift (ΔG%) computation
+│   │   ├── significance.py         # Welch's t-test p-value matrix
+│   │   ├── graph_visualizer.py     # KG topology rendering
+│   │   └── trace_visualizer.py     # Retrieval trace visualization
 │   │
 │   └── utils/
+│       ├── __init__.py
 │       ├── experiment_orchestrator.py# 11 run_* methods + checkpointing
 │       ├── engine_registry.py      # Model/retriever factory
 │       └── logging_config.py       # Structured logging
 │
 ├── results/
 │   ├── debug/                      # Debug experiment outputs
+│   │   ├── debug_checkpoint.jsonl
+│   │   ├── debug_experiment_metrics.csv
+│   │   ├── debug_results_raw.json
+│   │   ├── debug_reproducibility_log.json
+│   │   ├── final_results_with_ci.csv
+│   │   └── table3_generative_gap.csv
+│   │
 │   └── full/                       # Full ablation study (6,600 runs)
 │       ├── full_results_raw.json       # Raw answers
 │       ├── full_experiment_metrics.csv # Evaluated metrics
+│       ├── full_metrics_flat.csv       # Flattened per-trial metrics
+│       ├── full_checkpoint.jsonl       # Resumable checkpoint
 │       ├── final_results_with_ci.csv   # Bootstrap confidence intervals
 │       ├── table3_generative_gap.csv   # Generative Fidelity Gap
-│       ├── charts/                     # 37+ PNG visualizations
-│       └── tables/                     # 15 CSV tables
+│       ├── epistemic_metrics.csv       # Experimental epistemic metrics
+│       ├── charts/                     # PNG visualizations
+│       └── tables/                     # CSV tables
 │
-├── tests/                          # 134 unit tests
-├── notebooks/                      # KG construction notebooks
+├── tests/                          # Pytest suite
+│   ├── __init__.py
+│   ├── conftest.py                 # Shared fixtures
+│   ├── test_config.py
+│   ├── test_graph_construction.py
+│   ├── test_new_architectures.py
+│   ├── test_pdf_processor.py
+│   ├── test_qa_parsing.py
+│   ├── test_retrieval_algorithms.py
+│   └── test_statistical_analysis.py
+│
+├── notebooks/                      # Research & KG construction notebooks
+│   ├── 00_Auto_KGR_R&D.ipynb       # Main research notebook
 │   └── Archive_Extraction_Logic/
 │       ├── 01_Distractor_corpus_acquisition.ipynb
 │       ├── 02_entity_relationship_extraction.ipynb
 │       ├── 03_graph_normalization_cleaning.ipynb
 │       └── 04_topological_enhancement.ipynb
+│
+├── lib/                            # Third-party visualization assets
+│   ├── bindings/utils.js
+│   ├── tom-select/
+│   └── vis-9.1.2/                  # Vis-network for KG topology rendering
+│
+├── logs/                           # Application & experiment logs
+│   ├── app_YYYYMMDD_HHMMSS.log
+│   └── debug_YYYYMMDD_HHMMSS.log
+│
+├── nltk_data/                      # NLTK tokenizers (downloaded at install)
 │
 └── VectorDBs/                      # ChromaDB stores (per distractor ratio)
     ├── chroma_dft_ratio_0_0/           # 2,330 chunks (clean corpus)
