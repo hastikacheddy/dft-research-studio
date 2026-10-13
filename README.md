@@ -443,6 +443,12 @@ git push hf main --force
 
 ---
 
+## 📦 Data and Software Availability
+
+See [`DATA_AND_SOFTWARE_AVAILABILITY.md`](DATA_AND_SOFTWARE_AVAILABILITY.md) for the shared data, third-party data and models, parameters, pinned library versions ([`requirements-recorded.txt`](requirements-recorded.txt)) and how to reproduce the results.
+
+---
+
 ## 🧑‍🎓 Author
 
 **Hastika Cheddy**

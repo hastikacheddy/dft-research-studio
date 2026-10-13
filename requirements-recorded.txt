@@ -1,0 +1,19 @@
+# Exact versions of the libraries recorded by the experiment's reproducibility tracker
+# (results/debug/debug_reproducibility_log.json). Python 3.12.
+# Install together with the minimum-version list:
+#   pip install -r requirements.txt -c requirements-recorded.txt
+# Verified to resolve with requirements.txt on Python 3.12 (not on 3.13: pandas 2.1.4 has no 3.13 wheels).
+numpy==1.26.4
+torch==2.8.0
+chromadb==1.5.7
+networkx==3.6.1
+pandas==2.1.4
+spacy==3.8.14
+scikit-learn==1.8.0
+langchain-community==0.4.1
+langchain-text-splitters==1.1.1
+rouge-score==0.1.2
+thefuzz==0.22.1
+groq==1.1.2
+pymupdf==1.27.2.2
+pyvis==0.3.2
