@@ -16,6 +16,8 @@
 | Re-ranker | `cross-encoder/ms-marco-MiniLM-L-6-v2` | https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2 |
 | NER | `en_core_web_sm` (spaCy) | https://spacy.io/models/en |
 
+The reported experiments (generation and judging) were run locally with Ollama. The Groq API is used only by the interactive demo (`app.py`).
+
 ## Data in this repository
 
 All files are machine-readable (CSV or JSON).
@@ -66,6 +68,10 @@ python -m nltk.downloader punkt punkt_tab stopwords wordnet
 # point the code at the shipped data (defaults to a private cloud path)
 export DFT_BASE_DIR=$PWD/dft_research_studio/data/processed
 export DFT_CHROMA_DIR=$PWD/VectorDBs
+
+# the evaluator creates a Groq client at start-up and needs a non-empty key;
+# no judging request is sent to Groq (judging runs on Ollama)
+export GROQ_API_KEY=unused
 ```
 
 Place the source PDFs in `dft_research_studio/data/raw/DFT-Corpus-25/` and the distractor PDFs in `dft_research_studio/data/raw/Distractors/` (the code looks for `raw/` next to `processed/`), then:
