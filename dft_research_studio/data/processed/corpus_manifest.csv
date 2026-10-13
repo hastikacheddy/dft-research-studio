@@ -1,0 +1,26 @@
+selection_figure_group,selection_figure_label,paper
+Ancestors,Becke(1988),Density-functional exchange-energy approximation with correct asymptotic behavior
+Ancestors,Lee(1988),Reparametrization of the Colle–Salvetti formula
+Ancestors,Becke(1993),Density-functional thermochemistry. III. The role of exact exchange
+Ancestors,Perdew(1996),Generalized Gradient Approximation Made Simple
+Core Lineage,Zhao(2005) [M05],"Exchange-correlation functional with broad accuracy for metallic and nonmetallic compounds, kinetics, and noncovalent interactions"
+Core Lineage,Zhao(2006) [M06-L],"A new local density functional for main-group thermochemistry, transition metal bonding, thermochemical kinetics, and noncovalent interactions"
+Core Lineage,Zhao(2008) [M06 Suite],"The M06 suite of density functionals for main group thermochemistry, thermochemical kinetics, noncovalent interactions, excited states, and transition elements: two new functionals and systematic testing of four M06-class functionals and 12 other functionals"
+Core Lineage,Zhao(2008) [M08-HX/SO],"Exploring the Limit of Accuracy of the Global Hybrid Meta Density Functional for Main-Group Thermochemistry, Kinetics, and Noncovalent Interactions"
+Core Lineage,Peverati(2011) [M11],Improving the Accuracy of Hybrid Meta-GGA Density Functionals by Range Separation
+Core Lineage,Peverati(2012) [MN12-L],"Peverati and Truhlar, Phys. Chem. Chem. Phys. 2012, 14, 13171-13174, doi:10.1039/C2CP42025B"
+Core Lineage,Yu(2016) [MN15],MN15: A Kohn–Sham global-hybrid exchange–correlation density functional with broad accuracy for multi-reference and single-reference systems and noncovalent interactions
+Core Lineage,Peverati(2014) [Review],Quest for a universal density functional: The accuracy of density functionals across a broad spectrum of databases in chemistry and physics
+Competitors,Chai(2008) [wB97/X],Systematic optimization of long-range corrected hybrid density functionals
+Competitors,Chai(2008) [wB97X-D],Long-range corrected hybrid density functionals with damped atom–atom dispersion corrections
+Collaborators,Grimme(2006) [D2],Semiempirical GGA-Type Density Functional Constructed with a Long-Range Dispersion Correction
+Collaborators,Grimme(2010) [D3],A Consistent and Accurate Ab Initio Parametrization of Density Functional Dispersion Correction (DFT-D) for the 94 Elements H-Pu
+Collaborators,Grimme(2011) [D3(BJ)],Effect of the Damping Function in Dispersion Corrected Density Functional Theory
+Collaborators,Caldeweyher(2019) [D4],A generally applicable atomic-charge dependent London dispersion correction
+Hubs / Databases,Jurecka(2006) [S22],"Benchmark database of accurate (MP2 and CCSD(T) complete basis set limit) interaction energies of small model complexes, DNA base pairs, and amino acid pairsw"
+Hubs / Databases,Rezac(2011) [S66],S66: A Well-balanced Database of Benchmark Interaction Energies Relevant to Biomolecular Structures
+Hubs / Databases,Goerigk(2011) [GMTKN30 DB],"Efficient and Accurate Double-Hybrid-Meta-GGA Density Functionals: Evaluation with the Extended GMTKN30 Database for General Main Group Thermochemistry, Kinetics, and Noncovalent Interactions"
+Hubs / Databases,Goerigk(2011) [Benchmark],"A thorough benchmark of density functional methods for general main group thermochemistry, kinetics, and noncovalent interactionsw"
+Hubs / Databases,Burke(2012) [ABC of DFT],The ABC of DFT
+Hubs / Databases,Mardirossian(2017) [Mega-Review],Thirty years of density functional theory in computational chemistry: an overview and extensive assessment of 200 density functionals
+Hubs / Databases,Goerigk(2017) [GMTKN55],A look at the density functional theory zoo with the advanced GMTKN55 database for general main group thermochemistry, kinetics and noncovalent interactions
