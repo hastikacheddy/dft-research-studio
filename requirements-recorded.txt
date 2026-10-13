@@ -1,0 +1,30 @@
+# Exact library versions recorded by dft_research_studio/evaluation/reproducibility_tracker.py
+# in results/debug/debug_reproducibility_log.json (run started 2026-05-20, Python 3.12.11,
+# Linux x86_64, CPU only).
+#
+# This is NOT a complete lock file:
+#   - the tracker did not record nltk, sentence-transformers, rank-bm25, scipy, gradio,
+#     litserve, requests, seaborn, tqdm, python-dotenv or psutil, so they are absent here;
+#   - no reproducibility log for the full 6,600-run experiment is committed, so these
+#     versions are those of the debug run and should be checked against the full run.
+# Install the unpinned remainder with requirements.txt.
+#
+# Requires Python 3.12 (the version used for the study). pandas 2.1.4 has no wheels for
+# Python 3.13 and fails to build there. Checked with `uv pip compile requirements.txt
+# -c requirements-recorded.txt --python-version 3.12`: all 14 pins resolve together.
+#
+# Usage:  pip install -r requirements.txt -c requirements-recorded.txt
+numpy==1.26.4
+torch==2.8.0              # recorded as 2.8.0+cu128
+chromadb==1.5.7
+networkx==3.6.1
+pandas==2.1.4
+spacy==3.8.14
+scikit-learn==1.8.0
+langchain-community==0.4.1
+langchain-text-splitters==1.1.1
+rouge-score==0.1.2
+thefuzz==0.22.1
+groq==1.1.2
+pymupdf==1.27.2.2
+pyvis==0.3.2

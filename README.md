@@ -443,6 +443,16 @@ git push hf main --force
 
 ---
 
+## 📦 Data and Software Availability
+
+See [`DATA_AND_SOFTWARE_AVAILABILITY.md`](DATA_AND_SOFTWARE_AVAILABILITY.md) for what is shared
+(knowledge graph, Q-120, raw outputs, metrics), what is not (third-party PDFs, vector stores) and
+how to obtain or rebuild it, the exact pinned library versions ([`requirements-recorded.txt`](requirements-recorded.txt)),
+the paper list ([`corpus_manifest.csv`](dft_research_studio/data/processed/corpus_manifest.csv)),
+and how to point the code at the shipped data (`DFT_BASE_DIR`).
+
+---
+
 ## 🧑‍🎓 Author
 
 **Hastika Cheddy**

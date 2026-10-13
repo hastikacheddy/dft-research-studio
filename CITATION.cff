@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software or its data, please cite it as below."
+title: "Auto-KGR Research Studio"
+type: software
+version: 1.0.0
+license: MIT
+authors:
+  - family-names: Cheddy
+    given-names: Hastika
+repository-code: "https://github.com/hastikacheddy/dft-research-studio"
+abstract: >-
+  A neuro-symbolic framework that combines Large Language Models with a
+  knowledge graph of Density Functional Theory (DFT) benchmark literature to
+  compare 11 retrieval architectures (pure LLM, standard IR, graph-based) on a
+  120-question stratified challenge set under five distractor-noise levels.
+keywords:
+  - density functional theory
+  - knowledge graph
+  - retrieval-augmented generation
+  - GraphRAG
+  - quantum chemistry
+preferred-citation:
+  type: thesis
+  thesis-type: "MSc dissertation"
+  title: "Auto-KGR: An Autonomous Knowledge-Graph-Driven Reasoning Framework for Scientific Meta-Engineering in Quantum Chemistry"
+  authors:
+    - family-names: Cheddy
+      given-names: Hastika
+  year: 2026
