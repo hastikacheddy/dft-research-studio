@@ -2,7 +2,7 @@
 
 ## Software
 
-- **Code:** https://github.com/hastikacheddy/dft-research-studio (version 1.0.0), MIT licence, see [`LICENSE`](LICENSE).
+- **Code:** https://github.com/hastikacheddy/dft-research-studio (version 1.0.0), archived on Zenodo at [10.5281/zenodo.23339006](https://doi.org/10.5281/zenodo.23339006), MIT licence, see [`LICENSE`](LICENSE).
 - **Python:** 3.12 (3.12.11 for the recorded run).
 - **Libraries:** minimum versions in [`requirements.txt`](requirements.txt); exact versions recorded by the experiment's reproducibility tracker in [`requirements-recorded.txt`](requirements-recorded.txt). Install with `pip install -r requirements.txt -c requirements-recorded.txt`.
 - **Third-party models:**
