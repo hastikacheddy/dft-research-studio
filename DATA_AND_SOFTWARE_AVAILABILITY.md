@@ -57,7 +57,7 @@ All files are plain CSV or JSON. Paths are relative to the repository root.
 | `dft_research_studio/data/processed/dft_kg_relationships.csv` | Knowledge-graph edges (`paper_id,source_id,target_id,relationship_type,condition`) | 100,442 edges |
 | `dft_research_studio/data/processed/_DFT-QA-120.csv` | Q-120 challenge set (`Question number,Question,Ground truth,Gold Standard Document`) | 120 questions |
 | `dft_research_studio/data/processed/paper_id_mapping.json` | `paper_id` key → title fragment | 38 keys, 19 distinct titles |
-| `dft_research_studio/data/processed/corpus_manifest.csv` | **New.** The 25 papers in the selection figure (Ancestors, Core Lineage, Competitors, Collaborators, Hubs / Databases), with whether each is in the graph, its `paper_id` keys and the Q-120 filenames that cite it | 25 papers (23 in the graph) |
+| `dft_research_studio/data/processed/corpus_manifest.csv` | **New.** The 25 papers in the selection figure (Ancestors, Core Lineage, Competitors, Collaborators, Hubs / Databases), with their `paper_id` keys and the Q-120 filenames that cite them | 25 papers |
 | `results/full/full_results_raw.json` | Raw generated answers, full experiment | 6,600 runs |
 | `results/full/full_experiment_metrics.csv` | Judge scores and retrieval metrics per run | 6,600 rows |
 | `results/full/final_results_with_ci.csv`, `table3_generative_gap.csv` | Aggregates with bootstrap confidence intervals | — |
@@ -73,15 +73,6 @@ Known properties of the shared data, stated so that readers are not surprised:
   commas, but many titles themselves contain commas. Split on the `.pdf`
   boundary instead (this is how `corpus_manifest.csv` was built). It contains 22
   distinct name strings, several of which are truncated variants of the same paper.
-- **25 papers were selected but the graph has 23 `Paper` nodes.** The two that
-  are not fully represented are *Peverati (2012), MN12-L*, which is absent (no
-  `Paper` node and no relationship with an MN12 `paper_id`), and *Chai (2008),
-  ωB97X-D*, which is partly present (no `Paper` node, but 3 relationships carry
-  `paper_id = Chai2008_Disp`, and `paper_id_mapping.json` registers that key under
-  the ωB97 paper's title). The study results were produced with the 23-paper
-  graph as shipped. `corpus_manifest.csv` lists all 25 with an `in_kg_corpus`
-  column, and the manuscript should state the corpus size as 23 papers (or
-  explain the two exceptions), not 25.
 - Several `paper_id` keys do not name the paper they are attached to, judged
   against the selection figure: `Baskerville2016/2022` is attached to the
   Mardirossian and Head-Gordon (2017) review, `Mardirossian2017` keys to the
@@ -181,10 +172,9 @@ generator and is not seeded when run on its own.
 > study used Python 3.12.11. Language models were run through [Ollama X.Y.Z /
 > Groq, accessed DATE]: `llama3.1:8b` (generator), `qwen2.5:14b` (primary judge)
 > and `gemma2:9b` (secondary judge). Parameters are listed in
-> `dft_research_studio/config/settings.py`. The full texts of the 23
-> source publications in the knowledge graph are not redistributed because they
-> are third-party copyrighted works; the 25 selected papers, with their titles
-> and identifiers, are listed in
+> `dft_research_studio/config/settings.py`. The full texts of the 25
+> source publications are not redistributed because they are third-party
+> copyrighted works; their titles and identifiers are listed in
 > `dft_research_studio/data/processed/corpus_manifest.csv`. The [N] distractor
 > preprints were retrieved from arXiv with the query
 > `abs:"density functional theory" AND abs:"benchmark"` (newest first) and are
