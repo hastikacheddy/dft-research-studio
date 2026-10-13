@@ -35,6 +35,11 @@ All files are machine-readable (CSV or JSON).
 | `results/full/tables/`, `results/full/charts/` | Tables and figures |
 | `results/debug/` | Single-question debug run, including `debug_reproducibility_log.json` (configuration and library versions of that run) |
 
+## Licences
+
+- **Code:** MIT, see [`LICENSE`](LICENSE).
+- **Data** (knowledge graph, Q-120, `paper_id_mapping.json`, `corpus_manifest.csv`, results): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). This does not extend to text reproduced from the source publications, which remains under the copyright of the original publishers.
+
 ## Third-party data not redistributed
 
 - **Source papers (25):** listed in [`corpus_manifest.csv`](dft_research_studio/data/processed/corpus_manifest.csv). The PDFs are third-party publications and are not included.

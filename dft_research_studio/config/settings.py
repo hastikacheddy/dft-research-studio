@@ -105,7 +105,7 @@ class Config:
     # ------------------------------------------------------------------ #
     # LICENSING                                                            #
     # ------------------------------------------------------------------ #
-    data_license: str = "CC BY-NC 4.0"
+    data_license: str = "CC BY 4.0"
     model_licenses: Dict[str, str] = field(
         default_factory=lambda: {
             "llama3.1:8b": "Llama 3.1 Community License (Meta)",
