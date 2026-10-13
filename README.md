@@ -447,6 +447,8 @@ git push hf main --force
 
 See [`DATA_AND_SOFTWARE_AVAILABILITY.md`](DATA_AND_SOFTWARE_AVAILABILITY.md) for the shared data, third-party data and models, parameters, pinned library versions ([`requirements-recorded.txt`](requirements-recorded.txt)) and how to reproduce the results.
 
+Archived release (v1.0.0): [10.5281/zenodo.23339006](https://doi.org/10.5281/zenodo.23339006)
+
 ---
 
 ## 🧑‍🎓 Author
